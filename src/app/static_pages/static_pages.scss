@@ -1,0 +1,160 @@
+.static-page div.pharagrafer { text-align: justify; margin-top: 20px; }
+.static-page div.pharagrafer span { font-weight: bold; }
+.static-page div.pharagrafer p { margin-bottom: 0; }
+.static-page div.pharagrafer ul { list-style: none; }
+.static-page div.pharagrafer ul.rules { list-style-type: lower-alpha; }
+.static-page div.pharagrafer ul.rules li { margin-bottom: 20px; }
+
+.static-page div.pharagrafer > ol { list-style-type: decimal; counter-reset: item; }
+.static-page div.pharagrafer > ol > li { margin-top: 20px; display: block; }
+.static-page div.pharagrafer > ol > li:before { content: counters(item, ".") "."; counter-increment: item }
+
+.static-page div.pharagrafer > ol > li > span.key_word { text-decoration: underline; }
+.static-page div.pharagrafer > ol > li > ol { counter-reset: item; list-style: none; }
+.static-page div.pharagrafer > ol > li > ol > li { margin-bottom: 20px; }
+.static-page div.pharagrafer > ol > li > ol > li:before { content: counters(item, ".") " "; counter-increment: item }
+.static-page div.pharagrafer > ol > li > ol > li > ol { counter-reset: item; list-style: none;}
+.static-page div.pharagrafer > ol > li > ol > li > ol > li { counter-increment: item; position: relative; text-indent: 3.5em; margin-bottom: 1em; }
+.static-page div.pharagrafer > ol > li > ol > li > ol > li:before { content: "(" counter(item, lower-latin) ")"; margin-right: 2em; }
+
+.static-page div.pharagrafer > ol > li > ul { counter-reset: item; }
+.static-page div.pharagrafer > ol > li > ul > li { text-indent: 3.5em; margin-bottom: 1em; }
+.static-page div.pharagrafer > ol > li > ul > li:before { content: counters(item, ".") " "; counter-increment: item; margin-right: 2em; }
+
+#claim-page,
+#add-images-page,
+#image-identification-page {
+  p {
+    font-size: 1.4em;
+  }
+  h2 {
+    font-size: 2.2em;
+    font-weight: 700;
+  }
+  .intro {
+    text-align: center;
+    h1 {
+      font-weight: 600;
+    }
+    img {
+      width: 70%;
+      margin-bottom: 50px;
+    }
+    .line {
+      position: relative;
+      margin: 100px 0;
+      .line-box {
+        background: #0080cc;
+        color: #FFF;
+        text-align: center;
+        padding: 10px;
+        width: 300px;
+        margin: 0 auto -20px;
+        font-size: 1em;
+        z-index: 9;
+        position: relative;
+      }
+    }
+  }
+
+  .images-rights,
+  .money-left {
+    h2 {
+      text-align: center;
+    }
+    p:first-child {
+      text-align: center;
+    }
+  }
+
+  .add-your-photos,
+  .our-technology {
+    p {
+      margin-left: 4em;
+      margin-right: 4em;
+    }
+    img {
+      width: 430px;
+      display: block;
+      margin-top: 20px;
+    }
+  }
+
+  .ownership-info,
+  .image-protected,
+  .future {
+    margin-top: 50px;
+    .horizontal-line {
+      margin: 80px 0 60px;
+    }
+    .list {
+      padding-left: 80px;
+      list-style: none;
+
+      li {
+        position: relative;
+        font-size: 1.4em;
+        font-weight: 700;
+        background-image: image-url("ok.png");
+        background-position: 0 3px;
+        background-color: transparent;
+        background-repeat: no-repeat;
+        padding: 20px 0 20px 65px;
+
+        &:last-child {
+          font-weight: 900;
+          background-image: image-url("hand.png");
+        }
+      }
+    }
+  }
+
+  .submit-your-image {
+    text-align: center;
+
+    a {
+      text-decoration: underline;
+    }
+  }
+
+  @media (max-width: 1199px) {
+    p {
+      font-size: 1em;
+    }
+    h1 {
+      font-size: 1.5em;
+    }
+    h2 {
+      font-size: 1.3em;
+    }
+    .intro {
+      .line {
+        margin: 50px 0;
+        .line-box {
+          width: 250px;
+          font-size: .8em;
+        }
+      }
+    }
+    .our-technology {
+      img {
+        width: 100%;
+        margin-top: 50px;
+      }
+    }
+  }
+}
+
+#add-images-page {
+  .submit-your-image h2 {
+    font-size: 1.9em;
+  }
+}
+
+
+span.key_words { font-weight: bold; }
+p.paragraph_centralized { text-align: center; }
+.upload-photo a { display: inline; margin-right: 20px; }
+.upload-photo a.button { background: #FFF; border-radius: 0; border: 2px solid #187fcd; padding: .65rem; cursor: pointer; font-weight: bold;}
+
+div.home-searchbar h3{ margin-bottom: -0.5em; text-align: center; }
