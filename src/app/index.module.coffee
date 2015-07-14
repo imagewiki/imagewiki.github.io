@@ -1,1 +1,1 @@
-angular.module 'imagewikiFrontend', ['ngTouch', 'ngResource', 'ui.router', 'ui.bootstrap']
+angular.module 'imagewikiFrontend', ['ngResource', 'ui.router']
