@@ -1,3 +1,4 @@
 angular.module "imagewikiFrontend"
-  .run ($log) ->
-    $log.debug 'runBlock end'
+  .run ($rootScope, $state, $stateParams) ->
+    $rootScope.$on '$stateChangeStart', ->
+      $rootScope.$state = $state
