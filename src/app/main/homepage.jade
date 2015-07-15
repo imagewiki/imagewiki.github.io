@@ -1,0 +1,42 @@
+section#homepage
+  .col-lg-12.col-md-12.col-sm-12
+    h1.main-title
+      | The world's photo identification database
+    h2
+      | Register your images. Protect your intellectual property. Get paid.
+
+  .col-lg-12.col-md-12.col-sm-12
+    .search-upload.search-block
+      .row.field
+        .col-lg-4.col-md-4.col-sm-4.col-lg-offset-1.col-md-offset-1.col-sm-offset-1
+          .upload-photo
+            h3
+              | Contribute to Imagewiki
+            form.form-horizontal.frm-image#direct_upload_form
+              input.form-control.hidden#direct-input-file(name="search[file]", type="file")
+              a.button
+                | Upload Photo
+        .col-lg-1.col-md-1.col-sm-1
+          .vertical-line
+        .col-lg-6.col-md-6.col-sm-6
+          .home-searchbar
+            h3
+              | Reverse search Imagewiki
+          form.form-horizontal.frm-image#new_search(accept-charset="UTF-8", action="/searches", enctype="multipart/form-data", method="post")
+            #new-search-block
+              .reverse-search.clearfix
+                  h3
+                  .form-group.has-feedback.pull-left
+                    label.sr-only Type keywords to find an image, or paste URL
+                    input#search_description.form-control(name='search[description]', placeholder='Type keywords to find an image, or paste URL', type='text')
+                    input#search_file.form-control(name='search[file]', type='file', style='display: none;')
+                    span.glyphicon.glyphicon-camera.form-control-feedback(aria-hidden='true')
+                    span.fa.fa-spinner.fa-spin.bg-overlay.form-control-feedback(aria-hidden='true')
+                  button.pull-left.button(type='submit') Search
+                ul.options.clearfix.nav.nav-tabs.home-tabs
+                  li.bingapi-option.active
+                    a(data-path='/searches', data-toggle='tab', href='#search_description') Describe
+                  li.url-search
+                    a(data-path='/create-image', data-toggle='tab', href='#search_url') URL
+                  li
+                    a.browse-your-files.file-placeholder(data-path='/create-image', data-toggle='tab', href='#search_file') Upload Image

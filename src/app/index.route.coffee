@@ -3,7 +3,7 @@ angular.module "imagewikiFrontend"
     $stateProvider
       .state "home",
         url: "/"
-        templateUrl: "app/main/main.html"
+        templateUrl: "app/main/homepage.html"
         controller: "MainController"
         controllerAs: "main"
         data:
