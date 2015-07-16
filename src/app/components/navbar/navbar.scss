@@ -1,0 +1,110 @@
+header .logo {
+  float: left;
+}
+header .logo a {
+  display: block;
+}
+header .logo a img {
+  display: block;
+  width: 100%;
+  max-width: 229px;
+  margin: 3px;
+}
+header .logo p {
+  margin: 0 0 0 20px;
+  font-size: 1.2em;
+  color: #999;
+}
+
+header .user-panel {
+  float: right;
+  margin: 30px;
+  text-align: right;
+}
+header .user-panel .user-guard {
+  position: relative;
+  margin-left: 20px;
+  cursor: pointer;
+  float: left;
+}
+header .user-panel .glyphicon {
+  color: #555;
+  font-size: .8em;
+  vertical-align: 0;
+  margin-right: 4px;
+  text-decoration: none!important
+}
+header .user-panel a:hover .glyphicon {
+  text-decoration: none!important;
+}
+header .user-menu .glyphicon {
+  font-size: 1em;
+}
+
+.user-guard-form {
+  display: none;
+  position: absolute;
+  background: #f6f6f6;
+  width: 465px;
+  padding: 20px 20px 10px;
+  right: 0;
+  top: 30px;
+  border-radius: 5px;
+  box-shadow: 0 0 0 2px rgba(0,0,0,.5);
+  z-index: 10;
+}
+.user-guard-form.create-account-form {
+  right: -77px;
+}
+.user-guard-form.login-form {
+
+}
+.user-guard-form .up-arrow {
+  width: 0;
+  height: 0;
+  display: block;
+  border-bottom: 5px solid rgba(0,0,0,0.5);
+  border-left: 5px solid transparent;
+  border-right: 5px solid transparent;
+  position: absolute;
+  top: -7px;
+  right: 125px;
+}
+.user-guard-form.login-form .up-arrow {
+  right: 20px;
+}
+.user-guard-form .title {
+  font-weight: bold;
+  font-size: 1.2em;
+  background: #e6e6e6;
+  margin: -20px -20px 15px -20px;
+  padding: 5px 5px 5px 20px;
+  border-radius: 5px 5px 0 0;
+}
+.user-guard-form label.control-label {
+  font-weight: normal;
+  text-align: left;
+  font-size: 0.9em;
+  padding-top: 9px;
+  width: 23%;
+}
+.user-guard-form .col-lg-9 {
+  width: 77%;
+  padding-left: 0;
+}
+.user-guard-form .remember-submit {
+  margin-top: -15px;
+  margin-bottom: 0;
+}
+.user-guard-form .remember-submit .remember {
+  padding-left: 15px;
+}
+.user-guard-form .remember-submit .submit {
+  width: 23%;
+  margin-top: 5px;
+}
+.user-guard-form .forgot-password {
+  font-size: .8em;
+  float: right;
+  margin-top: 5px;
+}
