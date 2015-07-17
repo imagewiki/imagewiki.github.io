@@ -1,5 +1,7 @@
 angular.module "imagewikiFrontend"
-  .controller "MainController", ($timeout) ->
-    vm = this
+  .controller "MainController", [
+    '$scope'
+    ($scope) ->
 
-    return
+      return
+  ]

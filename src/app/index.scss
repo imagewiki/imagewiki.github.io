@@ -27,6 +27,19 @@ $icon-font-path: "../../bower_components/bootstrap-sass-official/assets/fonts/bo
   }
 }
 
+html {
+  font-size: 100%;
+}
+body {
+  font-size: 16px;
+}
+h1 {
+  margin: 0.67em 0;
+}
+button, input {
+  line-height: normal;
+}
+
 /**
  *  Do not remove this comments bellow. It's the markers used by gulp-inject to inject
  *  all your sass files automatically

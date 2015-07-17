@@ -1,0 +1,15 @@
+form.form-horizontal.frm-image#new_search(accept-charset="UTF-8", action="/searches", enctype="multipart/form-data", method="post")
+  #new-search-block
+    .reverse-search.clearfix
+        .form-group.has-feedback.pull-left
+          label.sr-only Type keywords to find an image, or paste URL
+          input#search_description.form-control(name='search[description]', placeholder='Paste an image URL', type='text')
+          input#search_file.form-control(name='search[file]', type='file', style='display: none;')
+          span.glyphicon.glyphicon-camera.form-control-feedback(aria-hidden='true')
+          span.fa.fa-spinner.fa-spin.bg-overlay.form-control-feedback(aria-hidden='true')
+        button.pull-left.button(type='submit') Search
+      ul.options.clearfix.nav.nav-tabs.home-tabs
+        li.url-search.active
+          a(data-path='/create-image', data-toggle='tab', href='#search_url') URL
+        li
+          a.browse-your-files.file-placeholder(data-path='/create-image', data-toggle='tab', href='#search_file') Upload Image

@@ -131,7 +131,7 @@ hide_image_preview = ->
   return
 
 $(document).ready ->
-  $('#new_search').find('#search_url, #search_file').hide()
+  # $('#new_search').find('#search_url, #search_file').hide()
   $('a[data-toggle="tab"]').on 'shown.bs.tab', (e) ->
     activated_tab = $(e.target).attr('href')
     set_option activated_tab
