@@ -3,9 +3,10 @@
     header.clearfix.liquid-header.container-fluid
       .row
         .col-lg-2.col-md-2.col-sm-3.col-xs-3.col-lg-offset-1.col-md-offset-1.col-sm-offset-1.col-xs-offset-1.logo
-          a(href='/')
+          a(ui-sref='home')
             img(ng-src='assets/images/logo.jpg')
         .col-lg-5.col-md-5.col-sm-5.col-xs-5.user-panel
+          search-block(ng-if="$state.current.data.topSearch")
         .col-lg-3.col-md-3.col-sm-3.col-xs-3.bulk-login
           .pull-right
             .user-panel

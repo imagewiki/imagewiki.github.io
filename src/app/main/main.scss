@@ -229,19 +229,6 @@ body {
   font-size: .7em;
 }
 
-
-.static-page {
-
-}
-.static-page h2 {
-  margin-bottom: 5px;
-  border-bottom: 1px solid #ccc;
-}
-.static-page p {
-  margin-top: 5px;
-  margin-bottom: 30px;
-}
-
 .about h2.strong {
   font-weight: bold;
 }
@@ -407,6 +394,9 @@ body {
 .liquid-header .bulk-login {
   padding-top: 2em;
   float: left;
+}
+.liquid-header .bulk-login {
+  padding-top: 12px;
 }
 .liquid-header .logo p {
   font-size: .8em;

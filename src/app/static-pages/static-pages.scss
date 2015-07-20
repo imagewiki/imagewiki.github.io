@@ -21,6 +21,19 @@
 .static-page div.pharagrafer > ol > li > ul > li { text-indent: 3.5em; margin-bottom: 1em; }
 .static-page div.pharagrafer > ol > li > ul > li:before { content: counters(item, ".") " "; counter-increment: item; margin-right: 2em; }
 
+.static-page {
+  h2 {
+    margin-bottom: 5px;
+    border-bottom: 1px solid #ccc;
+    font-size: 1.5em;
+    margin: 0.83em 0;
+  }
+  p {
+    margin-top: 5px;
+    margin-bottom: 30px;
+  }
+}
+
 #claim-page,
 #add-images-page,
 #image-identification-page {

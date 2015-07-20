@@ -1,8 +1,7 @@
 angular.module "imagewikiFrontend"
   .directive 'iwNavbar', ->
 
-    NavbarController = ->
-      nav = this
+    NavbarController = ($state) ->
       return
 
     directive =
