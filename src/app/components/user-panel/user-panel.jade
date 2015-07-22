@@ -1,0 +1,57 @@
+.user-panel
+  .user-guard.create-account
+    a.link Create account
+    .user-guard-form.create-account-form
+      span.up-arrow
+      .title Sign Up
+      form#new_user.form-horizontal(accept-charset='UTF-8', action='/users', method='post')
+        .form-group
+          label.col-lg-3.control-label(for='user_first_name') First Name:
+          .col-lg-9
+            input#user_first_name.form-control(name='user[first_name]', type='text')
+        .form-group
+          label.col-lg-3.control-label(for='user_last_name') Last Name:
+          .col-lg-9
+            input#user_last_name.form-control(name='user[last_name]', type='text')
+        .form-group
+          label.col-lg-3.control-label(for='user_email') Email:
+          .col-lg-9
+            input#user_email.form-control(name='user[email]', type='email', value='')
+        .form-group
+          label.col-lg-3.control-label(for='user_password') Password:
+          .col-lg-9
+            input#user_password.form-control(name='user[password]', type='password')
+        .form-group
+          label.col-lg-3.control-label(for='user_password_confirmation') Confirm:
+          .col-lg-9
+            input#user_password_confirmation.form-control(name='user[password_confirmation]', type='password')
+        input.btn.btn-primary(name='commit', style='float: right', type='submit', value='Sign up')
+  .user-guard.login
+    a.link
+      span.glyphicon.glyphicon-user
+      | Login
+    .user-guard-form.login-form
+      span.up-arrow
+      .title Log In
+      form#login.form-horizontal(accept-charset='UTF-8', action='/users/sign_in', method='post')
+        div(style='display:none')
+          input(name='utf8', type='hidden', value='✓')
+          input(name='authenticity_token', type='hidden', value='jnL7z6X2+Wj3tqnNtm/hlMmpsIqW1wOdIiPFIYQ1MkI=')
+        .form-group
+          label.col-lg-3.control-label(for='login-email') Email:
+          .col-lg-9
+            input#login-email.form-control(name='user[email]', type='text', value='')
+        .form-group
+          label.col-lg-3.control-label(for='login-password') Password:
+          .col-lg-9
+            input#login-password.form-control(name='user[password]', type='password')
+        .form-group.remember-submit
+          .col-lg-9.remember
+            .checkbox
+              label
+                input(name='user[remember_me]', type='hidden', value='0')
+                input#user_remember_me(name='user[remember_me]', type='checkbox', value='1')
+                label(for='user_remember_me') Remember me
+          .col-lg-3.submit
+            input.btn.btn-primary(name='commit', type='submit', value='Sign in')
+        a.forgot-password(data-toggle='modal', href='/users/password/new') Forgot your password?
