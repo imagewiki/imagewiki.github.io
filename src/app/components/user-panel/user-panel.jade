@@ -4,7 +4,7 @@
     .user-guard-form.create-account-form
       span.up-arrow
       .title Sign Up
-      form#new_user.form-horizontal(accept-charset='UTF-8', action='/users', method='post')
+      form#new_user.form-horizontal(name="registerForm", ng-submit="register(user)", novalidate)
         .form-group
           label.col-lg-3.control-label(for='user_first_name') First Name:
           .col-lg-9
@@ -33,10 +33,7 @@
     .user-guard-form.login-form
       span.up-arrow
       .title Log In
-      form#login.form-horizontal(accept-charset='UTF-8', action='/users/sign_in', method='post')
-        div(style='display:none')
-          input(name='utf8', type='hidden', value='✓')
-          input(name='authenticity_token', type='hidden', value='jnL7z6X2+Wj3tqnNtm/hlMmpsIqW1wOdIiPFIYQ1MkI=')
+      form#login.form-horizontal(name="loginrForm", ng-submit="login(credentials)", novalidate)
         .form-group
           label.col-lg-3.control-label(for='login-email') Email:
           .col-lg-9

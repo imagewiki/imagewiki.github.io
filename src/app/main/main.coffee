@@ -50,21 +50,6 @@ $(document).ready ->
       $form.submit()
       return
     return
-  # Top Menu Functions
-  $('.user-guard-form, .user-guard-form *').click (e) ->
-    e.stopPropagation()
-    return
-  $('.user-guard .link').click (event) ->
-    event.stopPropagation()
-    $('.user-guard-form:visible').fadeOut()
-    $form = $(this).next()
-    $form.stop(true, true).fadeToggle 'normal', ->
-      if $form.is(':visible')
-        $('body').not('.user-guard-form *').click ->
-          $form.fadeOut()
-          return
-      return
-    return
   # Support for AJAX loaded modal window.
   # Focuses on first input textbox after it loads the window.
   $('[data-toggle="modal"]').click (e) ->
