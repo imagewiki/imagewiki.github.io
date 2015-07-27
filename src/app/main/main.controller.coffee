@@ -1,7 +1,8 @@
 angular.module "imagewikiFrontend"
   .controller "MainController", [
-    '$scope'
-    ($scope) ->
-
+    '$scope',
+    'UserStore'
+    ($scope, UserStore) ->
+      console.log UserStore.get 'user'
       return
   ]

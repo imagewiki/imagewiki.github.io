@@ -1,16 +1,18 @@
 angular.module "imagewikiFrontend"
-  .service 'Session', ->
+  .service 'Session', [
+    'angular-storage'
+    (store) ->
 
-    @create = (sessionId, userId, userRole) ->
-      @id = sessionId
-      @userId = userId
-      @userRole = userRole
+      @create = (key, data) ->
+        store.set key, data
+        return
+
+      @get = (key) ->
+        store.get key
+
+      @destroy = (key) ->
+        store.remove key
+        return
+
       return
-
-    @destroy = ->
-      @id = null
-      @userId = null
-      @userRole = null
-      return
-
-    return
+    ]

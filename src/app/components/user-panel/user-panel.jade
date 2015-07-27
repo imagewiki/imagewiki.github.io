@@ -8,23 +8,23 @@
         .form-group
           label.col-lg-3.control-label(for='user_first_name') First Name:
           .col-lg-9
-            input#user_first_name.form-control(name='user[first_name]', type='text')
+            input#user_first_name.form-control(name='user[first_name]', type='text', ng-model="user.first_name")
         .form-group
           label.col-lg-3.control-label(for='user_last_name') Last Name:
           .col-lg-9
-            input#user_last_name.form-control(name='user[last_name]', type='text')
+            input#user_last_name.form-control(name='user[last_name]', type='text', ng-model="user.last_name")
         .form-group
           label.col-lg-3.control-label(for='user_email') Email:
           .col-lg-9
-            input#user_email.form-control(name='user[email]', type='email', value='')
+            input#user_email.form-control(name='user[email]', type='email', value='', ng-model="user.email")
         .form-group
           label.col-lg-3.control-label(for='user_password') Password:
           .col-lg-9
-            input#user_password.form-control(name='user[password]', type='password')
+            input#user_password.form-control(name='user[password]', type='password', ng-model="user.password")
         .form-group
           label.col-lg-3.control-label(for='user_password_confirmation') Confirm:
           .col-lg-9
-            input#user_password_confirmation.form-control(name='user[password_confirmation]', type='password')
+            input#user_password_confirmation.form-control(name='user[password_confirmation]', type='password', ng-model="user.password_confirmation")
         input.btn.btn-primary(name='commit', style='float: right', type='submit', value='Sign up')
   .user-guard.login
     a.link
@@ -37,11 +37,11 @@
         .form-group
           label.col-lg-3.control-label(for='login-email') Email:
           .col-lg-9
-            input#login-email.form-control(name='user[email]', type='text', value='')
+            input#login-email.form-control(name='user[email]', type='text', value='', ng-model="credentials.email")
         .form-group
           label.col-lg-3.control-label(for='login-password') Password:
           .col-lg-9
-            input#login-password.form-control(name='user[password]', type='password')
+            input#login-password.form-control(name='user[password]', type='password', ng-model="credentials.password")
         .form-group.remember-submit
           .col-lg-9.remember
             .checkbox

@@ -1,27 +1,23 @@
 angular.module "imagewikiFrontend"
   .factory 'UserAuth', [
     '$http',
-    'Session'
-    ($http, Session) ->
+    'API_URL',
+    'UserStore'
+    ($http, API_URL, UserStore) ->
       userAuth = {}
 
       userAuth.register = (user) ->
-        $http.post('/register', user).then (res) ->
-          Session.create res.data.id, res.data.user.id, res.data.user.role
+        $http.post("#{API_URL}/register", user).then (res) ->
+          UserStore.set 'user', res.data
           res.data.user
 
       userAuth.login = (credentials) ->
-        $http.post('/login', credentials).then (res) ->
-          Session.create res.data.id, res.data.user.id, res.data.user.role
-          res.data.user
+        $http.post("#{API_URL}/auth", credentials).then (res) ->
+          UserStore.set 'user', res.data
+          res.data
 
       userAuth.isAuthenticated = ->
-        ! !Session.userId
-
-      userAuth.isAuthorized = (authorizedRoles) ->
-        if !angular.isArray(authorizedRoles)
-          authorizedRoles = [ authorizedRoles ]
-        userAuth.isAuthenticated() and authorizedRoles.indexOf(Session.userRole) != -1
+        false
 
       userAuth
   ]
