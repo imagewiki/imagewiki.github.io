@@ -1,0 +1,19 @@
+.user-menu.dropdown
+  a(data-toggle='dropdown')
+      | {{ currentUser.name }}&nbsp;
+      span.glyphicon.glyphicon-chevron-down
+    ul.dropdown-menu(role='menu', aria-labelledby='dLabel')
+      li
+        a.add-image-direct
+          span.glyphicon.glyphicon-plus
+          | New Image
+      li
+        a(href='/users/edit')
+          span.glyphicon.glyphicon-user
+          | Edit Account
+      li.divider
+      li
+        a(ng-click="logout()")
+          span.glyphicon.glyphicon-log-out
+          | Sign out
+a.bulk-upload-link(ui-sref="bulk-upload") Bulk Image Upload/Edit

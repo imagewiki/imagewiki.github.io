@@ -34,5 +34,10 @@ angular.module "imagewikiFrontend"
         templateUrl: "app/images/image-ownership.html"
         controller: "ImagesController"
         controllerAs: "images"
+      .state "bulk-upload",
+        url: "/bulk-upload"
+        templateUrl: "app/images/bulk-upload.html"
+        data:
+          topSearch: true
 
     $urlRouterProvider.otherwise '/'

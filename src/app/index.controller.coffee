@@ -1,11 +1,15 @@
 angular.module "imagewikiFrontend"
-  .controller 'ApplicationController', ($scope, USER_ROLES, UserAuth) ->
-    $scope.currentUser = null
-    $scope.userRoles = USER_ROLES
-    $scope.isAuthorized = UserAuth.isAuthorized
+  .controller 'ApplicationController', [
+    '$scope',
+    'UserAuth'
+    ($scope, UserAuth) ->
+      $scope.currentUser = UserAuth.getUser()
 
-    $scope.setCurrentUser = (user) ->
-      $scope.currentUser = user
+      $scope.isAuthenticated = ->
+        UserAuth.isAuthenticated()
+      $scope.setCurrentUser = (user) ->
+        $scope.currentUser = user
+        return
+
       return
-
-    return
+  ]
