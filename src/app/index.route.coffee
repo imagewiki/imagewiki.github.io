@@ -36,7 +36,7 @@ angular.module "imagewikiFrontend"
         controllerAs: "images"
       .state "bulk-upload",
         url: "/bulk-upload"
-        templateUrl: "app/images/bulk-upload.html"
+        templateUrl: "app/bulk-upload/bulk-upload.html"
         data:
           topSearch: true
 

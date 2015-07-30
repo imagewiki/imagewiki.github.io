@@ -1,0 +1,98 @@
+body > header > div > div.col-lg-2.col-md-2.col-sm-2.col-xs-2.bulk-login {
+  padding-top: 23px ;
+}
+
+.bulk-edit h2,
+.bulk-upload h2 {
+  padding-bottom: 5px;
+  border-bottom: 1px solid #ccc;
+  font-weight: bold;
+}
+.bulk-upload-link {
+  display: block;
+  color: #666;
+  text-decoration: underline;
+  font-size: 1.2em;
+  margin-right: 5px;
+  cursor: pointer;
+}
+.bulk-upload-link:hover {
+  color: #000;
+  text-decoration: none;
+}
+.bulk-upload #files .image {
+  text-align: center;
+  padding: 10px;
+  background: #FFF;
+  float: left;
+  margin: 10px;
+  max-width: 300px;
+  position: relative;
+}
+.bulk-upload #files .image.error {
+  background: #Fcc;
+  color: #900;
+  border-color: #900;
+}
+.bulk-upload #files .image img {
+  display: block;
+  width: 150px;
+  box-shadow: 0 0 0 5px #fff, 0 0 10px 3px rgba(0,0,0,1);
+}
+.bulk-upload #files .image .name-scroll {
+  display: block;
+  max-width: 150px;
+  overflow: hidden;
+  margin: 10px 0 0;
+}
+.bulk-upload #files .image .image-name {
+  font-size: .8em;
+  color: #666;
+  white-space: nowrap;
+}
+.bulk-upload #files .image .image-controls {
+  margin: 0 0 10px;
+  font-size: .7em;
+}
+.bulk-upload #files .image .image-controls input {
+  float: left;
+  margin: 0;
+}
+.bulk-upload #files .image .image-controls .glyphicon {
+  float: right;
+  color: #666;
+  padding: 1px 3px;
+}
+.bulk-upload #files .image .image-name:hover,
+.bulk-upload #files .image .image-controls .glyphicon:hover {
+  color: #000;
+  text-decoration: none;
+}
+.bulk-upload #bulkupload.show-field-file {
+  font-size: 12px!important;
+  position: relative!important;
+  z-index: 999!important;
+  opacity: 1!important;
+}
+.bulk-upload .progress {
+  margin: 10px 0 0;
+  display: none;
+}
+
+.bulk-delete-thumbnails {
+  background: #efefef;
+  border: 1px solid #ddd;
+  padding: 10px 10px 5px 0px;
+  border-radius: 5px;
+  margin-top: -15px;
+}
+.bulk-delete-thumbnails .image {
+  float: left;
+  text-align: center;
+  font-size: .7em;
+  margin: 0 0 0 10px;
+}
+.bulk-delete-thumbnails .image * {
+  display: block;
+  margin-bottom: 5px;
+}
