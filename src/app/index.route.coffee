@@ -7,6 +7,10 @@ angular.module "imagewikiFrontend"
         templateUrl: "app/main/homepage.html"
         controller: "MainController"
         controllerAs: "main"
+      # User
+      .state "logout",
+        url: "/logout"
+        controller: "LogoutController"
       # Static Pages
       .state "about",
         url: "/about"
@@ -37,6 +41,8 @@ angular.module "imagewikiFrontend"
       .state "bulk-upload",
         url: "/bulk-upload"
         templateUrl: "app/bulk-upload/bulk-upload.html"
+        controller: "BulkUploadController"
+        controllerAs: "bulkUpload"
         data:
           topSearch: true
 

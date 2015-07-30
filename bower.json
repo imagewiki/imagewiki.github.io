@@ -19,6 +19,9 @@
     "angular-mocks": "~1.4.0"
   },
   "overrides": {
+    "ng-file-upload": {
+      "main": "ng-file-upload.min.js"
+    },
     "pace": {
       "main": [
         "pace.js",
