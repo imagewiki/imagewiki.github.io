@@ -1,0 +1,10 @@
+.image
+  .image-controls.clearfix
+    input(type="checkbox", value="{{ image.hashid }}")
+    a.glyphicon.glyphicon-pencil(ui-sref="image-ownership({ hashid: image.hashid })", target="_blank")
+    a.glyphicon.glyphicon-remove(ng-click="delete(image)")
+
+  img(ng-src="{{ image.image_url }}")
+
+  .name-scroll
+    a.image-name(ui-sref="image-ownership({ hashid: image.hashid })", target="_blank") {{ image.title }}

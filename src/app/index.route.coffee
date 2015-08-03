@@ -34,7 +34,7 @@ angular.module "imagewikiFrontend"
         templateUrl: "app/static-pages/api.html"
       # Images
       .state "image-ownership",
-        url: "/image-ownership"
+        url: "/image-ownership/:hashid"
         templateUrl: "app/images/image-ownership.html"
         controller: "ImagesController"
         controllerAs: "images"
