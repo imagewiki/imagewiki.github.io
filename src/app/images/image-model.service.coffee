@@ -7,6 +7,19 @@ angular.module "imagewikiFrontend"
     ($http, API_URL, UserAuth, Upload) ->
       imageModel = {}
 
+      imageModel.getImage = (hashid) ->
+        params = "#{hashid}"
+
+        $http.get("#{API_URL}/images/3?includeFields=all").then (res) ->
+          res.data
+
+      imageModel.isMissingInfo = (image) ->
+        missing = []
+        for attr, value in image
+          missing.push attr unless value?
+
+        if missing.length then false else true
+
       # @TODO: Change this when the route to get user images is created
       imageModel.getUserImages = ->
         params = "collectionId=LatestInstagramPosts"

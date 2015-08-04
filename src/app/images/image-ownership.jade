@@ -1,97 +1,25 @@
 .row.quick-menu
-  .col-md-3.col-sm-3.col-xs-3.context-menu
-    h2 Menu
-    ul.nav
-      li
-        a(ui-sref='home') Search
-      li
-        a(ui-sref='about') About
-      li
-        a(ui-sref='contact') Contact
-      li
-        a(ui-sref='terms-of-use') Terms of Use
-      li
-        a(ui-sref='privacy-policy') Privacy Policy
-  .col-lg-8.col-md-8.col-sm-8.col-xs-8.content-main
+  .col-lg-8.col-md-8.col-sm-8.col-xs-8.col-lg-offset-2.col-md-offset-2.col-sm-offset-2.col-xs-offset-2.content-main
     ul.breadcrumb
       li
         a(ui-sref='home') Home
       li Image Ownership
-    .alert.alert-dismissable.alert-danger
+    .alert.alert-dismissable.alert-danger(ng-if="isImageMissingInfo(image)")
       button.close(type='button', data-dismiss='alert', aria-hidden='true') &times;
       strong This image is missing information.
       | Please add ownership information if you know who owns this photo.
     form#info_image.edit_image(accept-charset='UTF-8', action='/image-ownership/1e2gyj1ypnvk', data-id='1', data-model='image', method='post')
       .image-info.clearfix
         .image.float-left
-          img(alt='Estilyngue', src='http://s3.amazonaws.com/imagewiki_development/images/images/000/000/001/thumbnail/estilyngue.png?1437421449')
+          img(alt='Estilyngue', ng-src='{{image.image_url}}')
         .info.float-right
-          #image-name.add-edit-container.owner-info-row
-            span.add-edit-toggle(data-field='name', data-relation='null')
-              | [
-              a Add / Edit
-              | ]
-            h3.add-edit-block
-              span.add-edit-label estilyngue.png
-              .add-edit-field
-                input#image_name.form-control.ownership_field(name='image[name]', placeholder='Type something...', type='text', value='estilyngue.png')
-                span.glyphicon.glyphicon-remove.field-cancel
-                  span.glyphicon.glyphicon-ok.field-save
+          editable-field(type="text", field="title", block="h3", image="image")
       .page-header
         .fb-share-button.pull-right(data-href='http://localhost:3100/image-ownership/1e2gyj1ypnvk', data-type='button')
-        .image-violation.pull-right
-          a.link(href='/image-ownership/1e2gyj1ypnvk')
-            i.fa.fa-flag
-          .image-violation-form
-            span.up-arrow
-            .title Why do you flagging this image?
-            .box-violations
-              .form-violations(data-action='/image/1e2gyj1ypnvk/violates')
-                p
-                  strong
-                    | Please enter any relevant comments in the field below, including your contact information if applicable:
-                .radio
-                  label
-                    input#reason_Infringing_content(name='reason', type='radio', value='Infringing content')
-                    | Infringing content
-                    span.badge(data-placement='right', data-toggle='tooltip', title='', data-original-title='This page contains content that infringes on my copyright, privacy, or other legal rights.')
-                      i.fa.fa-question
-                .radio
-                  label
-                    input#reason_Sexual_content(name='reason', type='radio', value='Sexual content')
-                    | Sexual content
-                    span.badge(data-placement='right', data-toggle='tooltip', title='', data-original-title='This image or page contains sexual or pornographic content.')
-                      i.fa.fa-question
-                .radio
-                  label
-                    input#reason_Hateful_or_violent_content(name='reason', type='radio', value='Hateful or violent content')
-                    | Hateful or violent content
-                    span.badge(data-placement='right', data-toggle='tooltip', title='', data-original-title='This image or page contains violent, shocking or abusive content, or contains content that promotes hatred against certain groups or individuals.')
-                      i.fa.fa-question
-                .radio
-                  label
-                    input#reason_Child_abuse(name='reason', type='radio', value='Child abuse')
-                    | Child abuse
-                    span.badge(data-placement='right', data-toggle='tooltip', title='', data-original-title='This page contains sexual images of minors or predatory communications towards minors.')
-                      i.fa.fa-question
-                .radio
-                  label
-                    input#reason_Spam(name='reason', type='radio', value='Spam')
-                    | Spam
-                    span.badge(data-placement='right', data-toggle='tooltip', title='', data-original-title='This page contains misleading or massively posted content.')
-                      i.fa.fa-question
-                br
-                label(for='description') Comments
-                br
-                textarea#description.form-control(name='description')
-                br
-                br
-                input.send-form-violations.btn.btn-primary(name='commit', style='display: none;', type='submit', value='Send')
-              .errors.alert.alert-danger
-                strong Reason:
-                ul
-              .violations-feedback
-                p.feedback-msg Report sent!
+
+        //- Include ImageViolation button partial
+        ng-include(src="'app/images/image-violation.html'")
+
         h2 Copyright and ownership Information
       .ownership-info
         .ownership-list

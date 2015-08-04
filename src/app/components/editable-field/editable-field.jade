@@ -1,0 +1,11 @@
+#image-name.add-edit-container.owner-info-row
+  span.add-edit-toggle(data-field='name', data-relation='null')
+    | [
+    a Add / Edit
+    | ]
+  h3.add-edit-block
+    span.add-edit-label {{ image.title }}
+    .add-edit-field
+      input#image_name.form-control.ownership_field(name='image[name]', placeholder='Type something...', type='text', value='estilyngue.png')
+      span.glyphicon.glyphicon-remove.field-cancel
+        span.glyphicon.glyphicon-ok.field-save

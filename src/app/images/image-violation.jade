@@ -1,0 +1,53 @@
+.image-violation.pull-right
+  a.link(href='/image-ownership/1e2gyj1ypnvk')
+    i.fa.fa-flag
+  .image-violation-form
+    span.up-arrow
+    .title Why do you flagging this image?
+    .box-violations
+      .form-violations(data-action='/image/1e2gyj1ypnvk/violates')
+        p
+          strong
+            | Please enter any relevant comments in the field below, including your contact information if applicable:
+        .radio
+          label
+            input#reason_Infringing_content(name='reason', type='radio', value='Infringing content')
+            | Infringing content
+            span.badge(data-placement='right', data-toggle='tooltip', title='', data-original-title='This page contains content that infringes on my copyright, privacy, or other legal rights.')
+              i.fa.fa-question
+        .radio
+          label
+            input#reason_Sexual_content(name='reason', type='radio', value='Sexual content')
+            | Sexual content
+            span.badge(data-placement='right', data-toggle='tooltip', title='', data-original-title='This image or page contains sexual or pornographic content.')
+              i.fa.fa-question
+        .radio
+          label
+            input#reason_Hateful_or_violent_content(name='reason', type='radio', value='Hateful or violent content')
+            | Hateful or violent content
+            span.badge(data-placement='right', data-toggle='tooltip', title='', data-original-title='This image or page contains violent, shocking or abusive content, or contains content that promotes hatred against certain groups or individuals.')
+              i.fa.fa-question
+        .radio
+          label
+            input#reason_Child_abuse(name='reason', type='radio', value='Child abuse')
+            | Child abuse
+            span.badge(data-placement='right', data-toggle='tooltip', title='', data-original-title='This page contains sexual images of minors or predatory communications towards minors.')
+              i.fa.fa-question
+        .radio
+          label
+            input#reason_Spam(name='reason', type='radio', value='Spam')
+            | Spam
+            span.badge(data-placement='right', data-toggle='tooltip', title='', data-original-title='This page contains misleading or massively posted content.')
+              i.fa.fa-question
+        br
+        label(for='description') Comments
+        br
+        textarea#description.form-control(name='description')
+        br
+        br
+        input.send-form-violations.btn.btn-primary(name='commit', style='display: none;', type='submit', value='Send')
+      .errors.alert.alert-danger
+        strong Reason:
+        ul
+      .violations-feedback
+        p.feedback-msg Report sent!
