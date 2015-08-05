@@ -6,7 +6,8 @@ angular.module "imagewikiFrontend"
 
       $scope.images = []
 
-      ImageModel.getUserImages()
+      ImageModel
+        .getUserImages()
         .then (images) ->
           $scope.images = images
           return

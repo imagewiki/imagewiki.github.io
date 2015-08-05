@@ -8,12 +8,12 @@
       button.close(type='button', data-dismiss='alert', aria-hidden='true') &times;
       strong This image is missing information.
       | Please add ownership information if you know who owns this photo.
-    form#info_image.edit_image(accept-charset='UTF-8', action='/image-ownership/1e2gyj1ypnvk', data-id='1', data-model='image', method='post')
+    form#info_image.edit_image(name="imageForm")
       .image-info.clearfix
         .image.float-left
           img(alt='Estilyngue', ng-src='{{image.image_url}}')
         .info.float-right
-          editable-field(type="text", field="title", block="h3", image="image")
+          editable-field(type="'text'", name="'title'", field="image.title", block="'h3'")
       .page-header
         .fb-share-button.pull-right(data-href='http://localhost:3100/image-ownership/1e2gyj1ypnvk', data-type='button')
 
@@ -30,122 +30,43 @@
                 td
                   label(for='image_image_photographer_attributes_name') Photographer
                 td
-                  #image_photographer-name.add-edit-container.owner-info-row
-                    span.add-edit-toggle(data-field='name', data-relation='image_photographer')
-                      | [
-                      a Add / Edit
-                      | ]
-                    .add-edit-block
-                      span.add-edit-label
-                      .add-edit-field
-                        input#image_image_photographer_attributes_name.form-control.ownership_field(name='image[image_photographer_attributes][name]', placeholder='Type something...', type='text')
-                        span.glyphicon.glyphicon-remove.field-cancel
-                          span.glyphicon.glyphicon-ok.field-save
+                  editable-field(type="'text'", name="'photographer_name'", field="image.photographer_name")
               tr
                 td
                   label(for='image_image_photographer_attributes_email') Email
                 td
-                  #image_photographer-email.add-edit-container.owner-info-row
-                    span.add-edit-toggle(data-field='email', data-relation='image_photographer')
-                      | [
-                      a Add / Edit
-                      | ]
-                    .add-edit-block
-                      span.add-edit-label
-                      .add-edit-field
-                        input#image_image_photographer_attributes_email.form-control.ownership_field(name='image[image_photographer_attributes][email]', placeholder='Type something...', type='text')
-                        span.glyphicon.glyphicon-remove.field-cancel
-                          span.glyphicon.glyphicon-ok.field-save
+                  editable-field(type="'text'", name="'photographer_email'", field="image.photographer_email")
               tr
                 td
                   label(for='image_image_photographer_attributes_phone') Phone
                 td
-                  #image_photographer-phone.add-edit-container.owner-info-row
-                    span.add-edit-toggle(data-field='phone', data-relation='image_photographer')
-                      | [
-                      a Add / Edit
-                      | ]
-                    .add-edit-block
-                      span.add-edit-label
-                      .add-edit-field
-                        input#image_image_photographer_attributes_phone.form-control.ownership_field(name='image[image_photographer_attributes][phone]', placeholder='Type something...', type='text')
-                        span.glyphicon.glyphicon-remove.field-cancel
-                          span.glyphicon.glyphicon-ok.field-save
+                  editable-field(type="'text'", name="'photographer_phone'", field="image.photographer_phone")
               tr
                 td
                   label(for='image_image_photographer_attributes_website') Website
                 td
-                  #image_photographer-website.add-edit-container.owner-info-row
-                    span.add-edit-toggle(data-field='website', data-relation='image_photographer')
-                      | [
-                      a Add / Edit
-                      | ]
-                    .add-edit-block
-                      span.add-edit-label
-                      .add-edit-field
-                        input#image_image_photographer_attributes_website.form-control.ownership_field(name='image[image_photographer_attributes][website]', placeholder='Type something...', type='text')
-                        span.glyphicon.glyphicon-remove.field-cancel
-                          span.glyphicon.glyphicon-ok.field-save
-              tr.child
-                td
-                  label(for='image_image_photographer_attributes_flikr') Flickr
-                td
-                  #image_photographer-flikr.add-edit-container.owner-info-row
-                    span.add-edit-toggle(data-field='flikr', data-relation='image_photographer')
-                      | [
-                      a Add / Edit
-                      | ]
-                    .add-edit-block
-                      span.add-edit-label
-                      .add-edit-field
-                        input#image_image_photographer_attributes_flikr.form-control.ownership_field(name='image[image_photographer_attributes][flikr]', placeholder='Type something...', type='text')
-                        span.glyphicon.glyphicon-remove.field-cancel
-                          span.glyphicon.glyphicon-ok.field-save
-              tr.child
-                td
-                  label(for='image_image_photographer_attributes_instagram') Instagram
-                td
-                  #image_photographer-instagram.add-edit-container.owner-info-row
-                    span.add-edit-toggle(data-field='instagram', data-relation='image_photographer')
-                      | [
-                      a Add / Edit
-                      | ]
-                    .add-edit-block
-                      span.add-edit-label
-                      .add-edit-field
-                        input#image_image_photographer_attributes_instagram.form-control.ownership_field(name='image[image_photographer_attributes][instagram]', placeholder='Type something...', type='text')
-                        span.glyphicon.glyphicon-remove.field-cancel
-                          span.glyphicon.glyphicon-ok.field-save
-              tr.child
-                td
-                  label(for='image_image_photographer_attributes_facebook') Facebook
-                td
-                  #image_photographer-facebook.add-edit-container.owner-info-row
-                    span.add-edit-toggle(data-field='facebook', data-relation='image_photographer')
-                      | [
-                      a Add / Edit
-                      | ]
-                    .add-edit-block
-                      span.add-edit-label
-                      .add-edit-field
-                        input#image_image_photographer_attributes_facebook.form-control.ownership_field(name='image[image_photographer_attributes][facebook]', placeholder='Type something...', type='text')
-                        span.glyphicon.glyphicon-remove.field-cancel
-                          span.glyphicon.glyphicon-ok.field-save
-              tr.child
-                td
-                  label(for='image_image_photographer_attributes_twitter') Twitter
-                td
-                  #image_photographer-twitter.add-edit-container.owner-info-row
-                    span.add-edit-toggle(data-field='twitter', data-relation='image_photographer')
-                      | [
-                      a Add / Edit
-                      | ]
-                    .add-edit-block
-                      span.add-edit-label
-                      .add-edit-field
-                        input#image_image_photographer_attributes_twitter.form-control.ownership_field(name='image[image_photographer_attributes][twitter]', placeholder='Type something...', type='text')
-                        span.glyphicon.glyphicon-remove.field-cancel
-                          span.glyphicon.glyphicon-ok.field-save
+                  editable-field(type="'text'", name="'photographer_site_url'", field="image.photographer_site_url")
+              //-
+                tr.child
+                  td
+                    label(for='image_image_photographer_attributes_flikr') Flickr
+                  td
+                    editable-field(type="'text'", name="'photographer_flickr'", field="image.photographer_flickr")
+                tr.child
+                  td
+                    label(for='image_image_photographer_attributes_instagram') Instagram
+                  td
+                    editable-field(type="'text'", name="'photographer_instagram'", field="image.photographer_instagram")
+                tr.child
+                  td
+                    label(for='image_image_photographer_attributes_facebook') Facebook
+                  td
+                    editable-field(type="'text'", name="'photographer_facebook'", field="image.photographer_facebook")
+                tr.child
+                  td
+                    label(for='image_image_photographer_attributes_twitter') Twitter
+                  td
+                    editable-field(type="'text'", name="'photographer_twitter'", field="image.photographer_twitter")
         .ownership-list
           h3 Licensing and usage
           table.table-striped

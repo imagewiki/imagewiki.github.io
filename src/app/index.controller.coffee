@@ -5,6 +5,9 @@ angular.module "imagewikiFrontend"
     ($scope, UserAuth) ->
       $scope.currentUser = UserAuth.getUser()
 
+      $scope.$watch 'currentUser', ->
+        return
+
       $scope.isAuthenticated = ->
         UserAuth.isAuthenticated()
       $scope.setCurrentUser = (user) ->

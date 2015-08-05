@@ -8,9 +8,7 @@ angular.module "imagewikiFrontend"
       imageModel = {}
 
       imageModel.getImage = (hashid) ->
-        params = "#{hashid}"
-
-        $http.get("#{API_URL}/images/3?includeFields=all").then (res) ->
+        $http.get("#{API_URL}/images/#{hashid}?includeFields=all").then (res) ->
           res.data
 
       imageModel.isMissingInfo = (image) ->
@@ -22,10 +20,11 @@ angular.module "imagewikiFrontend"
 
       # @TODO: Change this when the route to get user images is created
       imageModel.getUserImages = ->
-        params = "collectionId=LatestInstagramPosts"
+        params = ""
+        params = "userId=#{UserAuth.getUser().id}" if UserAuth.isAuthenticated()
 
         $http.get("#{API_URL}/images?#{params}").then (res) ->
-          res.data
+          JSON.parse(res.data)
 
       # @TODO: Uncomment the base code below to when the route to delete is ready
       imageModel.delete = (hashid) ->

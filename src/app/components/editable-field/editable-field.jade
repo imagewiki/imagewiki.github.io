@@ -1,11 +1,11 @@
 #image-name.add-edit-container.owner-info-row
-  span.add-edit-toggle(data-field='name', data-relation='null')
+  span.add-edit-toggle(ng-click="showEdit()", ng-hide="showField")
     | [
     a Add / Edit
     | ]
-  h3.add-edit-block
-    span.add-edit-label {{ image.title }}
-    .add-edit-field
-      input#image_name.form-control.ownership_field(name='image[name]', placeholder='Type something...', type='text', value='estilyngue.png')
-      span.glyphicon.glyphicon-remove.field-cancel
-        span.glyphicon.glyphicon-ok.field-save
+  .add-edit-block
+    span.add-edit-label(ng-hide="showField") {{ field }}
+    .add-edit-field(ng-show="showField")
+      input.form-control.ownership_field(ng-if="input == 'text'", type="{{ type }}", name="{{ name }}", ng-model="field")
+      span.glyphicon.glyphicon-remove.field-cancel(ng-click="cancelEdit()")
+      span.glyphicon.glyphicon-ok.field-save(ng-click="saveEdit()")

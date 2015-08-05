@@ -20,6 +20,7 @@ save_cancel_events = ($field_block, $toggle) ->
     return
   # EVENT CLICK :: Save button is clicked
   $save.click ->
+    alert 'asda sda sdasd'
     update_object $toggle
     return
   return
