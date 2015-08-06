@@ -6,6 +6,7 @@
   .add-edit-block
     span.add-edit-label(ng-hide="showField") {{ field }}
     .add-edit-field(ng-show="showField")
-      input.form-control.ownership_field(ng-if="input == 'text'", type="{{ type }}", name="{{ name }}", ng-model="field")
+      input.form-control.ownership_field(ng-if="textInput", type="{{ type }}", name="{{ name }}", ng-model="field")
+      boolean-input(ng-if="type == 'boolean'", field="field", name="name")
       span.glyphicon.glyphicon-remove.field-cancel(ng-click="cancelEdit()")
       span.glyphicon.glyphicon-ok.field-save(ng-click="saveEdit()")

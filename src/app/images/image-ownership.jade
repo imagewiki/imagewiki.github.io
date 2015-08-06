@@ -75,38 +75,12 @@
                 td
                   label(for='image_image_ownership_attributes_public_domain') In Public Domain
                 td
-                  #image_ownership-public_domain.add-edit-container.owner-info-row.is-boolean
-                    span.add-edit-toggle(data-field='public_domain', data-relation='image_ownership')
-                      | [
-                      a Add / Edit
-                      | ]
-                    .add-edit-block
-                      span.add-edit-label
-                      .add-edit-field
-                        input#image_image_ownership_attributes_public_domain.form-control.ownership_field(name='image[image_ownership_attributes][public_domain]', placeholder='Type something...', type='text', style='display: none;')
-                        .btn-group.btn-group-sm
-                          button.btn.btn-default.btn-on(type='button') YES
-                          button.btn.btn-default.btn-off(type='button') NO
-                        span.glyphicon.glyphicon-remove.field-cancel
-                          span.glyphicon.glyphicon-ok.field-save
+                  editable-field(type="'boolean'", name="'public_domain'", field="image.public_domain")
               tr
                 td
                   label(for='image_image_ownership_attributes_creative_commons') In Creative Commons
                 td
-                  #image_ownership-creative_commons.add-edit-container.owner-info-row.is-boolean
-                    span.add-edit-toggle(data-field='creative_commons', data-relation='image_ownership')
-                      | [
-                      a Add / Edit
-                      | ]
-                    .add-edit-block
-                      span.add-edit-label
-                      .add-edit-field
-                        input#image_image_ownership_attributes_creative_commons.form-control.ownership_field(name='image[image_ownership_attributes][creative_commons]', placeholder='Type something...', type='text', style='display: none;')
-                        .btn-group.btn-group-sm
-                          button.btn.btn-default.btn-on(type='button') YES
-                          button.btn.btn-default.btn-off(type='button') NO
-                        span.glyphicon.glyphicon-remove.field-cancel
-                          span.glyphicon.glyphicon-ok.field-save
+                  editable-field(type="'boolean'", name="'creative_commons'", field="image.creative_commons")
               tr.child
                 td
                   label(for='image_image_ownership_attributes_cc_license_type') CC License Type

@@ -7,6 +7,15 @@ angular.module "imagewikiFrontend"
       name: '=name'
       field: '=field'
       block: '=block'
+    controller: ($scope, $element, $attrs) ->
+
+      $scope.block = $scope.block || 'div'
+      $scope.$watch 'field', ->
+        return
+
+      $scope.textInput =  $scope.type in ['text', 'password', 'email']
+
+      return
     link: (scope, element, attr) ->
       element.find('.add-edit-block').wrap("<#{scope.block}></#{scope.block}>") unless scope.block == 'div'
       scope.oldValue = null
@@ -31,7 +40,4 @@ angular.module "imagewikiFrontend"
         showLabel()
         return
 
-
       return
-    controller: 'EditableFieldController'
-    controllerAs: 'editableField'
