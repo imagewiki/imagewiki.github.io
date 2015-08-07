@@ -4,6 +4,8 @@ angular.module "imagewikiFrontend"
     (searchBlockHelper) ->
         restrict: 'E'
         templateUrl: 'app/components/search-block/search-block.html'
+        controller: 'SearchBlockController'
+        controllerAs: 'searchBlock'
         link: (scope, element, attr) ->
 
           # Add event listeners that will handle the actions the user can execute on the search form
@@ -16,25 +18,9 @@ angular.module "imagewikiFrontend"
               alert 'Oops that’s not an image url'
               false
 
-          element.find('a[data-toggle="tab"]').on 'shown.bs.tab', (e) ->
-            activated_tab = $(e.target).attr('href')
-            searchBlockHelper.setOption activated_tab
-            return
-
           element.find('#search_description').keyup ->
             searchBlockHelper.toggleThumbnailPreview this
             return
 
-          element.find('.browse-your-files').click ->
-            $('#search_file').click()
-            return
-
-          element.find('#search_file').change (e) ->
-            if !searchBlockHelper.isUploadImage($(this))
-              alert 'Oops the file you choose isn\'t an image'
-              $(this).val ''
-              return false
-            searchBlockHelper.uploadAndShowFile $(this), e
-            return
           return
   ]

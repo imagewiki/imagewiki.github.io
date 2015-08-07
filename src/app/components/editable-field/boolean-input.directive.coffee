@@ -5,6 +5,12 @@ angular.module "imagewikiFrontend"
       name: '=name'
       field: '=field'
     templateUrl: 'app/components/editable-field/boolean-input.html'
+    controller: ($scope, $element, $attrs) ->
+      $scope.updateModel = (value) ->
+        $scope.$parent.$parent.updateModel value
+        return
+
+      return
     link: (scope, element, attr) ->
 
       scope.setFieldTrue = ->

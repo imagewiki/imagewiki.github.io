@@ -1,6 +1,6 @@
 .user-menu.dropdown
   a(data-toggle='dropdown')
-      | {{ currentUser.name }}&nbsp;
+      | {{ currentUser.first_name + ' ' + currentUser.last_name }}&nbsp;
       span.glyphicon.glyphicon-chevron-down
     ul.dropdown-menu(role='menu', aria-labelledby='dLabel')
       li

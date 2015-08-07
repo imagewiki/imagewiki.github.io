@@ -3,19 +3,12 @@ angular.module "imagewikiFrontend"
     restrict: 'E'
     templateUrl: 'app/components/editable-field/editable-field.html'
     scope:
+      ngModel: '='
       type: '=type'
       name: '=name'
-      field: '=field'
       block: '=block'
-    controller: ($scope, $element, $attrs) ->
-
-      $scope.block = $scope.block || 'div'
-      $scope.$watch 'field', ->
-        return
-
-      $scope.textInput =  $scope.type in ['text', 'password', 'email']
-
-      return
+    controller: 'EditableFieldController'
+    controllerAs: 'editableField'
     link: (scope, element, attr) ->
       element.find('.add-edit-block').wrap("<#{scope.block}></#{scope.block}>") unless scope.block == 'div'
       scope.oldValue = null
@@ -23,7 +16,7 @@ angular.module "imagewikiFrontend"
       # --- Save/Cancel actions
       scope.showField = false
       scope.showEdit = ->
-        scope.oldValue = angular.copy(scope.field)
+        scope.oldValue = angular.copy(scope.ngModel)
         scope.showField = true
         return
       showLabel = ->
@@ -31,7 +24,7 @@ angular.module "imagewikiFrontend"
         return
       # Cancel
       scope.cancelEdit = ->
-        scope.field = scope.oldValue
+        scope.ngModel = scope.oldValue
         showLabel()
         return
       # Save

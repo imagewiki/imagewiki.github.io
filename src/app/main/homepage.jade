@@ -13,13 +13,15 @@
             .upload-photo
               h3
                 | Contribute to Imagewiki
-              direct-upload
+              a.button(ngf-select, ng-model="directImage")
+                | Upload Photo
           .col-lg-1.col-md-1.col-sm-1
             .vertical-line
           .col-lg-6.col-md-6.col-sm-6
             .home-searchbar
               h3 Reverse search Imagewiki
-            search-block
+            //- search-block
+          img(ngf-src="directImage")
     .col-lg-12.col-md-12.col-sm-12
       .horizontal-line
 
@@ -28,4 +30,4 @@
         h2
           | Imagewiki is working to compensate photographers and businesses for unlicensed uses on the web.
           br
-          a(href="/image-identification") Learn More
+          a(ui-sref="image-identification") Learn More

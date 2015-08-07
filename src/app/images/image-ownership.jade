@@ -8,19 +8,19 @@
       button.close(type='button', data-dismiss='alert', aria-hidden='true') &times;
       strong This image is missing information.
       | Please add ownership information if you know who owns this photo.
-    form#info_image.edit_image(name="imageForm")
+    form#info_image.edit_image(name="imageForm", ng-submit="updateImage(image)")
       .image-info.clearfix
         .image.float-left
-          img(alt='Estilyngue', ng-src='{{image.image_url}}')
-        .info.float-right
-          editable-field(type="'text'", name="'title'", field="image.title", block="'h3'")
+          img(alt='', ng-src='{{image.image_url}}')
+        .info.float-right.ownership-info
+          editable-field(type="'text'", name="'title'", ng-model="image.title", block="'h3'")
       .page-header
         .fb-share-button.pull-right(data-href='http://localhost:3100/image-ownership/1e2gyj1ypnvk', data-type='button')
 
         //- Include ImageViolation button partial
         ng-include(src="'app/images/image-violation.html'")
 
-        h2 Copyright and ownership Information
+        h2(ng-click="debugImage()") Copyright and ownership Information
       .ownership-info
         .ownership-list
           h3 Photographer Contact Information
@@ -30,43 +30,43 @@
                 td
                   label(for='image_image_photographer_attributes_name') Photographer
                 td
-                  editable-field(type="'text'", name="'photographer_name'", field="image.photographer_name")
+                  editable-field(type="'text'", name="'photographer_name'", ng-model="image.photographer_name")
               tr
                 td
                   label(for='image_image_photographer_attributes_email') Email
                 td
-                  editable-field(type="'text'", name="'photographer_email'", field="image.photographer_email")
+                  editable-field(type="'text'", name="'photographer_email'", ng-model="image.photographer_email")
               tr
                 td
                   label(for='image_image_photographer_attributes_phone') Phone
                 td
-                  editable-field(type="'text'", name="'photographer_phone'", field="image.photographer_phone")
+                  editable-field(type="'text'", name="'photographer_phone'", ng-model="image.photographer_phone")
               tr
                 td
                   label(for='image_image_photographer_attributes_website') Website
                 td
-                  editable-field(type="'text'", name="'photographer_site_url'", field="image.photographer_site_url")
+                  editable-field(type="'text'", name="'photographer_site_url'", ng-model="image.photographer_site_url")
               //-
                 tr.child
                   td
                     label(for='image_image_photographer_attributes_flikr') Flickr
                   td
-                    editable-field(type="'text'", name="'photographer_flickr'", field="image.photographer_flickr")
+                    editable-field(type="'text'", name="'photographer_flickr'", ng-model="image.photographer_flickr")
                 tr.child
                   td
                     label(for='image_image_photographer_attributes_instagram') Instagram
                   td
-                    editable-field(type="'text'", name="'photographer_instagram'", field="image.photographer_instagram")
+                    editable-field(type="'text'", name="'photographer_instagram'", ng-model="image.photographer_instagram")
                 tr.child
                   td
                     label(for='image_image_photographer_attributes_facebook') Facebook
                   td
-                    editable-field(type="'text'", name="'photographer_facebook'", field="image.photographer_facebook")
+                    editable-field(type="'text'", name="'photographer_facebook'", ng-model="image.photographer_facebook")
                 tr.child
                   td
                     label(for='image_image_photographer_attributes_twitter') Twitter
                   td
-                    editable-field(type="'text'", name="'photographer_twitter'", field="image.photographer_twitter")
+                    editable-field(type="'text'", name="'photographer_twitter'", ng-model="image.photographer_twitter")
         .ownership-list
           h3 Licensing and usage
           table.table-striped
@@ -75,370 +75,32 @@
                 td
                   label(for='image_image_ownership_attributes_public_domain') In Public Domain
                 td
-                  editable-field(type="'boolean'", name="'public_domain'", field="image.public_domain")
+                  editable-field(type="'boolean'", name="'public_domain'", ng-model="image.public_domain")
               tr
                 td
                   label(for='image_image_ownership_attributes_creative_commons') In Creative Commons
                 td
-                  editable-field(type="'boolean'", name="'creative_commons'", field="image.creative_commons")
+                  editable-field(type="'boolean'", name="'creative_commons'", ng-model="image.creative_commons")
               tr.child
                 td
                   label(for='image_image_ownership_attributes_cc_license_type') CC License Type
                 td
-                  #image_ownership-cc_license_type.add-edit-container.owner-info-row.add-select-container
-                    span.add-edit-toggle(data-field='cc_license_type', data-relation='image_ownership')
-                      | [
-                      a Add / Edit
-                      | ]
-                    .add-edit-block
-                      span.add-edit-label
-                      .add-edit-field
-                        select#image_image_ownership_attributes_cc_license_type.ownership_field(name='image[image_ownership_attributes][cc_license_type]')
-                          option(value='Attribution (CC BY)') Attribution (CC BY)
-                          option(value='Attribution Sharealike (CC BY-SA)') Attribution Sharealike (CC BY-SA)
-                          option(value='Attribution-NoDerivs (CC BY-ND)') Attribution-NoDerivs (CC BY-ND)
-                          option(value='Attribution-NonCommercial (CC BY-NC)') Attribution-NonCommercial (CC BY-NC)
-                          option(value='Attribution-NonCommercial-ShareAlike (CC BY-NC-SA)') Attribution-NonCommercial-ShareAlike (CC BY-NC-SA)
-                          option(value='Attribution-NonCommercial-NoDerivs (CC BY-NC-ND)') Attribution-NonCommercial-NoDerivs (CC BY-NC-ND)
-                        span.glyphicon.glyphicon-remove.field-cancel
-                          span.glyphicon.glyphicon-ok.field-save
+                  editable-field(type="'select'", name="'cc_license_type'", ng-model="image.cc_license_type")
               tr
                 td
-                  label(for='image_image_licensing_company_attributes_name') Licensing Company
+                  label(for='image_image_licensing_company_attributes_name') Licensing Summary
                 td
-                  #image_licensing_company-name.add-edit-container.owner-info-row
-                    span.add-edit-toggle(data-field='name', data-relation='image_licensing_company')
-                      | [
-                      a Add / Edit
-                      | ]
-                    .add-edit-block
-                      span.add-edit-label
-                      .add-edit-field
-                        input#image_image_licensing_company_attributes_name.form-control.ownership_field(name='image[image_licensing_company_attributes][name]', placeholder='Type something...', type='text')
-                        span.glyphicon.glyphicon-remove.field-cancel
-                          span.glyphicon.glyphicon-ok.field-save
-              tr.child
-                td
-                  label(for='image_image_licensing_company_attributes_is_exclusive') Is exclusive
-                td
-                  #image_licensing_company-is_exclusive.add-edit-container.owner-info-row.is-boolean
-                    span.add-edit-toggle(data-field='is_exclusive', data-relation='image_licensing_company')
-                      | [
-                      a Add / Edit
-                      | ]
-                    .add-edit-block
-                      span.add-edit-label
-                      .add-edit-field
-                        input#image_image_licensing_company_attributes_is_exclusive.form-control.ownership_field(name='image[image_licensing_company_attributes][is_exclusive]', placeholder='Type something...', type='text', style='display: none;')
-                        .btn-group.btn-group-sm
-                          button.btn.btn-default.btn-on(type='button') YES
-                          button.btn.btn-default.btn-off(type='button') NO
-                        span.glyphicon.glyphicon-remove.field-cancel
-                          span.glyphicon.glyphicon-ok.field-save
-              tr.child
-                td
-                  label(for='image_image_licensing_company_attributes_email') Email
-                td
-                  #image_licensing_company-email.add-edit-container.owner-info-row
-                    span.add-edit-toggle(data-field='email', data-relation='image_licensing_company')
-                      | [
-                      a Add / Edit
-                      | ]
-                    .add-edit-block
-                      span.add-edit-label
-                      .add-edit-field
-                        input#image_image_licensing_company_attributes_email.form-control.ownership_field(name='image[image_licensing_company_attributes][email]', placeholder='Type something...', type='text')
-                        span.glyphicon.glyphicon-remove.field-cancel
-                          span.glyphicon.glyphicon-ok.field-save
-              tr.child
-                td
-                  label(for='image_image_licensing_company_attributes_phone') Phone
-                td
-                  #image_licensing_company-phone.add-edit-container.owner-info-row
-                    span.add-edit-toggle(data-field='phone', data-relation='image_licensing_company')
-                      | [
-                      a Add / Edit
-                      | ]
-                    .add-edit-block
-                      span.add-edit-label
-                      .add-edit-field
-                        input#image_image_licensing_company_attributes_phone.form-control.ownership_field(name='image[image_licensing_company_attributes][phone]', placeholder='Type something...', type='text')
-                        span.glyphicon.glyphicon-remove.field-cancel
-                          span.glyphicon.glyphicon-ok.field-save
-              tr.child
-                td
-                  label(for='image_image_licensing_company_attributes_website') Website
-                td
-                  #image_licensing_company-website.add-edit-container.owner-info-row
-                    span.add-edit-toggle(data-field='website', data-relation='image_licensing_company')
-                      | [
-                      a Add / Edit
-                      | ]
-                    .add-edit-block
-                      span.add-edit-label
-                      .add-edit-field
-                        input#image_image_licensing_company_attributes_website.form-control.ownership_field(name='image[image_licensing_company_attributes][website]', placeholder='Type something...', type='text')
-                        span.glyphicon.glyphicon-remove.field-cancel
-                          span.glyphicon.glyphicon-ok.field-save
-              tr.child
-                td
-                  label(for='image_image_licensing_company_attributes_company_image_id') Image ID
-                td
-                  #image_licensing_company-company_image_id.add-edit-container.owner-info-row
-                    span.add-edit-toggle(data-field='company_image_id', data-relation='image_licensing_company')
-                      | [
-                      a Add / Edit
-                      | ]
-                    .add-edit-block
-                      span.add-edit-label
-                      .add-edit-field
-                        input#image_image_licensing_company_attributes_company_image_id.form-control.ownership_field(name='image[image_licensing_company_attributes][company_image_id]', placeholder='Type something...', type='text')
-                        span.glyphicon.glyphicon-remove.field-cancel
-                          span.glyphicon.glyphicon-ok.field-save
-              tr.child
-                td
-                  label(for='image_image_licensing_company_attributes_license_type') License Type
-                td
-                  #image_licensing_company-license_type.add-edit-container.owner-info-row.add-select-container
-                    span.add-edit-toggle(data-field='license_type', data-relation='image_licensing_company')
-                      | [
-                      a Add / Edit
-                      | ]
-                    .add-edit-block
-                      span.add-edit-label
-                      .add-edit-field
-                        select#image_image_licensing_company_attributes_license_type.ownership_field(name='image[image_licensing_company_attributes][license_type]')
-                          option(value='Rights Managed (RM)') Rights Managed (RM)
-                          option(value='Royalty Free (RF)') Royalty Free (RF)
-                        span.glyphicon.glyphicon-remove.field-cancel
-                          span.glyphicon.glyphicon-ok.field-save
-              tr.child
-                td
-                  label(for='image_image_licensing_company_attributes_credit') Credit
-                td
-                  #image_licensing_company-credit.add-edit-container.owner-info-row
-                    span.add-edit-toggle(data-field='credit', data-relation='image_licensing_company')
-                      | [
-                      a Add / Edit
-                      | ]
-                    .add-edit-block
-                      span.add-edit-label
-                      .add-edit-field
-                        input#image_image_licensing_company_attributes_credit.form-control.ownership_field(name='image[image_licensing_company_attributes][credit]', placeholder='Type something...', type='text')
-                        span.glyphicon.glyphicon-remove.field-cancel
-                          span.glyphicon.glyphicon-ok.field-save
-              tr.child
-                td
-                  label(for='image_image_licensing_company_attributes_release_info') Release Info
-                td
-                  #image_licensing_company-release_info.add-edit-container.owner-info-row
-                    span.add-edit-toggle(data-field='release_info', data-relation='image_licensing_company')
-                      | [
-                      a Add / Edit
-                      | ]
-                    .add-edit-block
-                      span.add-edit-label
-                      .add-edit-field
-                        input#image_image_licensing_company_attributes_release_info.form-control.ownership_field(name='image[image_licensing_company_attributes][release_info]', placeholder='Type something...', type='text')
-                        span.glyphicon.glyphicon-remove.field-cancel
-                          span.glyphicon.glyphicon-ok.field-save
+                  editable-field(type="'text'", name="'license_summary'", ng-model="image.license_summary")
         .ownership-list
           h3 Copyright Information
           table.table-striped
             tbody
               tr
                 td
-                  label(for='image_image_ownership_attributes_type_of_work') Type of Work
+                  label(for='image_image_ownership_attributes_type_of_work') Publication Date
                 td
-                  #image_ownership-type_of_work.add-edit-container.owner-info-row
-                    span.add-edit-toggle(data-field='type_of_work', data-relation='image_ownership')
-                      | [
-                      a Add / Edit
-                      | ]
-                    .add-edit-block
-                      span.add-edit-label
-                      .add-edit-field
-                        input#image_image_ownership_attributes_type_of_work.form-control.ownership_field(name='image[image_ownership_attributes][type_of_work]', placeholder='Type something...', type='text')
-                        span.glyphicon.glyphicon-remove.field-cancel
-                          span.glyphicon.glyphicon-ok.field-save
-              tr
-                td
-                  label(for='image_image_ownership_attributes_copyright_date') Registration number/Date
-                td
-                  #image_ownership-copyright_date.add-edit-container.owner-info-row.has-datepicker(class='dateformat-dd/mm/yyyy')
-                    span.add-edit-toggle(data-field='copyright_date', data-relation='image_ownership')
-                      | [
-                      a Add / Edit
-                      | ]
-                    .add-edit-block
-                      span.add-edit-label
-                      .add-edit-field
-                        input#image_image_ownership_attributes_copyright_date.form-control.ownership_field(name='image[image_ownership_attributes][copyright_date]', placeholder='Type something...', type='text')
-                        span.glyphicon.glyphicon-remove.field-cancel
-                          span.glyphicon.glyphicon-ok.field-save
-              tr
-                td
-                  label(for='image_image_ownership_attributes_title') Title
-                td
-                  #image_ownership-title.add-edit-container.owner-info-row
-                    span.add-edit-toggle(data-field='title', data-relation='image_ownership')
-                      | [
-                      a Add / Edit
-                      | ]
-                    .add-edit-block
-                      span.add-edit-label
-                      .add-edit-field
-                        input#image_image_ownership_attributes_title.form-control.ownership_field(name='image[image_ownership_attributes][title]', placeholder='Type something...', type='text')
-                        span.glyphicon.glyphicon-remove.field-cancel
-                          span.glyphicon.glyphicon-ok.field-save
-              tr
-                td
-                  label(for='image_image_ownership_attributes_description') Description
-                td
-                  #image_ownership-description.add-edit-container.owner-info-row
-                    span.add-edit-toggle(data-field='description', data-relation='image_ownership')
-                      | [
-                      a Add / Edit
-                      | ]
-                    .add-edit-block
-                      span.add-edit-label
-                      .add-edit-field
-                        input#image_image_ownership_attributes_description.form-control.ownership_field(name='image[image_ownership_attributes][description]', placeholder='Type something...', type='text')
-                        span.glyphicon.glyphicon-remove.field-cancel
-                          span.glyphicon.glyphicon-ok.field-save
-              tr
-                td
-                  label(for='image_image_ownership_attributes_copyright_clamant') Copyright Claimant
-                td
-                  #image_ownership-copyright_clamant.add-edit-container.owner-info-row
-                    span.add-edit-toggle(data-field='copyright_clamant', data-relation='image_ownership')
-                      | [
-                      a Add / Edit
-                      | ]
-                    .add-edit-block
-                      span.add-edit-label
-                      .add-edit-field
-                        input#image_image_ownership_attributes_copyright_clamant.form-control.ownership_field(name='image[image_ownership_attributes][copyright_clamant]', placeholder='Type something...', type='text')
-                        span.glyphicon.glyphicon-remove.field-cancel
-                          span.glyphicon.glyphicon-ok.field-save
-              tr
-                td
-                  label(for='image_image_ownership_attributes_creation_date') Date of Creation
-                td
-                  #image_ownership-creation_date.add-edit-container.owner-info-row.has-datepicker(class='dateformat-dd/mm/yyyy')
-                    span.add-edit-toggle(data-field='creation_date', data-relation='image_ownership')
-                      | [
-                      a Add / Edit
-                      | ]
-                    .add-edit-block
-                      span.add-edit-label
-                      .add-edit-field
-                        input#image_image_ownership_attributes_creation_date.form-control.ownership_field(name='image[image_ownership_attributes][creation_date]', placeholder='Type something...', type='text')
-                        span.glyphicon.glyphicon-remove.field-cancel
-                          span.glyphicon.glyphicon-ok.field-save
-              tr
-                td
-                  label(for='image_image_ownership_attributes_publication_date') Date of Publication
-                td
-                  #image_ownership-publication_date.add-edit-container.owner-info-row.has-datepicker(class='dateformat-dd/mm/yyyy')
-                    span.add-edit-toggle(data-field='publication_date', data-relation='image_ownership')
-                      | [
-                      a Add / Edit
-                      | ]
-                    .add-edit-block
-                      span.add-edit-label
-                      .add-edit-field
-                        input#image_image_ownership_attributes_publication_date.form-control.ownership_field(name='image[image_ownership_attributes][publication_date]', placeholder='Type something...', type='text')
-                        span.glyphicon.glyphicon-remove.field-cancel
-                          span.glyphicon.glyphicon-ok.field-save
-              tr
-                td
-                  label(for='image_image_ownership_attributes_author_on_application') Author on Application
-                td
-                  #image_ownership-author_on_application.add-edit-container.owner-info-row
-                    span.add-edit-toggle(data-field='author_on_application', data-relation='image_ownership')
-                      | [
-                      a Add / Edit
-                      | ]
-                    .add-edit-block
-                      span.add-edit-label
-                      .add-edit-field
-                        input#image_image_ownership_attributes_author_on_application.form-control.ownership_field(name='image[image_ownership_attributes][author_on_application]', placeholder='Type something...', type='text')
-                        span.glyphicon.glyphicon-remove.field-cancel
-                          span.glyphicon.glyphicon-ok.field-save
-              tr
-                td
-                  label(for='image_image_ownership_attributes_previous_registration') Previous Registration
-                td
-                  #image_ownership-previous_registration.add-edit-container.owner-info-row
-                    span.add-edit-toggle(data-field='previous_registration', data-relation='image_ownership')
-                      | [
-                      a Add / Edit
-                      | ]
-                    .add-edit-block
-                      span.add-edit-label
-                      .add-edit-field
-                        input#image_image_ownership_attributes_previous_registration.form-control.ownership_field(name='image[image_ownership_attributes][previous_registration]', placeholder='Type something...', type='text')
-                        span.glyphicon.glyphicon-remove.field-cancel
-                          span.glyphicon.glyphicon-ok.field-save
-              tr
-                td
-                  label(for='image_image_ownership_attributes_basis_of_claim') Basis of Claim
-                td
-                  #image_ownership-basis_of_claim.add-edit-container.owner-info-row
-                    span.add-edit-toggle(data-field='basis_of_claim', data-relation='image_ownership')
-                      | [
-                      a Add / Edit
-                      | ]
-                    .add-edit-block
-                      span.add-edit-label
-                      .add-edit-field
-                        input#image_image_ownership_attributes_basis_of_claim.form-control.ownership_field(name='image[image_ownership_attributes][basis_of_claim]', placeholder='Type something...', type='text')
-                        span.glyphicon.glyphicon-remove.field-cancel
-                          span.glyphicon.glyphicon-ok.field-save
-              tr
-                td
-                  label(for='image_image_ownership_attributes_copyright_note') Copyright Note
-                td
-                  #image_ownership-copyright_note.add-edit-container.owner-info-row
-                    span.add-edit-toggle(data-field='copyright_note', data-relation='image_ownership')
-                      | [
-                      a Add / Edit
-                      | ]
-                    .add-edit-block
-                      span.add-edit-label
-                      .add-edit-field
-                        input#image_image_ownership_attributes_copyright_note.form-control.ownership_field(name='image[image_ownership_attributes][copyright_note]', placeholder='Type something...', type='text')
-                        span.glyphicon.glyphicon-remove.field-cancel
-                          span.glyphicon.glyphicon-ok.field-save
-              tr
-                td
-                  label(for='image_image_ownership_attributes_owner_name') Names
-                td
-                  #image_ownership-owner_name.add-edit-container.owner-info-row
-                    span.add-edit-toggle(data-field='owner_name', data-relation='image_ownership')
-                      | [
-                      a Add / Edit
-                      | ]
-                    .add-edit-block
-                      span.add-edit-label
-                      .add-edit-field
-                        input#image_image_ownership_attributes_owner_name.form-control.ownership_field(name='image[image_ownership_attributes][owner_name]', placeholder='Type something...', type='text')
-                        span.glyphicon.glyphicon-remove.field-cancel
-                          span.glyphicon.glyphicon-ok.field-save
-              tr
-                td
-                  label(for='image_image_ownership_attributes_contact') Contact
-                td
-                  #image_ownership-contact.add-edit-container.owner-info-row
-                    span.add-edit-toggle(data-field='contact', data-relation='image_ownership')
-                      | [
-                      a Add / Edit
-                      | ]
-                    .add-edit-block
-                      span.add-edit-label
-                      .add-edit-field
-                        input#image_image_ownership_attributes_contact.form-control.ownership_field(name='image[image_ownership_attributes][contact]', placeholder='Type something...', type='text')
-                        span.glyphicon.glyphicon-remove.field-cancel
-                          span.glyphicon.glyphicon-ok.field-save
-      a.btn.btn-primary(href='http://localhost:3100/', style='margin-top: 10px;') Back
+                  editable-field(type="'date'", name="'publication_date'", ng-model="image.publication_date")
+
+      br
+      a.btn.btn-default(ui-sref='home') Back
+      a.btn.btn-primary.pull-right Save Image

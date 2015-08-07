@@ -1,7 +1,7 @@
-.btn-group(data-toggle='buttons')
-  label.btn.btn-default
-    input#option1(type='radio', name='{{ name }}', autocomplete='off', ng-model="field")
+.btn-group
+  label.btn.btn-default(for="{{ name }}-yes", ng-class="{ active: field=='YES' }")
+    input(ng-hide="true", type='radio', id="{{ name }}-yes", name='{{ name }}', value="YES", ng-model="field", ng-change="updateModel(field)")
     | YES
-  label.btn.btn-default
-    input#option2(type='radio', name='{{ name }}', autocomplete='off', ng-model="field")
+  label.btn.btn-default(for="{{ name }}-no", ng-class="{ active: field=='NO' }")
+    input(ng-hide="true", type='radio', id="{{ name }}-no", name='{{ name }}', value="NO", ng-model="field", ng-change="updateModel(field)")
     | NO

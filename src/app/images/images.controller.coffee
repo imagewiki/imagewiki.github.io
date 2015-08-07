@@ -11,6 +11,20 @@ angular.module "imagewikiFrontend"
         console.log $scope.image
         return
 
+      $scope.debugImage = ->
+        console.log $scope.image
+        return
+
+      $scope.updateImage = (image) ->
+        ImageModel
+          .updateImage(image)
+          .then (data) ->
+            console.log data
+            return
+          , ->
+            return
+        return
+
       $scope.saveImage = ->
         if $scope.imageForm.$dirty
           dirtyFields = []

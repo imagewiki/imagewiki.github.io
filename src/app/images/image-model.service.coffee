@@ -11,6 +11,11 @@ angular.module "imagewikiFrontend"
         $http.get("#{API_URL}/images/#{hashid}?includeFields=all").then (res) ->
           res.data
 
+      imageModel.updateImage = (image) ->
+        hashid = image.hashid
+        $http.put("#{API_URL}/images/#{hashid}", image).then (res) ->
+          res.data
+
       imageModel.isMissingInfo = (image) ->
         missing = []
         for attr, value in image
@@ -40,7 +45,8 @@ angular.module "imagewikiFrontend"
           url: "#{API_URL}/images"
           file: file
 
-        params.fields = { user_id: UserAuth.getUser().id } if UserAuth.isAuthenticated()
+        console.log '#### User autenticado: ', UserAuth.isAuthenticated()
+        params.fields = { userId: UserAuth.getUser().id } if UserAuth.isAuthenticated()
 
         Upload.upload params
 

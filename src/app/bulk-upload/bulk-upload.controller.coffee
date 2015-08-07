@@ -1,20 +1,33 @@
 angular.module "imagewikiFrontend"
   .controller "BulkUploadController", [
     '$scope',
-    'ImageModel'
-    ($scope, ImageModel) ->
+    'ImageModel',
+    'AUTH_EVENTS'
+    ($scope, ImageModel, AUTH_EVENTS) ->
 
       $scope.images = []
 
-      ImageModel
-        .getUserImages()
-        .then (images) ->
-          $scope.images = images
-          return
-        , ->
-          console.log 'FAIL TO GET IMAGES!'
-          return
+      $scope.getImages = ->
+        ImageModel
+          .getUserImages()
+          .then (images) ->
+            $scope.images = images
+            return
+          , ->
+            console.log 'FAIL TO GET IMAGES!'
+            return
+        return
 
+      if $scope.isAuthenticated()
+        $scope.getImages()
+
+      $scope.$on AUTH_EVENTS.loginSuccess, (event, data) ->
+        $scope.getImages()
+        return
+
+      $scope.$on AUTH_EVENTS.logoutSuccess, (event, data) ->
+        $scope.images = []
+        return
 
       $scope.$watch 'files', ->
         $scope.upload($scope.files)
