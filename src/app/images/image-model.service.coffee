@@ -40,12 +40,17 @@ angular.module "imagewikiFrontend"
         #   res.data
         return
 
+      imageModel.uploadUrl = (url) ->
+        params =
+          imageUrl: url
+
+        $http.post("#{API_URL}/images", params).then (res) ->
+          res.data
+
       imageModel.upload = (file) ->
         params =
           url: "#{API_URL}/images"
           file: file
-
-        console.log '#### User autenticado: ', UserAuth.isAuthenticated()
         params.fields = { userId: UserAuth.getUser().id } if UserAuth.isAuthenticated()
 
         Upload.upload params

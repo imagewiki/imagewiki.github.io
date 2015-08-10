@@ -5,22 +5,28 @@ angular.module "imagewikiFrontend"
     '$timeout',
     'ImageModel'
     ($scope, $state, $timeout, ImageModel) ->
-      # $scope.file = {}
+      $scope.option = 'url'
 
-      # $scope.$watch 'file', ->
-      #   $scope.upload($scope.file) if $scope.file? and Object.keys($scope.file).length > 0
-      #   return
+      $scope.uploadUrl = (url) ->
+        ImageModel
+          .uploadUrl(url)
+          .then (data) ->
+            $state.go('image-ownership', { hashid: data.hashid })
+            return
+          , ->
+            return
+        return
 
-      # $scope.upload = (file) ->
-      #   ImageModel
-      #     .upload(file)
-      #     .progress (evt) ->
-      #       return
-      #     .success (data, status, headers, config) ->
-      #       $state.go('image-ownership', { hashid: data.hashid })
-      #       return
-      #     .error (data, status, headers, config) ->
-      #       return
-      #   return
+      $scope.upload = (file) ->
+        ImageModel
+          .upload(file)
+          .progress (evt) ->
+            return
+          .success (data, status, headers, config) ->
+            $state.go('image-ownership', { hashid: data.hashid })
+            return
+          .error (data, status, headers, config) ->
+            return
+        return
       return
   ]

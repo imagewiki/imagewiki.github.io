@@ -1,14 +1,14 @@
-form.form-horizontal.frm-image#new_search(accept-charset="UTF-8", action="/searches", enctype="multipart/form-data", method="post")
+form.form-horizontal.frm-image#new_search(name="searchForm", ng-submit="searchImage(url, image)", novalidate)
   #new-search-block
     .reverse-search.clearfix
-        .form-group.has-feedback.pull-left
-          label.sr-only Type keywords to find an image, or paste URL
-          input#search_description.form-control(name='search[description]', placeholder='Paste an image URL', type='text')
-          span.glyphicon.glyphicon-camera.form-control-feedback(aria-hidden='true')
-          span.fa.fa-spinner.fa-spin.bg-overlay.form-control-feedback(aria-hidden='true')
-        button.pull-left.button(type='submit') Search
-      ul.options.clearfix.nav.nav-tabs.home-tabs
-        li.url-search.active
-          a(data-toggle='tab', ng-model="imageUrl") URL
-        li
-          a.browse-your-files.file-placeholder(data-toggle='tab', ngf-select, ng-model="file", ngf-multiple="true", ngf-accept="'image/*'") Upload Image
+      .form-group.has-feedback.pull-left
+        label.sr-only Type keywords to find an image, or paste URL
+        input#search_description.form-control(name='search[description]', placeholder='Paste an image URL', type='text', ng-model="url", ng-change="previewImage(url)")
+        span.glyphicon.glyphicon-camera.form-control-feedback(aria-hidden='true')
+        span.fa.fa-spinner.fa-spin.bg-overlay.form-control-feedback(aria-hidden='true')
+      button.pull-left.button(type='submit') Search
+    ul.options.clearfix.nav.nav-tabs.home-tabs
+      li.url-search(ng-class="{active: option=='url'}", ng-click="setOption('url')")
+        a URL
+      li(ng-class="{active: option=='upload'}")
+        a.browse-your-files.file-placeholder(ngf-select, ng-model="image", ngf-accept="'image/*'", ng-click="setOption('upload')", ngf-change="previewImg($files, $file, $event, $rejectedFiles)") Upload Image

@@ -1,25 +1,37 @@
 angular.module "imagewikiFrontend"
   .directive 'searchBlock', [
-    'searchBlockHelper'
-    (searchBlockHelper) ->
+    'FileHandler'
+    (FileHandler) ->
         restrict: 'E'
         templateUrl: 'app/components/search-block/search-block.html'
         controller: 'SearchBlockController'
         controllerAs: 'searchBlock'
         link: (scope, element, attr) ->
 
-          # Add event listeners that will handle the actions the user can execute on the search form
-          # Check the searchBlockHelper (./search-block.module.coffe) to see the methods called below
-
-          element.find('#new_search').submit (e) ->
-            if searchBlockHelper.IsValidUrl($('#search_description').val()) or searchBlockHelper.isUploadImage($('#search_file'))
-              return
+          scope.searchImage = (url, image) ->
+            if image?
+              scope.upload image
+            else if url? && url != '' && FileHandler.isValidUrl(url)
+              scope.uploadUrl url
             else
-              alert 'Oops that’s not an image url'
-              false
+              alert "Oops that's not an image url!"
+            return
 
-          element.find('#search_description').keyup ->
-            searchBlockHelper.toggleThumbnailPreview this
+          scope.setOption = (option) ->
+            scope.option = option
+            scope.url = null if option == 'upload'
+            return
+
+          scope.previewImage = (url) ->
+            scope.image = null
+            return unless $('#preview-image').length
+            if FileHandler.isValidUrl(url)
+              element.find('.form-group').removeClass 'has-error'
+              scope.setPreviewUrl url
+            else
+              element.find('.form-group').addClass 'has-error'
+              scope.setPreviewUrl ''
+
             return
 
           return
