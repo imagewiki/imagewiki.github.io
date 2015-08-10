@@ -1,5 +1,11 @@
 angular.module "imagewikiFrontend"
-  .run ($rootScope, $state, $stateParams, $log) ->
-    $rootScope.$log = $log
-    $rootScope.$on '$stateChangeStart', ->
-      $rootScope.$state = $state
+  .run [
+    '$rootScope',
+    '$state',
+    '$stateParams',
+    '$log'
+    ($rootScope, $state, $stateParams, $log) ->
+      $rootScope.$log = $log
+      $rootScope.$on '$stateChangeStart', ->
+        $rootScope.$state = $state
+  ]
