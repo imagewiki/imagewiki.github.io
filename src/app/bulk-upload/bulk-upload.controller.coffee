@@ -50,10 +50,16 @@ angular.module "imagewikiFrontend"
 
       $scope.delete = (image) ->
         if confirm 'Are you sure you want to delete this image?'
-          ImageModel.delete image.hashid
+          ImageModel
+            .delete(image.hashid)
+            .then (data)->
+              alert data
+              return
+            , ->
+              alert 'Something went wrong... Please contact our support.'
+              return
           index = $scope.images.indexOf(image)
           $scope.images.splice(index, 1)
-          alert 'Image deleted'
         return
 
 

@@ -31,13 +31,10 @@ angular.module "imagewikiFrontend"
         $http.get("#{API_URL}/images?#{params}").then (res) ->
           JSON.parse(res.data)
 
-      # @TODO: Uncomment the base code below to when the route to delete is ready
       imageModel.delete = (hashid) ->
-        console.log 'Image deleted!'
-        # params =
-        #   hashid: hashid
-        # $http.post("#{API_URL}/image/delete", params).then (res) ->
-        #   res.data
+        params = "id=#{hashid}"
+        $http.delete("#{API_URL}/images?#{params}").then (res) ->
+          res.data
         return
 
       imageModel.uploadUrl = (url) ->
