@@ -3,6 +3,7 @@ bower_components/
 .sass-cache/
 .idea/
 .tmp/
+.publish/
 dist/
 npm-debug*
 Thumbs.db
