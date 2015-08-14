@@ -7,15 +7,15 @@ angular.module "imagewikiFrontend"
     ($http, API_URL, UserStore, jwtHelper) ->
       userAuth = {}
 
+      userLoggedIn = (res) ->
+        UserStore.set 'user', res.data
+        jwtHelper.decodeToken(res.data)
+
       userAuth.register = (user) ->
-        $http.post("#{API_URL}/register", user).then (res) ->
-          UserStore.set 'user', res.data
-          res.data.user
+        $http.post("#{API_URL}/users", user).then userLoggedIn
 
       userAuth.login = (credentials) ->
-        $http.post("#{API_URL}/auth", credentials).then (res) ->
-          UserStore.set 'user', res.data
-          jwtHelper.decodeToken(res.data)
+        $http.post("#{API_URL}/auth", credentials).then userLoggedIn
 
       userAuth.logout = ->
         UserStore.remove 'user'

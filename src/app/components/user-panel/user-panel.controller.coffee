@@ -7,6 +7,15 @@ angular.module "imagewikiFrontend"
     'UserStore'
     ($scope, $rootScope, AUTH_EVENTS, UserAuth, UserStore) ->
 
+      userLoginSuccess = (user) ->
+        $rootScope.$broadcast AUTH_EVENTS.loginSuccess
+        $scope.setCurrentUser user
+        return
+
+      userLoginFail = ->
+        $rootScope.$broadcast AUTH_EVENTS.loginFailed
+        return
+
       $scope.credentials =
         email: ''
         password: ''
@@ -19,21 +28,16 @@ angular.module "imagewikiFrontend"
         password_confirmation: ''
 
       $scope.register = (user) ->
-        # UserRegisterService
-        #   .create
+        UserAuth
+          .register(user)
+          .then userLoginSuccess, userLoginFail
 
         return
 
       $scope.login = (credentials) ->
         UserAuth
           .login(credentials)
-          .then (user) ->
-            $rootScope.$broadcast AUTH_EVENTS.loginSuccess
-            $scope.setCurrentUser user
-            return
-          , ->
-            $rootScope.$broadcast AUTH_EVENTS.loginFailed
-            return
+          .then userLoginSuccess, userLoginFail
         return
 
       $scope.logout = ->
