@@ -5,7 +5,9 @@ angular.module "imagewikiFrontend"
 
       editableFieldLabel.formatLabel = (type, value) ->
         return '' unless value?
-        if type == 'date'
+        if type == 'boolean'
+          if value then 'YES' else 'NO'
+        else if type == 'date'
           date = new Date(value)
           date.toLocaleString()
         else
