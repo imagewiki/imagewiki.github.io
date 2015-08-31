@@ -8,20 +8,20 @@
     .add-edit-field(ng-show="showField")
 
       span(ng-if="textInput")
-        input.form-control.ownership_field(type="{{ type }}", name="{{ name }}", ng-model="value", ng-change="updateModel(value)")
+        input.form-control.ownership_field(type="{{ type }}", name="{{ name }}", ng-model="value.initial")
       span(ng-if="type == 'boolean'")
-        boolean-input(name="name", field="value")
+        boolean-input(name="name", field="value.initial")
       span(ng-if="type == 'select'")
-        select-input(field="value", name="name")
+        select-input(field="value.initial", name="name")
       span(ng-if="type == 'date'")
         .dropdown(style="display: inline-block;")
           a.dropdown-toggle(role='button', data-toggle='dropdown', id="{{ name }}-datepicker")
             .input-group
-              input.form-control(type='text', ng-model='value', ng-change="updateModel(value)")
+              input.form-control(type='text', ng-model='value.initial')
               span.input-group-addon
                 i.glyphicon.glyphicon-calendar
           ul.dropdown-menu(role='menu', aria-labelledby='dLabel')
-            datetimepicker(ng-model='value', ng-change="updateModel(value)", data-datetimepicker-config="{ minView: 'day', dropdownSelector: '#{{ name }}-datepicker' }")
+            datetimepicker(ng-model='value.initial', data-datetimepicker-config="{ minView: 'day', dropdownSelector: '#{{ name }}-datepicker' }")
       | &nbsp;
       span.glyphicon.glyphicon-remove.field-cancel(ng-click="cancelEdit()")
       span.glyphicon.glyphicon-ok.field-save(ng-click="saveEdit()")

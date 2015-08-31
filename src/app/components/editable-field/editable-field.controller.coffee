@@ -6,18 +6,35 @@ angular.module "imagewikiFrontend"
     'EditableFieldLabel'
     ($scope, $element, $attrs, EditableFieldLabel) ->
 
+
       $scope.block     = $scope.block || 'div'
       $scope.label     = EditableFieldLabel.formatLabel($scope.type, $scope.ngModel)
-      $scope.value     = null
       $scope.textInput = $scope.type in ['text', 'password', 'email']
+      $scope.value     = { initial: '' }
 
       $scope.$watch 'ngModel', ->
         $scope.label = EditableFieldLabel.formatLabel($scope.type, $scope.ngModel)
-        $scope.value = angular.copy($scope.ngModel)
+        $scope.value = { initial: angular.copy($scope.ngModel) }
         return
 
-      $scope.updateModel = (value) ->
-        $scope.ngModel = value
+      # --- Save/Cancel actions
+      $scope.showField = false
+      $scope.showEdit = ->
+        $scope.showField = true
+        return
+      showLabel = ->
+        $scope.showField = false
+        return
+      # Cancel
+      $scope.cancelEdit = ->
+        $scope.value = { initial: angular.copy($scope.ngModel) }
+        $scope.$broadcast 'cancelEdit'
+        # showLabel()
+        return
+      # Save
+      $scope.saveEdit = ->
+        $scope.ngModel = angular.copy($scope.value.initial)
+        showLabel()
         return
 
       return

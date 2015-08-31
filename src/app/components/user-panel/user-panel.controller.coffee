@@ -12,8 +12,8 @@ angular.module "imagewikiFrontend"
         $scope.setCurrentUser user
         return
 
-      userLoginFail = ->
-        $rootScope.$broadcast AUTH_EVENTS.loginFailed
+      userLoginFail = (reason) ->
+        $rootScope.$broadcast AUTH_EVENTS.loginFailed, reason.data
         return
 
       $scope.credentials =
