@@ -1,0 +1,10 @@
+.image
+  span.abort.glyphicon.glyphicon-remove(aria-hidden="true", title="Abort!", ng-click="file.upload.abort(); file.aborted = true")
+  img(ngf-src="file")
+
+  .name-scroll
+    .progress
+      .progress-bar(role='progressbar', aria-valuenow='60', aria-valuemin='0', aria-valuemax='100', style='width: {{ file.progress }}%;')
+        span.sr-only {{ file.progress }}% Complete
+    span.label.label-success(ng-show="file.progress == 100") Processing...
+
