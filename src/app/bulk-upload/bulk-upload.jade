@@ -28,4 +28,6 @@
           bulk-file-item(ng-repeat="file in files")
         .files.clearfix
           h2(ng-show="files.length > 0") Your Images
-          bulk-image-item(ng-repeat="image in images")
+          bulk-image-item(dir-paginate="image in images | itemsPerPage: 10")
+        .clearfix
+          dir-pagination-controls
