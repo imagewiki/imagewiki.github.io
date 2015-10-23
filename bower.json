@@ -15,7 +15,7 @@
     "ng-file-upload": "~5.2.0",
     "angular-bootstrap-datetimepicker": "~0.3.13",
     "angular-loading-bar": "~0.8.0",
-    "angular-animate": "~1.4.3",
+    "angular-animate": "~1.4.7",
     "angular-toastr": "~1.4.1"
   },
   "devDependencies": {

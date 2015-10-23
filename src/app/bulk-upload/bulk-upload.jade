@@ -21,9 +21,11 @@
           span.btn.btn-primary
             i.fa.fa-instagram(title='Connect with Instagram')
             span &nbsp;Import from instagram
-        // The global progress bar
-        #progress.progress
-          .progress-bar.progress-bar-success
+
         // The container for the uploaded files
-        #files.files
+        .files.clearfix(ng-show="files.length > 0")
+          h2 Uploading...
+          bulk-file-item(ng-repeat="file in files")
+        .files.clearfix
+          h2(ng-show="files.length > 0") Your Images
           bulk-image-item(ng-repeat="image in images")

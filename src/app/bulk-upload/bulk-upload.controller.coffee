@@ -1,20 +1,23 @@
 angular.module "imagewikiFrontend"
   .controller "BulkUploadController", [
     '$scope',
+    '$timeout',
+    'toastr',
     'ImageModel',
     'AUTH_EVENTS'
-    ($scope, ImageModel, AUTH_EVENTS) ->
+    ($scope, $timeout, toastr, ImageModel, AUTH_EVENTS) ->
 
       $scope.images = []
+      $scope.files = []
 
       $scope.getImages = ->
         ImageModel
           .getUserImages()
-          .then (images) ->
-            $scope.images = images
+          .then (data) ->
+            $scope.images = data.user_images
             return
           , ->
-            console.log 'FAIL TO GET IMAGES!'
+            # console.log 'FAIL TO GET IMAGES!'
             return
         return
 
@@ -30,22 +33,41 @@ angular.module "imagewikiFrontend"
         return
 
       $scope.$watch 'files', ->
-        $scope.upload($scope.files)
+        $scope.upload()
         return
 
-      $scope.upload = (files) ->
-        if files && files.length
-          for file in files
-            ImageModel
-              .upload(file)
-              .progress (evt) ->
-                console.log('progress: ' + parseInt(100.0 * evt.loaded / evt.total) + '% file :'+ evt.config.file.name)
-                return
-              .success (data, status, headers, config) ->
-                $scope.images.push data
-                return
-              .error (data, status, headers, config) ->
-                return
+      $scope.upload = ->
+        angular.forEach $scope.files, (file, index) ->
+          index = index + 1
+          file.progress = 0
+          file.aborted = false
+          # console.log index, file
+
+          file.upload = ImageModel.upload(file)
+
+          file.upload.then (res) ->
+            # console.log 'SUCCESS', res
+            data = res.data
+            $scope.images.push data
+            toastr.success "Image successfully uploaded:<br><strong>#{data.title}</strong>", 'Success'
+
+            $scope.files.remove file
+            # console.log $scope.files
+            return
+          , (res) ->
+            # console.log res
+            if file.aborted
+              toastr.error "#{file.name} upload was aborted!", 'Abort!'
+            else
+              toastr.error "Something went wrong while uploading the file: <strong>#{file.name}</strong>.", 'Error'
+            $scope.files.remove file
+            return
+          , (evt) ->
+            progress = evt.loaded * 100 / evt.total
+            file.progress = progress
+            # console.log 'PROGRESS', index, progress, file.name, evt.config.file.name
+            return
+          return
         return
 
       $scope.delete = (image) ->

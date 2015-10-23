@@ -29,7 +29,7 @@ angular.module "imagewikiFrontend"
         params = "userId=#{UserAuth.getUser().id}" if UserAuth.isAuthenticated()
 
         $http.get("#{API_URL}/images?#{params}").then (res) ->
-          JSON.parse(res.data)
+          res.data
 
       imageModel.delete = (hashid) ->
         params = "id=#{hashid}"
@@ -50,6 +50,7 @@ angular.module "imagewikiFrontend"
           file: file
         params.fields = { userId: UserAuth.getUser().id } if UserAuth.isAuthenticated()
 
+        console.log 'Uploading file', file
         Upload.upload params
 
       imageModel

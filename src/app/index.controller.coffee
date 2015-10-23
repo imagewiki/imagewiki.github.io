@@ -21,6 +21,9 @@ angular.module "imagewikiFrontend"
       $scope.$on AUTH_EVENTS.loginSuccess, (event) ->
         toastr.success 'Successfully logged in.', 'Success'
         return
+      $scope.$on AUTH_EVENTS.logoutSuccess, (event) ->
+        toastr.success 'Successfully logged out.', 'Success'
+        return
       $scope.$on AUTH_EVENTS.loginFailed, (event, data) ->
         error_message = MessageFormatter.error data
         toastr.error error_message, 'Error'
