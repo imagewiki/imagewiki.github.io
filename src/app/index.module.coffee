@@ -8,4 +8,5 @@ angular.module 'imagewikiFrontend', [
   'angular-storage'
   'ngFileUpload'
   'ui.bootstrap.datetimepicker'
+  'angularUtils.directives.dirPagination'
 ]
