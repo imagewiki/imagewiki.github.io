@@ -1,0 +1,71 @@
+.images {
+  .image {
+    background : #FFF;
+    float      : left;
+    // height     : 150px;
+    margin     : 10px;
+    // max-width  : 300px;
+    padding    : 10px;
+    position   : relative;
+    text-align : center;
+
+    &.error {
+      background   : #Fcc;
+      border-color : #900;
+      color        : #900;
+    }
+    img {
+      // box-shadow : 0 0 0 5px #fff, 0 0 10px 3px rgba(0, 0, 0, 1);
+      display    : block;
+      width      : 100%;
+    }
+    .abort {
+      color       : #C00;
+      cursor      : pointer;
+      font-size   : 1.5em;
+      position    : absolute;
+      right       : 5px;
+      text-shadow : 1px 1px 2px #000;
+      top         : 5px;
+    }
+    .name-scroll {
+      display   : block;
+      margin    : 10px 0 0;
+      max-width : 150px;
+      overflow  : hidden;
+
+      .progress {
+        border-radius : 0;
+        height        : 5px;
+        margin        : 0;
+      }
+      .label {
+        font-size: 0.777em;
+      }
+    }
+    .image-name {
+      color       : #666;
+      font-size   : .8em;
+      white-space : nowrap;
+    }
+    .image-controls {
+      font-size : .7em;
+      margin    : 0 0 10px;
+
+      input {
+        float  : left;
+        margin : 0;
+      }
+      .glyphicon {
+        color   : #666;
+        cursor  : pointer;
+        float   : right;
+        padding : 1px 3px;
+      }
+    }
+    .image-name:hover, .image-controls .glyphicon:hover {
+      color           : #000;
+      text-decoration : none;
+    }
+  }
+}

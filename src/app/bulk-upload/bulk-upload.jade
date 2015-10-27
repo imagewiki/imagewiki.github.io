@@ -26,8 +26,8 @@
         .files.clearfix(ng-show="files.length > 0")
           h2 Uploading...
           bulk-file-item(ng-repeat="file in files")
-        .files.clearfix
-          h2(ng-show="files.length > 0") Your Images
-          bulk-image-item(dir-paginate="image in images | itemsPerPage: 10")
-        .clearfix
-          dir-pagination-controls
+
+        h2(ng-show="files.length > 0") Your Images
+        images-wall(images="images", selector="user-images")
+        //- bulk-image-item(dir-paginate="image in images | itemsPerPage: 50")
+
