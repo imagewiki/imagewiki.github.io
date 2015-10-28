@@ -21,6 +21,9 @@
 }
 
 .bulk-upload {
+  .action-buttons {
+    margin-bottom: 20px;
+  }
   #bulkupload.show-field-file {
     font-size : 12px !important;
     opacity   : 1 !important;

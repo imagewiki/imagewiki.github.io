@@ -9,4 +9,5 @@ angular.module 'imagewikiFrontend', [
   'ngFileUpload'
   'ui.bootstrap.datetimepicker'
   'angularUtils.directives.dirPagination'
+  'wu.masonry'
 ]

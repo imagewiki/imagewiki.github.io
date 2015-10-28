@@ -12,17 +12,18 @@
               a.edit(data-href='/bulk-edit') Edit
             li
               a.delete(data-href='/confirm-bulk-delete') Delete
-        // The fileinput-button span is used to style the file input field as button
-        span.btn.btn-primary.fileinput-button(ngf-select, ng-model="files", ngf-multiple="true")
-          i.glyphicon.glyphicon-plus
-          span &nbsp;Upload More Images
-        | &nbsp;
-        a(href="/instagram/import")
-          span.btn.btn-primary
-            i.fa.fa-instagram(title='Connect with Instagram')
-            span &nbsp;Import from instagram
+        //- The fileinput-button span is used to style the file input field as button
+        .action-buttons
+          span.btn.btn-primary.fileinput-button(ngf-select, ng-model="files", ngf-multiple="true")
+            i.glyphicon.glyphicon-plus
+            span &nbsp;Upload More Images
+          | &nbsp;
+          a(href="/instagram/import")
+            span.btn.btn-primary
+              i.fa.fa-instagram(title='Connect with Instagram')
+              span &nbsp;Import from instagram
 
-        // The container for the uploaded files
+        //- The container for the uploaded files
         .files.clearfix(ng-show="files.length > 0")
           h2 Uploading...
           bulk-file-item(ng-repeat="file in files")
