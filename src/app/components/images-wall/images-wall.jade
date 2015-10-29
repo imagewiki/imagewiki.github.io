@@ -1,9 +1,9 @@
 .images.clearfix(id="{{selector}}")
-  .image(dir-paginate="image in images | itemsPerPage: 50", brick)
+  .image(dir-paginate="image in images | itemsPerPage: $parent.itemsPerPage", brick)
     .image-controls.clearfix.animated
       input(type="checkbox", value="{{ image.image_id }}")
-      a.glyphicon.glyphicon-pencil(ui-sref="image-ownership({ hashid: image.image_id })", target="_blank")
-      a.glyphicon.glyphicon-remove(ng-click="delete(image)")
+      a.fa.fa-pencil(ui-sref="image-ownership({ hashid: image.image_id })", target="_blank")
+      a.fa.fa-times(ng-click="delete(image)")
 
     img(ng-src="{{ image.reference_file_path }}")
 

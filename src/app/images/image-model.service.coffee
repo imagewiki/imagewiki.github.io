@@ -50,7 +50,6 @@ angular.module "imagewikiFrontend"
           file: file
         params.fields = { userId: UserAuth.getUser().id } if UserAuth.isAuthenticated()
 
-        console.log 'Uploading file', file
         Upload.upload params
 
       imageModel

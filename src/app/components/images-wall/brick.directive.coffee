@@ -2,12 +2,15 @@ angular.module "imagewikiFrontend"
   .directive 'brick', ->
     restrict: 'A'
     link: (scope, element, attr) ->
-      scope.$emit('LastBrick') if scope.$last
-
       $('img', element).load ->
-        scope.$emit 'ImageLoaded',
-          image: $(this)
-          last: scope.$last
+        if $(this).hasClass 'loaded'
+          # console.log 'IMAGE ALREADY LOADED!!!!!!!!'
+        else
+          # console.log 'IMAGE LOADED', this
+          $(this).addClass 'loaded'
+          scope.$emit 'ImageLoaded',
+            image: $(this)
+            last: scope.$last
         return
 
       $(':checkbox', element).on 'click', ->

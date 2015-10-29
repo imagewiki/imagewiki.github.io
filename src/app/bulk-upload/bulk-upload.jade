@@ -14,7 +14,7 @@
               a.delete(data-href='/confirm-bulk-delete') Delete
         //- The fileinput-button span is used to style the file input field as button
         .action-buttons
-          span.btn.btn-primary.fileinput-button(ngf-select, ng-model="files", ngf-multiple="true")
+          span.btn.btn-primary.fileinput-button(ngf-select, ng-model="files", ngf-multiple="true", ngf-change="$broadcast('FilesChanged')")
             i.glyphicon.glyphicon-plus
             span &nbsp;Upload More Images
           | &nbsp;
@@ -24,9 +24,9 @@
               span &nbsp;Import from instagram
 
         //- The container for the uploaded files
-        .files.clearfix(ng-show="files.length > 0")
+        .images.clearfix(ng-show="files.length > 0")
           h2 Uploading...
-          bulk-file-item(ng-repeat="file in files")
+          uploading-files(files="files", selector="uploading-files")
 
         h2(ng-show="files.length > 0") Your Images
         images-wall(images="images", selector="user-images")
