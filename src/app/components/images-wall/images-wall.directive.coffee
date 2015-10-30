@@ -61,7 +61,7 @@ angular.module "imagewikiFrontend"
       scope.$on 'ImageLoaded', (event) ->
         loadedImages++
         # console.log loadedImages, totalImages
-        if loadedImages == totalImages
-          runGallery()
+        runGallery()
+        # if loadedImages == totalImages
         return
       return
