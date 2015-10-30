@@ -9,12 +9,17 @@ angular.module "imagewikiFrontend"
 
       $scope.images = []
       $scope.files = []
+      $scope.itemsPerPage = 10
 
       $scope.getImages = ->
         ImageModel
           .getUserImages()
           .then (data) ->
             $scope.images = data.user_images
+            if $scope.images.length > 0
+              total = if $scope.images.length > $scope.itemsPerPage then $scope.itemsPerPage else $scope.images.length
+              $scope.$broadcast 'UpdateTotalImages',
+                totalImages: total
             return
           , ->
             # console.log 'FAIL TO GET IMAGES!'
@@ -37,7 +42,8 @@ angular.module "imagewikiFrontend"
         return
 
       $scope.upload = ->
-        angular.forEach $scope.files, (file, index) ->
+        $scope.$broadcast 'UpdateTotalImages', { totalImages: $scope.files.length} if $scope.files != null && $scope.files.length > 0
+        angular.forEach $scope.files, (file, index, context) ->
           index = index + 1
           file.progress = 0
           file.aborted = false
@@ -52,7 +58,8 @@ angular.module "imagewikiFrontend"
             toastr.success "Image successfully uploaded:<br><strong>#{data.title}</strong>", 'Success'
 
             $scope.files.remove file
-            # console.log $scope.files
+
+            $scope.$broadcast('ReloadGallery', {}) if context.length == 0
             return
           , (res) ->
             # console.log res
