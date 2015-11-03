@@ -33,9 +33,8 @@ angular.module "imagewikiFrontend"
 
       imageModel.delete = (hashid) ->
         params = "id=#{hashid}"
-        $http.delete("#{API_URL}/images?#{params}").then (res) ->
+        $http.delete("#{API_URL}/images/#{hashid}").then (res) ->
           res.data
-        return
 
       imageModel.uploadUrl = (url) ->
         params =

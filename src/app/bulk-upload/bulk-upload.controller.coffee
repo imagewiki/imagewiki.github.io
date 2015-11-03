@@ -5,8 +5,9 @@ angular.module "imagewikiFrontend"
     'AUTH_EVENTS'
     ($scope, BulkUploadFactory, AUTH_EVENTS) ->
 
-      $scope.images = []
-      $scope.files = []
+      $scope.files        = []
+      $scope.images       = []
+      $scope.selected     = []
       $scope.itemsPerPage = 20
 
       $scope.getImages = ->
@@ -34,6 +35,10 @@ angular.module "imagewikiFrontend"
 
       $scope.delete = (image) ->
         BulkUploadFactory.delete $scope, image
+        return
+
+      $scope.deleteImages = ->
+        BulkUploadFactory.deleteImages $scope
         return
 
       return

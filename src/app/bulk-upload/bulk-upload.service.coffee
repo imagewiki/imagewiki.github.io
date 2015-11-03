@@ -2,9 +2,10 @@ angular.module "imagewikiFrontend"
   .factory 'BulkUploadFactory', [
     '$rootScope'
     '$timeout'
+    '$q'
     'toastr'
     'ImageModel'
-    ($rootScope, $timeout, toastr, ImageModel) ->
+    ($rootScope, $timeout, $q, toastr, ImageModel) ->
       bulkUpload = {}
 
       bulkUpload.getImages = ($scope) ->
@@ -63,15 +64,47 @@ angular.module "imagewikiFrontend"
       bulkUpload.delete = ($scope, image) ->
         if confirm 'Are you sure you want to delete this image?'
           ImageModel
-            .delete(image.hashid)
+            .delete(image.image_id)
             .then (data)->
-              toastr.warning data
+              toastr.warning data.message
+
+              $scope.images.remove image
+              $rootScope.$broadcast 'RestartGallery'
               return
             , ->
               toastr.error 'Something went wrong... Please contact our support.'
               return
-          index = $scope.images.indexOf(image)
-          $scope.images.splice(index, 1)
+        return
+
+      bulkUpload.deleteImages = ($scope) ->
+        images = $scope.selected
+        if images.length == 0
+          toastr.error 'No images were selected', 'Error'
+          return false
+
+        if confirm "Are you sure you want to delete all #{images.length} selected images?"
+          promises = []
+          angular.forEach $scope.selected, (image, index) ->
+            promises.push ImageModel.delete(image.image_id)
+            return
+
+          $q.all(promises)
+            .then (data)->
+              toastr.warning 'All images were deleted', 'Warning'
+
+              angular.forEach $scope.selected, (image, index) ->
+                $scope.images.remove image
+                $scope.selected.remove image
+                return
+
+              $rootScope.$broadcast 'RestartGallery'
+              $rootScope.$broadcast 'ClearSelectedImages'
+              return
+            , ->
+              toastr.error 'Something went wrong... Please contact our support.',
+                closeButton: true
+                timeOut: 0
+              return
         return
 
       bulkUpload
