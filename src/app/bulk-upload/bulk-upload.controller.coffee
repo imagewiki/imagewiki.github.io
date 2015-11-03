@@ -1,29 +1,16 @@
 angular.module "imagewikiFrontend"
   .controller "BulkUploadController", [
-    '$scope',
-    '$timeout',
-    'toastr',
-    'ImageModel',
+    '$scope'
+    'BulkUploadFactory'
     'AUTH_EVENTS'
-    ($scope, $timeout, toastr, ImageModel, AUTH_EVENTS) ->
+    ($scope, BulkUploadFactory, AUTH_EVENTS) ->
 
       $scope.images = []
       $scope.files = []
-      $scope.itemsPerPage = 10
+      $scope.itemsPerPage = 20
 
       $scope.getImages = ->
-        ImageModel
-          .getUserImages()
-          .then (data) ->
-            $scope.images = data.user_images
-            if $scope.images.length > 0
-              total = if $scope.images.length > $scope.itemsPerPage then $scope.itemsPerPage else $scope.images.length
-              $scope.$broadcast 'UpdateTotalImages',
-                totalImages: total
-            return
-          , ->
-            # console.log 'FAIL TO GET IMAGES!'
-            return
+        BulkUploadFactory.getImages $scope
         return
 
       if $scope.isAuthenticated()
@@ -42,55 +29,12 @@ angular.module "imagewikiFrontend"
         return
 
       $scope.upload = ->
-        $scope.$broadcast 'UpdateTotalImages', { totalImages: $scope.files.length} if $scope.files != null && $scope.files.length > 0
-        angular.forEach $scope.files, (file, index, context) ->
-          index = index + 1
-          file.progress = 0
-          file.aborted = false
-          # console.log index, file
-
-          file.upload = ImageModel.upload(file)
-
-          file.upload.then (res) ->
-            # console.log 'SUCCESS', res
-            data = res.data
-            $scope.images.push data
-            toastr.success "Image successfully uploaded:<br><strong>#{data.title}</strong>", 'Success'
-
-            $scope.files.remove file
-
-            $scope.$broadcast('ReloadGallery', {}) if context.length == 0
-            return
-          , (res) ->
-            # console.log res
-            if file.aborted
-              toastr.error "#{file.name} upload was aborted!", 'Abort!'
-            else
-              toastr.error "Something went wrong while uploading the file: <strong>#{file.name}</strong>.", 'Error'
-            $scope.files.remove file
-            return
-          , (evt) ->
-            progress = evt.loaded * 100 / evt.total
-            file.progress = progress
-            # console.log 'PROGRESS', index, progress, file.name, evt.config.file.name
-            return
-          return
+        BulkUploadFactory.upload $scope
         return
 
       $scope.delete = (image) ->
-        if confirm 'Are you sure you want to delete this image?'
-          ImageModel
-            .delete(image.hashid)
-            .then (data)->
-              alert data
-              return
-            , ->
-              alert 'Something went wrong... Please contact our support.'
-              return
-          index = $scope.images.indexOf(image)
-          $scope.images.splice(index, 1)
+        BulkUploadFactory.delete $scope, image
         return
-
 
       return
   ]
