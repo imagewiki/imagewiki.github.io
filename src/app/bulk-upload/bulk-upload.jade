@@ -5,13 +5,13 @@
         h2 My Contributions
         .btn-group.pull-right.bulk-actions
           button.btn.btn-default.dropdown-toggle(type='button', data-toggle='dropdown')
-            | Actions
+            | Actions&nbsp;
             span.caret
           ul.dropdown-menu(role='menu')
             li
               a.edit(data-href='/bulk-edit') Edit
             li
-              a.delete(data-href='/confirm-bulk-delete') Delete
+              a.delete(ng-click="deleteImages()") Delete
         //- The fileinput-button span is used to style the file input field as button
         .action-buttons
           span.btn.btn-primary.fileinput-button(ngf-select, ng-model="files", ngf-multiple="true", ngf-change="$broadcast('FilesChanged')")

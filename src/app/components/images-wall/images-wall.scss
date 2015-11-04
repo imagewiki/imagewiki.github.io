@@ -59,23 +59,27 @@
       z-index    : 1;
 
       input {
-        float  : left;
         margin : 0;
+        display: none;
       }
       .fa {
         color       : #FFF;
         cursor      : pointer;
-        float       : right;
         font-size   : 1.3em;
         line-height : 1em;
         padding     : 0 3px;
 
-        &.fa-pencil:hover {
-          color: #00C2FF;
+        &.fa-pencil {
+          float : right;
+
+          &:hover { color : #00C2FF; }
         }
-        &.fa-times:hover {
-          color: #FD3F3F;
+        &.fa-times {
+          float : left;
+
+          &:hover { color : #FD3F3F; }
         }
+
       }
       .label {
         font-size   : 1em;
