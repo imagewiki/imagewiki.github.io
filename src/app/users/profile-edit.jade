@@ -1,0 +1,31 @@
+.container
+  .row
+    .col-md-12
+      ul.breadcrumb
+        li
+          a(href='/') Home
+        li Edit User
+      form#edit_user.form-horizontal(name='profileEditForm', ng-submit='update(user)', novalidate, autocomplete="off")
+        .form-group
+          label.col-lg-3.control-label(for='user_first_name') First Name:
+          .col-lg-9
+            input#user_first_name.form-control(name='user[first_name]', type='text', ng-model='user.first_name')
+        .form-group
+          label.col-lg-3.control-label(for='user_last_name') Last Name:
+          .col-lg-9
+            input#user_last_name.form-control(name='user[last_name]', type='text', ng-model='user.last_name')
+        .form-group
+          label.col-lg-3.control-label(for='user_email') Email:
+          .col-lg-9
+            input#user_email.form-control(name='user[email]', type='email', value='', ng-model='user.email')
+        .form-group
+          label.col-lg-3.control-label(for='user_password') Password:
+          .col-lg-7
+            input#user_password.form-control(name='user[password]', type='password', ng-model='user.password', autocomplete='off')
+            i (leave blank if you don&apos;t want to change it)
+        .form-group
+          label.col-lg-3.control-label(for='user_password_confirmation') Password confirmation
+          .col-lg-7
+            input#user_password_confirmation.form-control(name='user[password_confirmation]', type='password', ng-model="user.password_confirmation")
+        .float-right
+          input.btn.btn-primary(name='commit', type='submit', value='Update')
