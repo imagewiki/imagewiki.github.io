@@ -15,7 +15,8 @@ angular.module "imagewikiFrontend"
         $http.post("#{API_URL}/users", user).then userLoggedIn
 
       userAuth.update = (id, user) ->
-        $http.put("#{API_URL}/users/#{id}", user).then userLoggedIn
+        $http.put("#{API_URL}/users/#{id}", user).then (res) ->
+          res.data
 
       userAuth.login = (credentials) ->
         $http.post("#{API_URL}/auth", credentials).then userLoggedIn
