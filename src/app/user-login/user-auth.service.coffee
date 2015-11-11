@@ -14,6 +14,10 @@ angular.module "imagewikiFrontend"
       userAuth.register = (user) ->
         $http.post("#{API_URL}/users", user).then userLoggedIn
 
+      userAuth.update = (id, user) ->
+        $http.put("#{API_URL}/users/#{id}", user).then (res) ->
+          res.data
+
       userAuth.login = (credentials) ->
         $http.post("#{API_URL}/auth", credentials).then userLoggedIn
 
@@ -26,6 +30,10 @@ angular.module "imagewikiFrontend"
       userAuth.getUser = ->
         user = UserStore.get 'user'
         if user? then jwtHelper.decodeToken user else null
+
+      userAuth.fetchUser = (id) ->
+        $http.get("#{API_URL}/users/#{id}").then (res) ->
+          res
 
       userAuth
   ]

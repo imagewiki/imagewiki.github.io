@@ -14,6 +14,11 @@ angular.module "imagewikiFrontend"
         .state "logout",
           url: "/logout"
           controller: "LogoutController"
+        .state "profile-edit",
+          url: "/profile-edit"
+          templateUrl: "app/users/profile-edit.html"
+          controller: "ProfileEditController"
+          controllerAs: "profileEdit"
         # Static Pages
         .state "about",
           url: "/about"
