@@ -8,8 +8,9 @@ angular.module "imagewikiFrontend"
       userAuth = {}
 
       userLoggedIn = (res) ->
-        UserStore.set 'user', res.data
-        jwtHelper.decodeToken(res.data)
+        user = jwtHelper.decodeToken(res.data)
+        UserStore.set 'user', user
+        user
 
       userAuth.register = (user) ->
         $http.post("#{API_URL}/users", user).then userLoggedIn
@@ -28,12 +29,19 @@ angular.module "imagewikiFrontend"
         UserStore.get('user')?
 
       userAuth.getUser = ->
-        user = UserStore.get 'user'
-        if user? then jwtHelper.decodeToken user else null
+        UserStore.get('user') || null
 
       userAuth.fetchUser = (id) ->
         $http.get("#{API_URL}/users/#{id}").then (res) ->
           res
+
+      userAuth.updateUserInfo = (user) ->
+        storageUser = UserStore.get('user')
+        angular.forEach user, (value, key) ->
+          storageUser[key] = value
+          return
+        UserStore.set 'user', storageUser
+        return
 
       userAuth
   ]
