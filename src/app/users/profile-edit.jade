@@ -3,7 +3,7 @@
     .col-md-12
       ul.breadcrumb
         li
-          a(href='/') Home
+          a(ui-sref='home') Home
         li Edit User
       form#edit_user.form-horizontal(name='profileEditForm', ng-submit='update(user)', novalidate, autocomplete="off")
         .form-group(ng-class="{ 'has-error' : profileEditForm.first_name.$invalid && !profileEditForm.first_name.$pristine }")
