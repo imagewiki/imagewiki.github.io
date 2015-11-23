@@ -1,9 +1,10 @@
 angular.module "imagewikiFrontend"
   .controller "BulkUploadController", [
     '$scope'
+    '$state'
     'BulkUploadFactory'
     'AUTH_EVENTS'
-    ($scope, BulkUploadFactory, AUTH_EVENTS) ->
+    ($scope, $state, BulkUploadFactory, AUTH_EVENTS) ->
 
       $scope.files        = []
       $scope.images       = []
@@ -39,6 +40,11 @@ angular.module "imagewikiFrontend"
 
       $scope.deleteImages = ->
         BulkUploadFactory.deleteImages $scope
+        return
+
+      $scope.editImages = ->
+        console.log 'EDIT IMAGES', $scope.selected
+        $state.go 'bulk-edit', { images: $scope.selected }
         return
 
       return

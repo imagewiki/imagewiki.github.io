@@ -53,6 +53,13 @@ angular.module "imagewikiFrontend"
           controllerAs: "bulkUpload"
           data:
             topSearch: true
+        .state "bulk-edit",
+          url: "/bulk-edit"
+          templateUrl: "app/bulk-upload/bulk-edit.html"
+          controller: "BulkEditController"
+          controllerAs: "bulkEdit"
+          data:
+            topSearch: true
 
       $urlRouterProvider.otherwise '/'
   ]

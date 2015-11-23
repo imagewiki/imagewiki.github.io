@@ -1,0 +1,73 @@
+.row.quick-menu
+  .col-lg-8.col-md-8.col-sm-8.col-xs-8.col-lg-offset-2.col-md-offset-2.col-sm-offset-2.col-xs-offset-2.content-main
+    ul.breadcrumb
+      li
+        a(ui-sref='home') Home
+      li Bulk Image Edit
+    form#info_image.edit_image(name="imageForm", ng-submit="updateImage(image)")
+      .image-info
+        images-wall(images="images", selector="user-images")
+      .page-header
+        h2(ng-click="debugImage()") Copyright and ownership Information
+      .ownership-info
+        .ownership-list
+          h3 Photographer Contact Information
+          table.table-striped
+            tbody
+              tr
+                td
+                  label(for='image_image_photographer_attributes_name') Photographer
+                td
+                  editable-field(type="'text'", name="'photographer_name'", ng-model="image.photographer_name")
+              tr
+                td
+                  label(for='image_image_photographer_attributes_email') Email
+                td
+                  editable-field(type="'text'", name="'photographer_email'", ng-model="image.photographer_email")
+              tr
+                td
+                  label(for='image_image_photographer_attributes_phone') Phone
+                td
+                  editable-field(type="'text'", name="'photographer_phone'", ng-model="image.photographer_phone")
+              tr
+                td
+                  label(for='image_image_photographer_attributes_website') Website
+                td
+                  editable-field(type="'text'", name="'photographer_site_url'", ng-model="image.photographer_site_url")
+        .ownership-list
+          h3 Licensing and usage
+          table.table-striped
+            tbody
+              tr
+                td
+                  label(for='image_image_ownership_attributes_public_domain') In Public Domain
+                td
+                  editable-field(type="'boolean'", name="'public_domain'", ng-model="image.public_domain")
+              tr
+                td
+                  label(for='image_image_ownership_attributes_creative_commons') In Creative Commons
+                td
+                  editable-field(type="'boolean'", name="'creative_commons'", ng-model="image.creative_commons")
+              tr.child
+                td
+                  label(for='image_image_ownership_attributes_cc_license_type') CC License Type
+                td
+                  editable-field(type="'select'", name="'cc_license_type'", ng-model="image.cc_license_type")
+              tr
+                td
+                  label(for='image_image_licensing_company_attributes_name') Licensing Summary
+                td
+                  editable-field(type="'text'", name="'license_summary'", ng-model="image.license_summary")
+        .ownership-list
+          h3 Copyright Information
+          table.table-striped
+            tbody
+              tr
+                td
+                  label(for='image_image_ownership_attributes_type_of_work') Publication Date
+                td
+                  editable-field(type="'date'", name="'publication_date'", ng-model="image.publication_date")
+
+      br
+      a.btn.btn-default(ui-sref='home') Back
+      button.btn.btn-primary.pull-right(type="submit") Save Image
