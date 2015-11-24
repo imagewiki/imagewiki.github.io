@@ -29,6 +29,6 @@
           uploading-files(files="files", selector="uploading-files")
 
         h2(ng-show="files.length > 0") Your Images
-        images-wall(images="images", selector="user-images")
+        images-wall(images="images", selector="user-images", selectable="true")
         //- bulk-image-item(dir-paginate="image in images | itemsPerPage: 50")
 

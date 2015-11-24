@@ -1,11 +1,12 @@
 angular.module "imagewikiFrontend"
-  .factory 'BulkUploadFactory', [
+  .service 'BulkUploadService', [
     '$rootScope'
     '$timeout'
     '$q'
     'toastr'
     'ImageModel'
     ($rootScope, $timeout, $q, toastr, ImageModel) ->
+      selected = {}
       bulkUpload = {}
 
       bulkUpload.getImages = ($scope) ->
@@ -105,6 +106,32 @@ angular.module "imagewikiFrontend"
                 closeButton: true
                 timeOut: 0
               return
+        return
+
+      bulkUpload.setSelected = (images) ->
+        selected = images
+        return
+
+      bulkUpload.getSelected = ->
+        selected
+
+      bulkUpload.updateImages = ($scope, image) ->
+        promises = []
+        angular.forEach $scope.images, (value, key) ->
+          image.image_id = value.image_id
+          # console.log 'IMAGE UPDATED FIELD', image
+          promises.push ImageModel.updateImage(image)
+          return
+
+        $q.all(promises)
+          .then (data)->
+            toastr.success 'All images were updated', 'Warning'
+            return
+          , ->
+            toastr.error 'Something went wrong... Please contact our support.',
+              closeButton: true
+              timeOut: 0
+            return
         return
 
       bulkUpload

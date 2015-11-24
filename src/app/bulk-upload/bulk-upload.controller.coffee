@@ -2,9 +2,9 @@ angular.module "imagewikiFrontend"
   .controller "BulkUploadController", [
     '$scope'
     '$state'
-    'BulkUploadFactory'
+    'BulkUploadService'
     'AUTH_EVENTS'
-    ($scope, $state, BulkUploadFactory, AUTH_EVENTS) ->
+    ($scope, $state, BulkUploadService, AUTH_EVENTS) ->
 
       $scope.files        = []
       $scope.images       = []
@@ -12,7 +12,7 @@ angular.module "imagewikiFrontend"
       $scope.itemsPerPage = 20
 
       $scope.getImages = ->
-        BulkUploadFactory.getImages $scope
+        BulkUploadService.getImages $scope
         return
 
       if $scope.isAuthenticated()
@@ -31,20 +31,21 @@ angular.module "imagewikiFrontend"
         return
 
       $scope.upload = ->
-        BulkUploadFactory.upload $scope
+        BulkUploadService.upload $scope
         return
 
       $scope.delete = (image) ->
-        BulkUploadFactory.delete $scope, image
+        BulkUploadService.delete $scope, image
         return
 
       $scope.deleteImages = ->
-        BulkUploadFactory.deleteImages $scope
+        BulkUploadService.deleteImages $scope
         return
 
       $scope.editImages = ->
-        console.log 'EDIT IMAGES', $scope.selected
-        $state.go 'bulk-edit', { images: $scope.selected }
+        # console.log 'EDIT IMAGES', $scope.selected
+        BulkUploadService.setSelected $scope.selected
+        $state.go 'bulk-edit'
         return
 
       return

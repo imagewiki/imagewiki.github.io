@@ -12,7 +12,7 @@ angular.module "imagewikiFrontend"
           res.data
 
       imageModel.updateImage = (image) ->
-        hashid = image.hashid
+        hashid = image.image_id
         $http.put("#{API_URL}/images/#{hashid}", image).then (res) ->
           res.data
 

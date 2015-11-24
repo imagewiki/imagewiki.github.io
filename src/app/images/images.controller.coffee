@@ -30,7 +30,7 @@ angular.module "imagewikiFrontend"
         ImageModel
           .updateImage(image)
           .then (data) ->
-            console.log data
+            # console.log data
             toastr.success data.message, 'Success'
             return
           , ->
@@ -42,6 +42,7 @@ angular.module "imagewikiFrontend"
       ImageModel
         .getImage($stateParams.hashid)
         .then (image) ->
+          # console.log 'IMAGE', image
           $scope.image         = angular.copy(image)
           $scope.originalImage = angular.copy(image)
           return
