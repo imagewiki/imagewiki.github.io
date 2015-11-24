@@ -9,7 +9,7 @@
             span.caret
           ul.dropdown-menu(role='menu')
             li
-              a.edit(data-href='/bulk-edit') Edit
+              a.edit(ng-click="editImages()") Edit
             li
               a.delete(ng-click="deleteImages()") Delete
         //- The fileinput-button span is used to style the file input field as button
@@ -29,6 +29,6 @@
           uploading-files(files="files", selector="uploading-files")
 
         h2(ng-show="files.length > 0") Your Images
-        images-wall(images="images", selector="user-images")
+        images-wall(images="images", selector="user-images", selectable="true")
         //- bulk-image-item(dir-paginate="image in images | itemsPerPage: 50")
 

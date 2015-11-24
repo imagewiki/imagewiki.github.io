@@ -9,8 +9,11 @@ angular.module "imagewikiFrontend"
       scope:
         images: '='
         selector: '@'
+        selectable: '='
       controller: ($scope, $element, $attrs, $transclude) ->
         $scope.selected = {}
+
+        console.log 'IMAGESWALL SELECTABLE', $scope.selectable
 
         $scope.delete = (image) ->
           $scope.$parent.delete image
@@ -50,6 +53,7 @@ angular.module "imagewikiFrontend"
           return
 
         scope.selectImage = (image) ->
+          return false if scope.selectable == false
           id = image.image_id
           if image in scope.$parent.selected
             scope.selected[id] = false
