@@ -23,78 +23,74 @@
         h2(ng-click="debugImage()") Copyright and ownership Information
       .ownership-info
         .ownership-list
+          h3 General Info
           table.table-striped
             tbody
               tr
                 td
-                  label Representative name
+                  label Description
                 td
-                  editable-field(type="'text'", name="'licensingRepName'", ng-model="image.licensingRepName")
+                  editable-field(type="'text'", name="'description'", ng-model="image.description")
               tr
                 td
-                  label Representative website
+                  label Contributor Reference
                 td
-                  editable-field(type="'text'", name="'licensingRepUrl'", ng-model="image.licensingRepUrl")
+                  editable-field(type="'text'", name="'contributor_reference'", ng-model="image.contributor_reference")
+              tr
+                td
+                  label Keywords (comma separated)
+                td
+                  editable-field(type="'text'", name="'keywords'", ng-model="image.keywords")
               tr
                 td
                   label License Type
                 td
-                  editable-field(type="'text'", name="'licenseType'", ng-model="image.licenseType")
+                  editable-field(type="'text'", name="'license_type'", ng-model="image.license_type")
               tr
                 td
                   label Publication Date
                 td
-                  editable-field(type="'date'", name="'publicationDate'", ng-model="image.publicationDate")
+                  editable-field(type="'date'", name="'created_at'", ng-model="image.created_at")
+
+        .ownership-list
+          h3 Creator Info
+          table.table-striped
+            tbody
               tr
                 td
-                  label Galleries
+                  label Name
                 td
-                  editable-field(type="'text'", name="'galleries'", ng-model="image.galleries")
+                  editable-field(type="'text'", name="'creator_info.creator_name'", ng-model="image.creator_info.creator_name")
               tr
                 td
-                  label Credit attribution text
+                  label Email
                 td
-                  editable-field(type="'text'", name="'creditByLine'", ng-model="image.creditByLine")
+                  editable-field(type="'text'", name="'creator_info.email'", ng-model="image.creator_info.email")
               tr
                 td
-                  label Model release info
+                  label Site
                 td
-                  editable-field(type="'text'", name="'modelReleaseInfo'", ng-model="image.modelReleaseInfo")
-              tr
-                td
-                  label Copyright information
-                td
-                  editable-field(type="'text'", name="'copyrightInfo'", ng-model="image.copyrightInfo")
-              tr
-                td
-                  label Representative is exclusive?
-                td
-                  editable-field(type="'boolean'", name="'isExclusiveLicensingRep'", ng-model="image.isExclusiveLicensingRep")
-              tr
-                td
-                  label Is rights managed?
-                td
-                  editable-field(type="'boolean'", name="'isRightsManaged'", ng-model="image.isRightsManaged")
-              tr
-                td
-                  label Is royalty free?
-                td
-                  editable-field(type="'boolean'", name="'isRoyaltyFree'", ng-model="image.isRoyaltyFree")
-              tr
-                td
-                  label Is for editorial use only?
-                td
-                  editable-field(type="'boolean'", name="'isEditorialOnly'", ng-model="image.isEditorialOnly")
-              tr
-                td
-                  label Is for commercial use only?
-                td
-                  editable-field(type="'boolean'", name="'isCommercialUseOnly'", ng-model="image.isCommercialUseOnly")
-              tr
-                td
-                  label Is 'R Rated'?
-                td
-                  editable-field(type="'boolean'", name="'isRatedR'", ng-model="image.isRatedR")
+                  editable-field(type="'text'", name="'creator_info.site'", ng-model="image.creator_info.site")
+
+          .ownership-list
+            h3 Licensing Representative Info
+            table.table-striped
+              tbody
+                tr
+                  td
+                    label Is exclusive?
+                  td
+                    editable-field(type="'boolean'", name="'licensing_rep_info.is_exclusive'", ng-model="image.licensing_rep_info.is_exclusive")
+                tr
+                  td
+                    label Name
+                  td
+                    editable-field(type="'text'", name="'licensing_rep_info.license_rep_name'", ng-model="image.licensing_rep_info.license_rep_name")
+                tr
+                  td
+                    label Site
+                  td
+                    editable-field(type="'text'", name="'licensing_rep_info.site_url'", ng-model="image.licensing_rep_info.site_url")
 
       br
       a.btn.btn-default(ui-sref='home') Back

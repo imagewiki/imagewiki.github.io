@@ -26,7 +26,7 @@ angular.module "imagewikiFrontend"
       # @TODO: Change this when the route to get user images is created
       imageModel.getUserImages = ->
         params = ""
-        params = "userId=#{UserAuth.getUser().id}" if UserAuth.isAuthenticated()
+        params = "user_id=#{UserAuth.getUser().id}" if UserAuth.isAuthenticated()
 
         $http.get("#{API_URL}/images?#{params}").then (res) ->
           res.data
@@ -38,7 +38,7 @@ angular.module "imagewikiFrontend"
 
       imageModel.uploadUrl = (url) ->
         params =
-          imageUrl: url
+          image_url: url
 
         $http.post("#{API_URL}/images", params).then (res) ->
           res.data

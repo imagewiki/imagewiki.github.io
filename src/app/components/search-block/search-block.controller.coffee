@@ -11,7 +11,7 @@ angular.module "imagewikiFrontend"
         ImageModel
           .uploadUrl(url)
           .then (data) ->
-            $state.go('image-ownership', { hashid: data.hashid })
+            $state.go('image-ownership', { hashid: data.image_id })
             return
           , ->
             return
@@ -23,7 +23,7 @@ angular.module "imagewikiFrontend"
           .progress (evt) ->
             return
           .success (data, status, headers, config) ->
-            $state.go('image-ownership', { hashid: data.hashid })
+            $state.go('image-ownership', { hashid: data.image_id })
             return
           .error (data, status, headers, config) ->
             return

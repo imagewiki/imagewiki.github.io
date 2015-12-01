@@ -1,4 +1,10 @@
 angular.module "imagewikiFrontend"
+  .factory 'mockInterceptor', ->
+    {
+      request: (config) ->
+        config.headers['Mock'] = 'true'
+        config
+    }
   .config [
     'jwtInterceptorProvider'
     '$httpProvider'
@@ -11,5 +17,5 @@ angular.module "imagewikiFrontend"
         user = UserAuth.getUser()
         if user? then user.token else null
       ]
-      $httpProvider.interceptors.push('jwtInterceptor')
+      $httpProvider.interceptors.push('jwtInterceptor', 'mockInterceptor')
   ]

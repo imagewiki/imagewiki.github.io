@@ -12,13 +12,9 @@ angular.module "imagewikiFrontend"
         $state.go 'home'
 
       userUpdateSuccess = (response) ->
-        if response.status
-          $scope.$parent.setCurrentUser($.extend($scope.$parent.currentUser, response.user))
-          $rootScope.$broadcast 'UserUpdateSuccess'
-          toastr.success 'Your info was successfully updated.', 'User info changed.'
-        else
-          $rootScope.$broadcast 'UserUpdateFail'
-          toastr.error "#{response.error}", 'User update error.'
+        $scope.$parent.setCurrentUser($.extend($scope.$parent.currentUser, response))
+        $rootScope.$broadcast 'UserUpdateSuccess'
+        toastr.success 'Your info was successfully updated.', 'User info changed.'
         return
 
       userUpdateFail = (response) ->
@@ -26,15 +22,12 @@ angular.module "imagewikiFrontend"
         toastr.error "#{response.data.error}", 'User update error.'
         return
 
-      $scope.user = $scope.$parent.currentUser
-
-      UserAuth.fetchUser($scope.user.id).then (res) ->
-        $scope.user = res.data
-        $scope.$parent.setCurrentUser($.extend($scope.$parent.currentUser, res.data))
-        return
+      $scope.user = angular.copy($scope.$parent.currentUser)
 
       $scope.update = (user) ->
-        toastr.info 'No changes made.', '' if $scope.profileEditForm.$pristine
+        if $scope.profileEditForm.$pristine
+          toastr.info 'No changes made.', ''
+          return false
 
         id = $scope.$parent.currentUser.id
         UserAuth

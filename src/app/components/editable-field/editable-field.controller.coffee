@@ -34,6 +34,7 @@ angular.module "imagewikiFrontend"
       # Save
       $scope.saveEdit = ->
         $scope.ngModel = angular.copy($scope.value.initial)
+        $scope.$emit 'imageChanged'
         showLabel()
         return
 

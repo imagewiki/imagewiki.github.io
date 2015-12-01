@@ -23,16 +23,17 @@ angular.module "imagewikiFrontend"
         return
 
       $scope.$watch 'file', ->
-        $scope.upload($scope.file) if $scope.file? and Object.keys($scope.file).length > 0
+        if $scope.file? and Object.keys($scope.file).length > 0
+          $scope.homeUpload($scope.file)
         return
 
-      $scope.upload = (file) ->
+      $scope.homeUpload = (file) ->
         ImageModel
           .upload(file)
           .progress (evt) ->
             return
           .success (data, status, headers, config) ->
-            $state.go('image-ownership', { hashid: data.hashid })
+            $state.go('image-ownership', { hashid: data.image_id })
             return
           .error (data, status, headers, config) ->
             return
