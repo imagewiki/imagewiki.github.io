@@ -43,5 +43,9 @@ angular.module "imagewikiFrontend"
         UserStore.set 'user', storageUser
         return
 
+      userAuth.recoverPassword = (user) ->
+        $http.post("#{API_URL}/users/password-recovery", user).then (res) ->
+          res.data
+
       userAuth
   ]

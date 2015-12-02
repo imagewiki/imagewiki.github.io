@@ -50,4 +50,4 @@
               label(for='user_remember_me') Remember me
         .col-lg-3.submit
           input.btn.btn-primary(name='commit', type='submit', value='Sign in')
-      a.forgot-password(data-toggle='modal', href='/users/password/new') Forgot your password?
+      a.forgot-password(ui-sref='password-recovery', ng-click="hideForms()") Forgot your password?

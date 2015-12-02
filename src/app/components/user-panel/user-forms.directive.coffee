@@ -17,4 +17,8 @@ angular.module "imagewikiFrontend"
               return
           return
         return
+
+      scope.hideForms = ->
+        element.find('.user-guard-form:visible').fadeOut()
+        return
       return
