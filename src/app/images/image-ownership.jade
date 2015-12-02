@@ -18,7 +18,7 @@
         .fb-share-button.pull-right(data-href='http://localhost:3100/image-ownership/1e2gyj1ypnvk', data-type='button')
 
         //- Include ImageViolation button partial
-        ng-include(src="'app/images/image-violation.html'")
+        image-violation(image-id="image.image_id")
 
         h2(ng-click="debugImage()") Copyright and ownership Information
       .ownership-info
