@@ -1,0 +1,15 @@
+.user-panel {
+  .user-menu.dropdown {
+    > a {
+      cursor: pointer;
+
+      &:hover {
+        text-decoration: none;
+      }
+    }
+    > .dropdown-menu {
+      left: initial;
+      right: 0;
+    }
+  }
+}

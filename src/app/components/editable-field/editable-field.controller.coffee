@@ -29,7 +29,7 @@ angular.module "imagewikiFrontend"
       $scope.cancelEdit = ->
         $scope.value = { initial: angular.copy($scope.ngModel) }
         $scope.$broadcast 'cancelEdit'
-        # showLabel()
+        showLabel()
         return
       # Save
       $scope.saveEdit = ->
