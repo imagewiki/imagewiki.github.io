@@ -10,4 +10,5 @@ angular.module 'imagewikiFrontend', [
   'ui.bootstrap.datetimepicker'
   'angularUtils.directives.dirPagination'
   'validation.match'
+  'vcRecaptcha'
 ]

@@ -2,26 +2,49 @@ angular.module "imagewikiFrontend"
   .directive 'imageViolation', [
     '$compile'
     '$timeout'
+    '$http'
     'toastr'
     'ImageModel'
-    ($compile, $timeout, toastr, ImageModel)->
+    'vcRecaptchaService'
+    ($compile, $timeout, $http, toastr, ImageModel, vcRecaptchaService)->
       restrict: 'E'
       templateUrl: 'app/components/image-violation/image-violation.html'
       scope:
         imageId: '='
       controller: ($scope, $element, $attrs, $transclude) ->
-        console.log 'SCOPE', $scope
+
         $scope.visible = false
         $scope.violation =
           reporter_user_id: null
           violation_comments: null
           violation_reason_id: null
 
+        $scope.response = null
+        $scope.widgetId = null
+        $scope.model =
+          key: '6LfZSxITAAAAAAbbOq-2PrbETzWZVbnjOIOJOy_E'
+
         $scope.violation['reporter_user_id'] = $scope.$parent.$parent.currentUser.id if $scope.$parent.$parent.currentUser
+
+        $scope.setResponse = (response) ->
+          $scope.response = response
+          return
+
+        $scope.setWidgetId = (widgetId) ->
+          $scope.widgetId = widgetId
+          return
+
+        $scope.cbExpiration = ->
+          $scope.response = null
+          return
 
         $scope.reportViolation = (violation) ->
           if violation.violation_reason_id == null || violation.violation_reason_id == ''
             toastr.error 'You need to select a reason.', 'Error'
+            return false
+
+          if $scope.response == null
+            toastr.error 'Please check the recaptcha.', 'Are you a robot?'
             return false
 
           ImageModel

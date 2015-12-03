@@ -46,9 +46,5 @@
         textarea#description.form-control(ng-model='violation.violation_comments')
         br
         br
-        input.send-form-violations.btn.btn-primary(name='commit', type="button", value='Send', ng-click="reportViolation(violation)")
-      .errors.alert.alert-danger
-        strong Reason:
-        ul
-      .violations-feedback
-        p.feedback-msg Report sent!
+        .pull-left(vc-recaptcha, theme="'light'", key="model.key", on-create="setWidgetId(widgetId)", on-success="setResponse(response)", on-expire="cbExpiration()")
+        input.send-form-violations.btn.btn-primary.pull-right(name='commit', type="button", value='Send', ng-click="reportViolation(violation)")
