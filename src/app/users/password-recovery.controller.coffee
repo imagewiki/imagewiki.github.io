@@ -6,8 +6,14 @@ angular.module "imagewikiFrontend"
     'UserAuth'
     'toastr'
     ($scope, $rootScope, $state, UserAuth, toastr) ->
+      $scope.user =
+        email: null
 
       $scope.recover = (user) ->
+        if user.email == null || user.email == ''
+          toastr.error 'You need to inform your email.', 'Error'
+          return false
+
         UserAuth
           .recoverPassword(user)
           .then (data) ->
