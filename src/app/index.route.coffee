@@ -19,6 +19,11 @@ angular.module "imagewikiFrontend"
           templateUrl: "app/users/profile-edit.html"
           controller: "ProfileEditController"
           controllerAs: "profileEdit"
+        .state "password-recovery",
+          url: "/password-recovery"
+          templateUrl: "app/users/password-recovery.html"
+          controller: "PasswordRecoveryController"
+          controllerAs: "passwordRecovery"
         # Static Pages
         .state "about",
           url: "/about"
