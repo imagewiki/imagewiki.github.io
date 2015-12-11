@@ -52,7 +52,7 @@ angular.module "imagewikiFrontend"
         params =
           url: "#{API_URL}/images"
           file: file
-        params.fields = { userId: UserAuth.getUser().id } if UserAuth.isAuthenticated()
+        params.fields = { user_id: UserAuth.getUser().id } if UserAuth.isAuthenticated()
 
         Upload.upload params
 

@@ -13,8 +13,6 @@ angular.module "imagewikiFrontend"
       controller: ($scope, $element, $attrs, $transclude) ->
         $scope.selected = {}
 
-        console.log 'IMAGESWALL SELECTABLE', $scope.selectable
-
         $scope.delete = (image) ->
           $scope.$parent.delete image
           return
