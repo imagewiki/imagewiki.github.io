@@ -17,5 +17,5 @@ angular.module "imagewikiFrontend"
         user = UserAuth.getUser()
         if user? then user.token else null
       ]
-      $httpProvider.interceptors.push('jwtInterceptor', 'mockInterceptor')
+      $httpProvider.interceptors.push('jwtInterceptor')
   ]
