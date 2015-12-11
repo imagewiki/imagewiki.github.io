@@ -18,6 +18,12 @@ angular.module "imagewikiFrontend"
 
       imageModel.updateImage = (image) ->
         hashid = image.image_id
+
+        # Remove unnecessary params from request
+        delete image.image_id
+        delete image.reference_file_path
+        delete image.platform_business_rules
+
         $http.put("#{API_URL}/images/#{hashid}", image).then (res) ->
           res.data
 
