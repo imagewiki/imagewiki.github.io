@@ -12,25 +12,25 @@
             | Please enter any relevant comments in the field below, including your contact information if applicable:
         .radio
           label
-            input#reason_Infringing_content(ng-model='violation.violation_reason_id', type='radio', value='Infringing content')
+            input#reason_Infringing_content(ng-model='violation.violation_reason_id', type='radio', value='Infringement')
             | Infringing content&nbsp;
             span.badge(data-placement='right', data-toggle='tooltip', title='This page contains content that infringes on my copyright, privacy, or other legal rights.')
               i.fa.fa-question
         .radio
           label
-            input#reason_Sexual_content(ng-model='violation.violation_reason_id', type='radio', value='Sexual content')
+            input#reason_Sexual_content(ng-model='violation.violation_reason_id', type='radio', value='Sexual')
             | Sexual content&nbsp;
             span.badge(data-placement='right', data-toggle='tooltip', title='This image or page contains sexual or pornographic content.')
               i.fa.fa-question
         .radio
           label
-            input#reason_Hateful_or_violent_content(ng-model='violation.violation_reason_id', type='radio', value='Hateful or violent content')
+            input#reason_Hateful_or_violent_content(ng-model='violation.violation_reason_id', type='radio', value='Hateful-Violent')
             | Hateful or violent content&nbsp;
             span.badge(data-placement='right', data-toggle='tooltip', title='This image or page contains violent, shocking or abusive content, or contains content that promotes hatred against certain groups or individuals.')
               i.fa.fa-question
         .radio
           label
-            input#reason_Child_abuse(ng-model='violation.violation_reason_id', type='radio', value='Child abuse')
+            input#reason_Child_abuse(ng-model='violation.violation_reason_id', type='radio', value='Child-Abuse')
             | Child abuse&nbsp;
             span.badge(data-placement='right', data-toggle='tooltip', title='This page contains sexual images of minors or predatory communications towards minors.')
               i.fa.fa-question
