@@ -24,14 +24,23 @@ angular.module "imagewikiFrontend"
         return
 
       $scope.updateImage = (image) ->
-        if angular.equals($scope.image, $scope.originalImage)
+        if angular.equals(image, $scope.originalImage)
           toastr.warning 'No need of saving', 'The image is untouched.'
           return false
+
+        fields = {}
+        fields.image_id = image.image_id
+        angular.forEach image, (value, key) ->
+          fields[key] = value unless angular.equals(value, $scope.originalImage[key])
+          return
+        # console.log 'FIELDS', fields, image.platform_business_rules, $scope.originalImage.platform_business_rules
+
         ImageModel
-          .updateImage(image)
+          .updateImage(fields)
           .then (data) ->
             $scope.saved = true
-            toastr.success data.message, 'Success'
+            toastr.success 'Image updated.', 'Success'
+            $scope.originalImage = angular.copy(image)
             return
           , ->
             toastr.error 'Something went wrong! Please contact our support team.', 'Error'
