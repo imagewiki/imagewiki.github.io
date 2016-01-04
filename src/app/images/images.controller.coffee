@@ -5,20 +5,14 @@ angular.module "imagewikiFrontend"
     '$stateParams',
     'toastr'
     'ImageModel'
-    ($scope, $state, $stateParams, toastr, ImageModel) ->
+    'ImagePromise'
+    ($scope, $state, $stateParams, toastr, ImageModel, ImagePromise) ->
       $scope.image = {}
       $scope.saved = true
 
       # Get image by its HashID
-      ImageModel
-        .getImage($stateParams.hashid)
-        .then (image) ->
-          $scope.image         = angular.copy(image)
-          $scope.originalImage = angular.copy(image)
-          return
-        , ->
-          toastr.error 'Fail to get image', 'Error!'
-          return
+      $scope.image         = ImagePromise.image
+      $scope.originalImage = angular.copy(ImagePromise.image)
 
       $scope.$on 'imageChanged', ->
         $scope.saved = false

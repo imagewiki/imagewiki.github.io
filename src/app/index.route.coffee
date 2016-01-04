@@ -47,6 +47,27 @@ angular.module "imagewikiFrontend"
           templateUrl: "app/static-pages/api.html"
         # Images
         .state "image-ownership",
+          resolve:
+            ImagePromise: [
+              '$q'
+              '$state'
+              '$stateParams'
+              'toastr'
+              'ImageModel'
+              ($q, $state, $stateParams, toastr, ImageModel) ->
+                deferred = $q.defer()
+                ImageModel
+                  .getImage($stateParams.hashid)
+                  .then (image) ->
+                    deferred.resolve({image: image})
+                    return
+                  , (response) ->
+                    toastr.error 'Fail to get image', 'Error!'
+                    $state.go 'home'
+                    deferred.reject()
+                    return
+                deferred.promise
+            ]
           url: "/image-ownership/:hashid"
           templateUrl: "app/images/image-ownership.html"
           controller: "ImagesController"
