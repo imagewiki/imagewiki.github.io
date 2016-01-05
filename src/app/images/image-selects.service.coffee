@@ -4,17 +4,15 @@ angular.module "imagewikiFrontend"
       imageSelects = {}
 
       selects = {}
-      selects.cc_license_type = [
-        'Attribution (CC BY)'
-        'Attribution Sharealike (CC BY-SA)'
-        'Attribution-NoDerivs (CC BY-ND)'
-        'Attribution-NonCommercial (CC BY-NC)'
-        'Attribution-NonCommercial-ShareAlike (CC BY-NC-SA)'
-        'Attribution-NonCommercial-NoDerivs (CC BY-NC-ND)'
-      ]
-      selects.license_type = [
-        'Rights Managed (RM)'
-        'Royalty Free (RF)'
+      selects.license_type_id = [
+        'Public Domain'
+        'Copyright All Rights Reserved'
+        'CreativeCommons - Attribution (CC BY)'
+        'CreativeCommons - Attribution Sharealike (CC BY-SA)'
+        'CreativeCommons - Attribution-NoDerivs (CC BY-ND)'
+        'CreativeCommons - Attribution-NonCommercial (CC BY-NC)'
+        'CreativeCommons - Attribution-NonCommercial-NoDerivs (CC BY-NC-ND)'
+        'CreativeCommons - Attribution-NonCommercial-ShareAlike (CC BY-NC-SA)'
       ]
 
       imageSelects.getSelectOptions = (select) ->
