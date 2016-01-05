@@ -60,17 +60,17 @@
                 td
                   label Name
                 td
-                  editable-field(type="'text'", name="'creator_info.creator_name'", ng-model="image.creator_info.creator_name")
+                  editable-field(type="'text'", name="'creator.creator_name'", ng-model="image.creator.creator_name")
               tr
                 td
                   label Email
                 td
-                  editable-field(type="'text'", name="'creator_info.email'", ng-model="image.creator_info.email")
+                  editable-field(type="'text'", name="'creator.email'", ng-model="image.creator.email")
               tr
                 td
                   label Site
                 td
-                  editable-field(type="'text'", name="'creator_info.site'", ng-model="image.creator_info.site")
+                  editable-field(type="'text'", name="'creator.site_url'", ng-model="image.creator.site_url")
 
           .ownership-list
             h3 Licensing Representative Info
@@ -80,17 +80,17 @@
                   td
                     label Is exclusive?
                   td
-                    editable-field(type="'boolean'", name="'licensing_rep_info.is_exclusive'", ng-model="image.licensing_rep_info.is_exclusive")
+                    editable-field(type="'boolean'", name="'licensing_rep.is_exclusive'", ng-model="image.licensing_rep.is_exclusive")
                 tr
                   td
                     label Name
                   td
-                    editable-field(type="'text'", name="'licensing_rep_info.license_rep_name'", ng-model="image.licensing_rep_info.license_rep_name")
+                    editable-field(type="'text'", name="'licensing_rep.licensing_rep_name'", ng-model="image.licensing_rep.licensing_rep_name")
                 tr
                   td
                     label Site
                   td
-                    editable-field(type="'text'", name="'licensing_rep_info.site_url'", ng-model="image.licensing_rep_info.site_url")
+                    editable-field(type="'text'", name="'licensing_rep.site_url'", ng-model="image.licensing_rep.site_url")
 
       br
       a.btn.btn-default(ui-sref='home') Back
