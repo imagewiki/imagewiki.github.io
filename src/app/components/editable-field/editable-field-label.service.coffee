@@ -8,8 +8,7 @@ angular.module "imagewikiFrontend"
         if type == 'boolean'
           if value then 'YES' else 'NO'
         else if type == 'date'
-          date = new Date(value)
-          date.toLocaleString()
+          moment(value).format('DD/MM/YYYY')
         else
           value
 

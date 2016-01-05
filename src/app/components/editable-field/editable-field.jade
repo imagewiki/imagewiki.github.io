@@ -21,7 +21,7 @@
               span.input-group-addon
                 i.glyphicon.glyphicon-calendar
           ul.dropdown-menu(role='menu', aria-labelledby='dLabel')
-            datetimepicker(ng-model='value.initial', data-datetimepicker-config="{ minView: 'day', dropdownSelector: '#{{ name }}-datepicker' }")
+            datetimepicker(ng-model='value.initial', data-on-set-time="onTimeSet(newDate, oldDate)", data-datetimepicker-config="{ startView: 'day', minView: 'day', dropdownSelector: '#{{ name }}-datepicker' }")
       | &nbsp;
       span.glyphicon.glyphicon-remove.field-cancel(ng-click="cancelEdit()")
       span.glyphicon.glyphicon-ok.field-save(ng-click="saveEdit()")

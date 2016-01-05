@@ -17,6 +17,11 @@ angular.module "imagewikiFrontend"
         $scope.value = { initial: angular.copy($scope.ngModel) }
         return
 
+      # Datepicker onTimeSet
+      $scope.onTimeSet = (newDate, oldDate) ->
+        $scope.value.initial = moment(newDate).format('YYYY/MM/DD')
+        return
+
       # --- Save/Cancel actions
       $scope.showField = false
       $scope.showEdit = ->
