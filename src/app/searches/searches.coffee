@@ -139,14 +139,10 @@ $(document).ready ->
   $('#search_description').keyup ->
     toggle_thumbnail_preview this
     return
-  # .change(function(e){
-  #   $(this).keyup();
-  # });
   $('.browse-your-files').click ->
     $('#search_file').click()
     return
   $('#search_file').change (e) ->
-    # $(".pull-left.button").click();
     upload_and_show_file $(this), e
     return
   return
