@@ -7,6 +7,9 @@ angular.module "imagewikiFrontend"
     ($http, API_URL, UserAuth, Upload) ->
       imageModel = {}
 
+      imageModel.getGreeting = (name) ->
+        "Hello #{name}"
+
       imageModel.getImage = (hashid) ->
         $http.get("#{API_URL}/images/#{hashid}?includeFields=all").then (res) ->
           res.data
