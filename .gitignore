@@ -5,5 +5,6 @@ bower_components/
 .tmp/
 .publish/
 dist/
+coverage/
 npm-debug*
 Thumbs.db
