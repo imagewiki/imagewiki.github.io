@@ -4,8 +4,9 @@ angular.module "imagewikiFrontend"
       formatter = {}
 
       formatter.error = (data) ->
+        error = if angular.isString(data.error) then angular.fromJson(data.error) else data.error
         msg = ''
-        angular.forEach data.error, (value, key) ->
+        angular.forEach error, (value, key) ->
           msg += "<strong>#{key}</strong>: #{value}"
           return
         msg
