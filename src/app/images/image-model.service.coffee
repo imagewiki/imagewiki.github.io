@@ -54,14 +54,35 @@ angular.module "imagewikiFrontend"
         params =
           image_url: url
 
+        params.user_id = UserAuth.getUser().id if UserAuth.isAuthenticated()
+
         $http.post("#{API_URL}/images", params).then (res) ->
+          res.data
+
+      imageModel.matchUrl = (url) ->
+        params =
+          image_url: url
+
+        params.user_id = UserAuth.getUser().id if UserAuth.isAuthenticated()
+
+        $http.post("#{API_URL}/match", params).then (res) ->
           res.data
 
       imageModel.upload = (file) ->
         params =
           url: "#{API_URL}/images"
           file: file
-        params.fields = { user_id: UserAuth.getUser().id } if UserAuth.isAuthenticated()
+
+        params.data = { user_id: UserAuth.getUser().id } if UserAuth.isAuthenticated()
+
+        Upload.upload params
+
+      imageModel.match = (file) ->
+        params =
+          url: "#{API_URL}/match"
+          file: file
+
+        params.data = { user_id: UserAuth.getUser().id } if UserAuth.isAuthenticated()
 
         Upload.upload params
 

@@ -7,11 +7,20 @@ angular.module "imagewikiFrontend"
     ($scope, $state, $timeout, ImageModel) ->
       $scope.option = 'url'
 
+      goToImage = (image_id) ->
+        $state.go('image-ownership', { hashid: image_id })
+        return
+
       $scope.uploadUrl = (url) ->
         ImageModel
-          .uploadUrl(url)
+          .matchUrl(url)
           .then (data) ->
-            $state.go('image-ownership', { hashid: data.image_id })
+            if data.match_result == 'no match found'
+              ImageModel.uploadUrl(url).then (data2) ->
+                goToImage data2.image_id
+                return
+            else
+              goToImage data.image_id
             return
           , ->
             return
@@ -19,11 +28,16 @@ angular.module "imagewikiFrontend"
 
       $scope.upload = (file) ->
         ImageModel
-          .upload(file)
+          .match(file)
           .progress (evt) ->
             return
           .success (data, status, headers, config) ->
-            $state.go('image-ownership', { hashid: data.image_id })
+            if data.match_result == 'no match found'
+              ImageModel.upload(file).then (data2) ->
+                goToImage data2.data.image_id
+                return
+            else
+              goToImage data.image_id
             return
           .error (data, status, headers, config) ->
             return
