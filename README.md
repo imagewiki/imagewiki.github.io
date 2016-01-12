@@ -7,9 +7,9 @@ Imagewiki frontend app built with AngularJS
 
 Follow the instructions on this [guide](https://github.com/Devlandia/gulp2ghpages#install-nodejs--npm-via-nvm)
 
-##### Gulp / Yeoman / Bower - Globally
+##### Gulp / Yeoman / Bower / CoffeeScript- Globally
 
-    npm install gulp yo bower -g
+    npm install gulp yo bower coffee-script -g
 
 ##### After update Node version
 
