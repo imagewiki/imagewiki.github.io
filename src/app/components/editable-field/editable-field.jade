@@ -11,6 +11,8 @@
         input.form-control.ownership_field(type="{{ type }}", name="{{ name }}", ng-model="value.initial")
       span(ng-if="type == 'boolean'")
         boolean-input(name="name", field="value.initial")
+      span(ng-if="type == 'array'")
+        tags-input.bootstrap-tags-input(ng-model="value.tags", on-tag-added="updateTags($tag)", on-tag-removed="updateTags($tag)")
       span(ng-if="type == 'select'")
         select-input(field="value.initial", name="name")
       span(ng-if="type == 'date'")

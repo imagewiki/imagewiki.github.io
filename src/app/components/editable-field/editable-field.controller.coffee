@@ -14,7 +14,18 @@ angular.module "imagewikiFrontend"
 
       $scope.$watch 'ngModel', ->
         $scope.label = EditableFieldLabel.formatLabel($scope.type, $scope.ngModel)
-        $scope.value = { initial: angular.copy($scope.ngModel) }
+        if $scope.type == 'array'
+          $scope.value = { initial: angular.copy($scope.ngModel), tags: angular.copy($scope.ngModel) }
+        else
+          $scope.value = { initial: angular.copy($scope.ngModel) }
+        return
+
+      $scope.updateTags = ($tag) ->
+        tags = []
+        angular.forEach $scope.value.tags, (value, key) ->
+          tags.push value.text
+          return
+        $scope.value.initial = tags
         return
 
       # Datepicker onTimeSet

@@ -11,4 +11,5 @@ angular.module 'imagewikiFrontend', [
   'angularUtils.directives.dirPagination'
   'validation.match'
   'vcRecaptcha'
+  'ngTagsInput'
 ]
