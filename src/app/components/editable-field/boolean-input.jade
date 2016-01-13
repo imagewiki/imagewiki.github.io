@@ -1,7 +1,0 @@
-.btn-group
-  label.btn.btn-default(for="{{ name }}-yes", ng-class="{ active: field == true }")
-    input(ng-hide="true", type='radio', id="{{ name }}-yes", name='{{ name }}', ng-value="true", ng-model="field")
-    | YES
-  label.btn.btn-default(for="{{ name }}-no", ng-class="{ active: field == false }")
-    input(ng-hide="true", type='radio', id="{{ name }}-no", name='{{ name }}', ng-value="false", ng-model="field")
-    | NO
