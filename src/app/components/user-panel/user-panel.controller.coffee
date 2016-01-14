@@ -8,8 +8,11 @@ angular.module "imagewikiFrontend"
     ($scope, $rootScope, AUTH_EVENTS, UserAuth, UserStore) ->
 
       userLoginSuccess = (user) ->
-        $rootScope.$broadcast AUTH_EVENTS.loginSuccess
-        $scope.setCurrentUser user
+        if user.error
+          $rootScope.$broadcast AUTH_EVENTS.loginFailed, user
+        else
+          $rootScope.$broadcast AUTH_EVENTS.loginSuccess
+          $scope.setCurrentUser user
         return
 
       userLoginFail = (reason) ->
