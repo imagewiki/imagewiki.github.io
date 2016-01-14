@@ -73,7 +73,7 @@ angular.module "imagewikiFrontend"
           url: "#{API_URL}/images"
           file: file
 
-        params.data = { user_id: UserAuth.getUser().id } if UserAuth.isAuthenticated()
+        params.fields = { user_id: UserAuth.getUser().id } if UserAuth.isAuthenticated()
 
         Upload.upload params
 
@@ -82,7 +82,7 @@ angular.module "imagewikiFrontend"
           url: "#{API_URL}/match"
           file: file
 
-        params.data = { user_id: UserAuth.getUser().id } if UserAuth.isAuthenticated()
+        params.fields = { user_id: UserAuth.getUser().id } if UserAuth.isAuthenticated()
 
         Upload.upload params
 

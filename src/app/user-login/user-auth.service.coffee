@@ -8,6 +8,8 @@ angular.module "imagewikiFrontend"
       userAuth = {}
 
       userLoggedIn = (res) ->
+        return res.data if res.data.error
+
         user = jwtHelper.decodeToken(res.data)
         UserStore.set 'user', user
         user

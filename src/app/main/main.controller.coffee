@@ -23,7 +23,7 @@ angular.module "imagewikiFrontend"
         return
 
       $scope.$watch 'file', ->
-        if $scope.file? and Object.keys($scope.file).length > 0
+        if $scope.file?
           $scope.homeUpload($scope.file)
         return
 
