@@ -2,12 +2,20 @@ angular.module "imagewikiFrontend"
   .service 'BulkUploadService', [
     '$rootScope'
     '$timeout'
+    '$state'
     '$q'
     'toastr'
     'ImageModel'
-    ($rootScope, $timeout, $q, toastr, ImageModel) ->
+    ($rootScope, $timeout, $state, $q, toastr, ImageModel) ->
       selected = {}
       bulkUpload = {}
+
+      hasImagesSelected = (images) ->
+        if images.length == 0
+          toastr.error 'No images were selected', 'Error'
+          return false
+        else
+          return true
 
       bulkUpload.getImages = ($scope) ->
         ImageModel
@@ -79,9 +87,8 @@ angular.module "imagewikiFrontend"
 
       bulkUpload.deleteImages = ($scope) ->
         images = $scope.selected
-        if images.length == 0
-          toastr.error 'No images were selected', 'Error'
-          return false
+
+        return false unless hasImagesSelected(images)
 
         if confirm "Are you sure you want to delete all #{images.length} selected images?"
           promises = []
@@ -114,6 +121,14 @@ angular.module "imagewikiFrontend"
 
       bulkUpload.getSelected = ->
         selected
+
+      bulkUpload.editImages = (images) ->
+
+        return false unless hasImagesSelected(images)
+
+        bulkUpload.setSelected images
+        $state.go 'bulk-edit'
+        return
 
       bulkUpload.updateImages = ($scope, image) ->
         promises = []
