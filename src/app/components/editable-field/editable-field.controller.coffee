@@ -15,7 +15,8 @@ angular.module "imagewikiFrontend"
       $scope.$watch 'ngModel', ->
         $scope.label = EditableFieldLabel.formatLabel($scope.type, $scope.ngModel)
         if $scope.type == 'array'
-          $scope.value = { initial: angular.copy($scope.ngModel), tags: angular.copy($scope.ngModel) }
+          tags = $.unique(angular.copy($scope.ngModel))
+          $scope.value = { initial: tags, tags: tags }
         else
           $scope.value = { initial: angular.copy($scope.ngModel) }
         return
