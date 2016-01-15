@@ -50,5 +50,10 @@ angular.module "imagewikiFrontend"
       $scope.isImageMissingInfo = (image) ->
         ImageModel.isMissingInfo image
 
+      $scope.resetImage = ->
+        $scope.image = angular.copy($scope.originalImage)
+        $scope.saved = true
+        return
+
       return
   ]

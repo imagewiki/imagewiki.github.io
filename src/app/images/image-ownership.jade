@@ -92,6 +92,8 @@
                   td
                     editable-field(type="'text'", name="'licensing_rep.site_url'", ng-model="image.licensing_rep.site_url")
 
-      br
-      a.btn.btn-default(ui-sref='home') Back
-      button.btn.btn-primary.pull-right(type="submit") Save Image
+      .save-bar(ng-class="{'unsaved-changes': !saved}")
+        a.btn.btn-default.pull-left(ui-sref='home', ng-show="saved") Back
+        a.btn.btn-danger.pull-left(ng-hide="saved", ng-click="resetImage()") Cancel
+        button.btn.btn-primary.pull-right(type="submit") Save Image
+        .unsaved-message(ng-hide="saved") Your image has unsaved changes.

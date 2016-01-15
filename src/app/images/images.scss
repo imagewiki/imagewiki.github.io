@@ -112,3 +112,27 @@
     margin: 5px 0;
   }
 }
+
+
+.save-bar {
+  margin: 10px 0 0;
+
+  &.unsaved-changes {
+    background : #F66;
+    bottom     : 0;
+    box-shadow : 0 0 15px 0 rgba(0,0,0,0.5);
+    font-size  : 1.333em;
+    left       : 0;
+    padding    : 10px;
+    position   : fixed;
+    width      : 100%;
+  }
+
+  .unsaved-message {
+    color      : #FFF;
+    display    : block;
+    margin     : 0 auto;
+    text-align : center;
+    width      : 50%;
+  }
+}
