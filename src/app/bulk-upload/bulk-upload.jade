@@ -29,6 +29,9 @@
           uploading-files(files="files", selector="uploading-files")
 
         h2(ng-show="files.length > 0") Your Images
+        .alert.alert-warning(style="text-align: center;")
+            span.fa.fa-warning(aria-hidden='true')
+            strong &nbsp;Click each image you would like to select for bulk actions
         images-wall(images="images", selector="user-images", selectable="true")
         //- bulk-image-item(dir-paginate="image in images | itemsPerPage: 50")
 
