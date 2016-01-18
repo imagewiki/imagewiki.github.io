@@ -8,6 +8,16 @@ angular.module "imagewikiFrontend"
         controllerAs: 'searchBlock'
         link: (scope, element, attr) ->
 
+          scope.$watch 'url', ->
+            if scope.url? and scope.url != '' and FileHandler.isValidUrl(scope.url)
+              scope.searchImage scope.url, null
+            return
+
+          scope.$watch 'image', ->
+            if scope.image?
+              scope.searchImage null, scope.image
+            return
+
           scope.searchImage = (url, image) ->
             if image?
               scope.upload image
