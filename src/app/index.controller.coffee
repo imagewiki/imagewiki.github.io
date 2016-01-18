@@ -11,6 +11,8 @@ angular.module "imagewikiFrontend"
       $scope.$watch 'currentUser', ->
         return
 
+      $scope.container_class = 'container'
+
       $scope.isAuthenticated = ->
         UserAuth.isAuthenticated()
       $scope.setCurrentUser = (user) ->
@@ -18,6 +20,12 @@ angular.module "imagewikiFrontend"
         return
 
       # Event Listeners
+      $scope.$on 'resetContainer', (event) ->
+        $scope.container_class = 'container'
+        return
+      $scope.$on 'fluidContainer', (event) ->
+        $scope.container_class = 'container-fluid'
+        return
       $scope.$on AUTH_EVENTS.loginSuccess, (event) ->
         toastr.success 'Successfully logged in.', 'Success'
         return

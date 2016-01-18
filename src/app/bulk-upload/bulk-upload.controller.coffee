@@ -25,6 +25,8 @@ angular.module "imagewikiFrontend"
         $scope.images = []
         return
 
+      $scope.$emit('fluidContainer')
+
       $scope.$watch 'files', ->
         $scope.upload()
         return
