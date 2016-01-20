@@ -9,78 +9,7 @@
         images-wall(images="images", selector="user-images", selectable="false")
       .page-header
         h2(ng-click="debugImage()") Copyright and ownership Information
-      .ownership-info
-        .ownership-list
-          h3 General Info
-          table.table-striped
-            tbody
-              tr
-                td
-                  label Description
-                td
-                  editable-field(type="'text'", name="'description'", ng-model="image.description")
-              tr
-                td
-                  label Contributor Reference
-                td
-                  editable-field(type="'text'", name="'contributor_reference'", ng-model="image.contributor_reference")
-              tr
-                td
-                  label Keywords (comma separated)
-                td
-                  editable-field(type="'array'", name="'keywords'", ng-model="image.keywords")
-              tr
-                td
-                  label License Type
-                td
-                  editable-field(type="'text'", name="'license_type'", ng-model="image.license_type")
-              tr
-                td
-                  label Publication Date
-                td
-                  editable-field(type="'date'", name="'created_at'", ng-model="image.created_at")
-
-        .ownership-list
-          h3 Creator Info
-          table.table-striped
-            tbody
-              tr
-                td
-                  label Name
-                td
-                  editable-field(type="'text'", name="'creator_info.creator_name'", ng-model="image.creator_info.creator_name")
-              tr
-                td
-                  label Email
-                td
-                  editable-field(type="'text'", name="'creator_info.email'", ng-model="image.creator_info.email")
-              tr
-                td
-                  label Site
-                td
-                  editable-field(type="'text'", name="'creator_info.site'", ng-model="image.creator_info.site")
-
-          .ownership-list
-            h3 Licensing Representative Info
-            table.table-striped
-              tbody
-                tr
-                  td
-                    label Is exclusive?
-                  td
-                    editable-field(type="'boolean'", name="'licensing_rep_info.is_exclusive'", ng-model="image.licensing_rep_info.is_exclusive")
-                tr
-                  td
-                    label Name
-                  td
-                    editable-field(type="'text'", name="'licensing_rep_info.license_rep_name'", ng-model="image.licensing_rep_info.license_rep_name")
-                tr
-                  td
-                    label Site
-                  td
-                    editable-field(type="'text'", name="'licensing_rep_info.site_url'", ng-model="image.licensing_rep_info.site_url")
-
-
+      .ownership-info(ng-include="'app/images/images-fields.html'")
       br
       a.btn.btn-default(ui-sref='home') Back
       button.btn.btn-primary.pull-right(type="submit") Save Image
