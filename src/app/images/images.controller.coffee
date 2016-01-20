@@ -9,6 +9,7 @@ angular.module "imagewikiFrontend"
     ($scope, $state, $stateParams, toastr, ImageModel, ImagePromise) ->
       $scope.image = {}
       $scope.saved = true
+      $scope.editing = false
 
       # Get image by its HashID
       $scope.image         = ImagePromise.image
@@ -23,6 +24,11 @@ angular.module "imagewikiFrontend"
           event.preventDefault() unless confirm('There are unsaved changes on the image. Are you sure you want to leave this page?')
         return
 
+      $scope.toggleEdition = ->
+        $scope.editing = !$scope.editing
+        $scope.$broadcast 'beginImageEdition', $scope.editing
+        return
+
       $scope.updateImage = (image) ->
         if angular.equals(image, $scope.originalImage)
           toastr.warning 'No need of saving', 'The image is untouched.'
@@ -33,13 +39,13 @@ angular.module "imagewikiFrontend"
         angular.forEach image, (value, key) ->
           fields[key] = value unless angular.equals(value, $scope.originalImage[key])
           return
-        # console.log 'FIELDS', fields, image.platform_business_rules, $scope.originalImage.platform_business_rules
 
         ImageModel
           .updateImage(fields)
           .then (data) ->
             $scope.saved = true
             toastr.success 'Image updated.', 'Success'
+            $scope.toggleEdition()
             $scope.originalImage = angular.copy(image)
             return
           , ->

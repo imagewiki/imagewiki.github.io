@@ -8,6 +8,12 @@ angular.module "imagewikiFrontend"
 
       $scope.images = BulkUploadService.getSelected()
       $scope.image = {}
+      $scope.editing      = false
+
+      $scope.toggleEdition = ->
+        $scope.editing = !$scope.editing
+        $scope.$broadcast 'beginImageEdition', $scope.editing
+        return
 
       $scope.updateImage = (image) ->
         BulkUploadService.updateImages $scope, image
