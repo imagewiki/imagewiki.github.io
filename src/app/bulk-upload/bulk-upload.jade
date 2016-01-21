@@ -17,11 +17,6 @@
           span.btn.btn-primary.fileinput-button(ngf-select, ng-model="files", ngf-multiple="true", ngf-change="$broadcast('FilesChanged')")
             i.glyphicon.glyphicon-plus
             span &nbsp;Upload More Images
-          | &nbsp;
-          a(href="/instagram/import")
-            span.btn.btn-primary
-              i.fa.fa-instagram(title='Connect with Instagram')
-              span &nbsp;Import from instagram
 
         //- The container for the uploaded files
         .images.clearfix(ng-show="files.length > 0")
