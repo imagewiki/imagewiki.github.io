@@ -1,109 +1,111 @@
-.ownership-list
-  h3 General Info
-  table.table-striped
-    tbody
-      tr
-        td
-          label Description
-        td
-          editable-field(type="'text'", name="'description'", ng-model="image.description")
-      tr
-        td
-          label Keywords (comma separated)
-        td
-          editable-field(type="'array'", name="'keywords'", ng-model="image.keywords")
-      tr
-        td
-          label Publication Date
-        td
-          editable-field(type="'date'", name="'publication_date'", ng-model="image.publication_date")
-      tr
-        td
-          label Creation Date
-        td
-          editable-field(type="'date'", name="'creation_date'", ng-model="image.creation_date")
-      tr
-        td
-          label Location
-        td
-          editable-field(type="'text'", name="'location'", ng-model="image.location")
-      tr
-        td
-          label Rated R?
-        td
-          editable-field(type="'boolean'", name="'is_rated_r'", ng-model="image.is_rated_r")
+.ownership-info
+  .ownership-list
+    h3 General Info
+    table.table-striped
+      tbody
+        tr
+          td
+            label Description
+          td
+            editable-field(type="'text'", name="'description'", ng-model="image.description")
+        tr
+          td
+            label Publication Date
+          td
+            editable-field(type="'date'", name="'publication_date'", ng-model="image.publication_date")
+        tr
+          td
+            label Creation Date
+          td
+            editable-field(type="'date'", name="'creation_date'", ng-model="image.creation_date")
+        tr
+          td
+            label Location
+          td
+            editable-field(type="'text'", name="'location'", ng-model="image.location")
+        tr
+          td
+            label Rated R?
+          td
+            editable-field(type="'boolean'", name="'is_rated_r'", ng-model="image.is_rated_r")
 
-.ownership-list
-  h3 Creator Info
-  table.table-striped
-    tbody
-      tr
-        td
-          label Name
-        td
-          editable-field(type="'text'", name="'creator.creator_name'", ng-model="image.creator.creator_name")
-      tr
-        td
-          label Email
-        td
-          editable-field(type="'text'", name="'creator.email'", ng-model="image.creator.email")
-      tr
-        td
-          label Site
-        td
-          editable-field(type="'text'", name="'creator.site_url'", ng-model="image.creator.site_url")
+  .ownership-list
+    h3 Creator Info
+    table.table-striped
+      tbody
+        tr
+          td
+            label Name
+          td
+            editable-field(type="'text'", name="'creator.creator_name'", ng-model="image.creator.creator_name")
+        tr
+          td
+            label Email
+          td
+            editable-field(type="'text'", name="'creator.email'", ng-model="image.creator.email")
+        tr
+          td
+            label Site
+          td
+            editable-field(type="'text'", name="'creator.site_url'", ng-model="image.creator.site_url")
 
-.ownership-list
-  h3 Licensing Info
-  table.table-striped
-    tbody
-      tr
-        td
-          label License Type
-        td
-          editable-field(type="'select'", name="'license_type_id'", ng-model="image.license_type_id")
-      tr
-        td
-          label Rights Managed?
-        td
-          editable-field(type="'boolean'", name="'is_rights_managed'", ng-model="image.is_rights_managed")
-      tr
-        td
-          label Royalty Free?
-        td
-          editable-field(type="'boolean'", name="'is_royalty_free'", ng-model="image.is_royalty_free")
-      tr
-        td
-          label Model Release Info
-        td
-          editable-field(type="'text'", name="'model_release_info'", ng-model="image.model_release_info")
-      tr
-        td
-          label Property Release Info
-        td
-          editable-field(type="'text'", name="'property_release_info'", ng-model="image.property_release_info")
-      tr
-        td
-          label PLUS ID
-        td
-          editable-field(type="'text'", name="'plus_id'", ng-model="image.plus_id")
+  .ownership-list
+    h3 Licensing Info
+    table.table-striped
+      tbody
+        tr
+          td
+            label License Type
+          td
+            editable-field(type="'select'", name="'license_type_id'", ng-model="image.license_type_id")
+        tr
+          td
+            label Rights Managed?
+          td
+            editable-field(type="'boolean'", name="'is_rights_managed'", ng-model="image.is_rights_managed")
+        tr
+          td
+            label Royalty Free?
+          td
+            editable-field(type="'boolean'", name="'is_royalty_free'", ng-model="image.is_royalty_free")
+        tr
+          td
+            label Model Release Info
+          td
+            editable-field(type="'text'", name="'model_release_info'", ng-model="image.model_release_info")
+        tr
+          td
+            label Property Release Info
+          td
+            editable-field(type="'text'", name="'property_release_info'", ng-model="image.property_release_info")
+        tr
+          td
+            label PLUS ID
+          td
+            editable-field(type="'text'", name="'plus_id'", ng-model="image.plus_id")
 
-.ownership-list
-  h3 Licensing Representative Info
-  table.table-striped
-    tbody
-      tr
-        td
-          label Is exclusive?
-        td
-          editable-field(type="'boolean'", name="'licensing_rep.is_exclusive'", ng-model="image.licensing_rep.is_exclusive")
-      tr
-        td
-          label Name
-        td
-          editable-field(type="'text'", name="'licensing_rep.licensing_rep_name'", ng-model="image.licensing_rep.licensing_rep_name")
-      tr
-        td
-          label Site
-        td
-          editable-field(type="'text'", name="'licensing_rep.site_url'", ng-model="image.licensing_rep.site_url")
+  .ownership-list
+    h3 Licensing Representative Info
+    table.table-striped
+      tbody
+        tr
+          td
+            label Is exclusive?
+          td
+            editable-field(type="'boolean'", name="'licensing_rep.is_exclusive'", ng-model="image.licensing_rep.is_exclusive")
+        tr
+          td
+            label Name
+          td
+            editable-field(type="'text'", name="'licensing_rep.licensing_rep_name'", ng-model="image.licensing_rep.licensing_rep_name")
+        tr
+          td
+            label Site
+          td
+            editable-field(type="'text'", name="'licensing_rep.site_url'", ng-model="image.licensing_rep.site_url")
+
+.save-bar(ng-class="{'unsaved-changes': !saved}")
+  a.btn.btn-default.pull-left(ui-sref='home', ng-show="saved") Back
+  a.btn.btn-danger.pull-left(ng-hide="saved", ng-click="resetImage()") Cancel
+  button.btn.btn-primary.pull-right(type="submit") Save Image
+  .unsaved-message(ng-hide="saved") Your image has unsaved changes.

@@ -1,5 +1,6 @@
 .row.quick-menu
   .col-lg-8.col-md-8.col-sm-8.col-xs-8.col-lg-offset-2.col-md-offset-2.col-sm-offset-2.col-xs-offset-2.content-main
+    a.btn.btn-primary.pull-right(ng-click="toggleEdition()") Edit Image
     ul.breadcrumb
       li
         a(ui-sref='home') Home
@@ -9,7 +10,4 @@
         images-wall(images="images", selector="user-images", selectable="false")
       .page-header
         h2(ng-click="debugImage()") Copyright and ownership Information
-      .ownership-info(ng-include="'app/images/images-fields.html'")
-      br
-      a.btn.btn-default(ui-sref='home') Back
-      button.btn.btn-primary.pull-right(type="submit") Save Image
+      .image-fields(ng-include="'app/images/images-fields.html'")

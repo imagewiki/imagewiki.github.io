@@ -1,5 +1,6 @@
 .row.quick-menu
   .col-lg-8.col-md-8.col-sm-8.col-xs-8.col-lg-offset-2.col-md-offset-2.col-sm-offset-2.col-xs-offset-2.content-main
+    a.btn.btn-primary.pull-right(ng-click="toggleEdition()") Edit Image
     ul.breadcrumb
       li
         a(ui-sref='home') Home
@@ -21,11 +22,4 @@
         image-violation(image-id="image.image_id")
 
         h2(ng-click="debugImage()") Copyright and ownership Information
-      .ownership-info(ng-include="'app/images/images-fields.html'")
-
-
-      .save-bar(ng-class="{'unsaved-changes': !saved}")
-        a.btn.btn-default.pull-left(ui-sref='home', ng-show="saved") Back
-        a.btn.btn-danger.pull-left(ng-hide="saved", ng-click="resetImage()") Cancel
-        button.btn.btn-primary.pull-right(type="submit") Save Image
-        .unsaved-message(ng-hide="saved") Your image has unsaved changes.
+      .image-fields(ng-include="'app/images/images-fields.html'")

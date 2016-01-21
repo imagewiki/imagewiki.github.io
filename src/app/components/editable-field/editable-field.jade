@@ -17,13 +17,13 @@
         select-input(field="value.initial", name="name")
       span(ng-if="type == 'date'")
         .dropdown(style="display: inline-block;")
-          a.dropdown-toggle(role='button', data-toggle='dropdown', id="{{ name }}-datepicker")
+          a.dropdown-toggle(role='button', data-toggle='dropdown', id="{{ datepicker_name }}")
             .input-group
               input.form-control(type='text', ng-model='value.initial')
               span.input-group-addon
                 i.glyphicon.glyphicon-calendar
           ul.dropdown-menu(role='menu', aria-labelledby='dLabel')
-            datetimepicker(ng-model='value.initial', data-on-set-time="onTimeSet(newDate, oldDate)", data-datetimepicker-config="{ startView: 'day', minView: 'day', dropdownSelector: '#{{ name }}-datepicker' }")
+            datetimepicker(ng-model='value.initial', data-on-set-time="onTimeSet(newDate, oldDate)", data-datetimepicker-config="{ startView: 'day', minView: 'day', dropdownSelector: datepicker_name }")
       | &nbsp;
       span.glyphicon.glyphicon-remove.field-cancel(ng-click="cancelEdit()")
       span.glyphicon.glyphicon-ok.field-save(ng-click="saveEdit()")

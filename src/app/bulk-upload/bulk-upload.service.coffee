@@ -141,6 +141,7 @@ angular.module "imagewikiFrontend"
         $q.all(promises)
           .then (data)->
             toastr.success 'All images were updated', 'Warning'
+            $scope.saved = true
             return
           , ->
             toastr.error 'Something went wrong... Please contact our support.',

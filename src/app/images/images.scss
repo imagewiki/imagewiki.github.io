@@ -116,6 +116,7 @@
 
 .save-bar {
   margin: 10px 0 0;
+  z-index: 999;
 
   &.unsaved-changes {
     background : #F66;
