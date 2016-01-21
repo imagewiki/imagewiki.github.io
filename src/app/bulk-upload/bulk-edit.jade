@@ -10,7 +10,4 @@
         images-wall(images="images", selector="user-images", selectable="false")
       .page-header
         h2(ng-click="debugImage()") Copyright and ownership Information
-      .ownership-info(ng-include="'app/images/images-fields.html'")
-      br
-      a.btn.btn-default(ui-sref='home') Back
-      button.btn.btn-primary.pull-right(type="submit") Save Image
+      .image-fields(ng-include="'app/images/images-fields.html'")
