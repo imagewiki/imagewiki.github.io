@@ -49,5 +49,8 @@ angular.module "imagewikiFrontend"
         $http.post("#{API_URL}/users/password-recovery", user).then (res) ->
           res.data
 
+      userAuth.resetPassword = (reset_password) ->
+        $http.post("#{API_URL}/users/reset-password", reset_password).then userLoggedIn
+
       userAuth
   ]
