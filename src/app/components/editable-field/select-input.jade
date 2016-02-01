@@ -1,1 +1,1 @@
-select(ng-options="option for option in options", ng-model="field")
+select(ng-options="option.text for option in options track by option.id", ng-model="field")

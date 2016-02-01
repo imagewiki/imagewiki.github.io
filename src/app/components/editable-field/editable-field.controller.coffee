@@ -3,23 +3,25 @@ angular.module "imagewikiFrontend"
     '$scope',
     '$element',
     '$attrs',
-    'EditableFieldLabel'
-    ($scope, $element, $attrs, EditableFieldLabel) ->
+    'EditableFieldFactory'
+    ($scope, $element, $attrs, EditableFieldFactory) ->
 
       $scope.block     = $scope.block || 'div'
-      $scope.label     = EditableFieldLabel.formatLabel($scope.type, $scope.ngModel)
+      $scope.label     = EditableFieldFactory.formatLabel($scope.type, $scope.name, $scope.ngModel)
       $scope.textInput = $scope.type in ['text', 'password', 'email']
       $scope.datepicker_name = "#{$scope.name}-datepicker"
 
       # Set initials values
-      $scope.label = EditableFieldLabel.formatLabel($scope.type, $scope.ngModel)
-      initial      = angular.copy($scope.ngModel)
+      $scope.label = EditableFieldFactory.formatLabel($scope.type, $scope.name, $scope.ngModel)
+      initial      = EditableFieldFactory.formatInitialValue($scope.name, angular.copy($scope.ngModel))
       $scope.value = { initial: initial }
       $scope.value.tags = $.unique(angular.copy(initial)) if $scope.type == 'array'
 
       $scope.$watch 'value.initial', ->
-        return false if angular.equals($scope.value.initial, $scope.ngModel)
-        $scope.ngModel = angular.copy($scope.value.initial)
+        return false if EditableFieldFactory.notChanged($scope.name, $scope.value.initial, $scope.ngModel)
+
+        $scope.ngModel = EditableFieldFactory.formatValue($scope.name, angular.copy($scope.value.initial))
+        $scope.label = EditableFieldFactory.formatLabel($scope.type, $scope.name, $scope.value.initial)
         $scope.$emit 'imageChanged'
         return
 
@@ -54,13 +56,12 @@ angular.module "imagewikiFrontend"
       # Cancel
       $scope.cancelEdit = ->
         $scope.value = { initial: angular.copy($scope.ngModel) }
+        $scope.label = EditableFieldFactory.formatLabel($scope.type, $scope.name, $scope.value.initial)
         $scope.$broadcast 'cancelEdit'
         showLabel()
         return
       # Save
       $scope.saveEdit = ->
-        $scope.ngModel = angular.copy($scope.value.initial)
-        $scope.$emit 'imageChanged'
         showLabel()
         return
 
