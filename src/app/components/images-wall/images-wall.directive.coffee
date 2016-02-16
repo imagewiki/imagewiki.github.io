@@ -11,21 +11,55 @@ angular.module "imagewikiFrontend"
         selector: '@'
         selectable: '='
       controller: ($scope, $element, $attrs, $transclude) ->
-        $scope.selected = {}
+        $scope.selected    = {}
+        $scope.page        = 1
+        $scope.isFirstPage = true
+        $scope.isLastPage  = false
+
+        $scope.$on 'UpdateTotalImages', (event, args) ->
+          if args.totalImages < $scope.$parent.itemsPerPage
+            $scope.isLastPage = true
+          else
+            $scope.isLastPage = false
+          return
+
+        $scope.$on 'ClearSelectedImages', (event) ->
+          $scope.selected = {}
+          $scope.$parent.selected = []
+          return
+
+        $scope.changePage = (newPageNumber) ->
+          # console.log 'NEW PAGE LOADED', newPageNumber, $scope.images.length
+          $scope.page = newPageNumber
+          if newPageNumber == 1
+            $scope.isFirstPage = true
+          else
+            $scope.isFirstPage = false
+          $scope.$emit 'ChangeUserImagesPage',
+            page: newPageNumber
+          return
+
+        $scope.selectImage = (image) ->
+          return false if $scope.selectable == false
+          id = image.image_id
+          if image in $scope.$parent.selected
+            $scope.selected[id] = false
+            $scope.$parent.selected.remove image
+          else
+            $scope.selected[id] = true
+            $scope.$parent.selected.push image
+          return
 
         $scope.delete = (image) ->
           $scope.$parent.delete image
           return
+
         return
+
+      # BEGIN LINK
       link: (scope, element, attr) ->
 
         galleryCreated = false
-        loadedImages   = 0
-        totalImages    = 0
-
-        scope.$on 'UpdateTotalImages', (event, args) ->
-          totalImages = args.totalImages
-          return
 
         runGallery = ->
           if galleryCreated
@@ -42,42 +76,6 @@ angular.module "imagewikiFrontend"
             galleryCreated = true
             $('.image', element).addClass 'loaded'
             return
-          return
-
-        scope.$on 'FilesChanged', (event) ->
-          # console.log 'IMAGES CHANGED!!!!!!!!!!'
-          loadedImages = 0
-          totalImages  = 0
-          return
-
-        scope.selectImage = (image) ->
-          return false if scope.selectable == false
-          id = image.image_id
-          if image in scope.$parent.selected
-            scope.selected[id] = false
-            scope.$parent.selected.remove image
-          else
-            scope.selected[id] = true
-            scope.$parent.selected.push image
-
-          # console.log 'SELECTED', scope.$parent.selected
-          return
-
-        scope.changePage = (newPageNumber) ->
-          # console.log 'NEW PAGE LOADED', newPageNumber, scope.images.length
-          loadedImages = 0
-          totalPages  = Math.ceil(scope.images.length / scope.$parent.itemsPerPage)
-
-          if newPageNumber == totalPages
-            totalImages = scope.images.length % scope.$parent.itemsPerPage
-          else
-            totalImages = scope.$parent.itemsPerPage
-
-          return
-
-        scope.$on 'ClearSelectedImages', (event) ->
-          scope.selected = {}
-          scope.$parent.selected = []
           return
 
         scope.$on 'RestartGallery', (event) ->
@@ -102,10 +100,7 @@ angular.module "imagewikiFrontend"
           return
 
         scope.$on 'ImageLoaded', (event) ->
-          loadedImages++
-          # console.log loadedImages, totalImages
           runGallery()
-          # if loadedImages == totalImages
           return
 
         return # END LINK

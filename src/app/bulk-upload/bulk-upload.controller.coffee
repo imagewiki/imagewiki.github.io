@@ -8,21 +8,26 @@ angular.module "imagewikiFrontend"
       $scope.files        = []
       $scope.images       = []
       $scope.selected     = []
-      $scope.itemsPerPage = 20
+      $scope.itemsPerPage = 50
 
-      $scope.getImages = ->
-        BulkUploadService.getImages $scope
+      $scope.getImages = (page) ->
+        BulkUploadService.getImages $scope, page
         return
 
       if $scope.isAuthenticated()
-        $scope.getImages()
+        $scope.getImages(1)
 
       $scope.$on AUTH_EVENTS.loginSuccess, (event, data) ->
-        $scope.getImages()
+        $scope.getImages(1)
         return
 
       $scope.$on AUTH_EVENTS.logoutSuccess, (event, data) ->
         $scope.images = []
+        return
+
+      $scope.$on 'ChangeUserImagesPage', (event, args) ->
+        $scope.images = []
+        $scope.getImages(args.page)
         return
 
       $scope.$emit('fluidContainer')
