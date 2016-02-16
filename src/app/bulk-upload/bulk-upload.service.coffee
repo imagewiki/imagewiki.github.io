@@ -17,17 +17,16 @@ angular.module "imagewikiFrontend"
         else
           return true
 
-      bulkUpload.getImages = ($scope) ->
+      bulkUpload.getImages = ($scope, page) ->
         ImageModel
-          .getUserImages()
+          .getUserImages(page)
           .then (data) ->
             $scope.images = data.user_images
 
             # Broadcast a event saying how many images should be loaded on the current page
             if $scope.images.length > 0
-              total = if $scope.images.length > $scope.itemsPerPage then $scope.itemsPerPage else $scope.images.length
               $rootScope.$broadcast 'UpdateTotalImages',
-                totalImages: total
+                totalImages: $scope.images.length
             return
           , ->
             # Returns a empty array if the request fails

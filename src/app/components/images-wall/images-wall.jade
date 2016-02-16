@@ -1,5 +1,5 @@
 .images.clearfix(id="{{selector}}")
-  .image(dir-paginate="image in images | itemsPerPage: $parent.itemsPerPage", brick, ng-class="{selected: selected[image.image_id]}")
+  .image(ng-repeat="image in images", brick, ng-class="{selected: selected[image.image_id]}")
     .image-controls.clearfix.animated(ng-hide="selectable == false")
       a.fa.fa-pencil(ui-sref="image-ownership({ hashid: image.image_id })", target="_blank")
       a.fa.fa-times(ng-click="delete(image)")
@@ -8,5 +8,11 @@
 
     .name-scroll.animated
       a.image-name(ui-sref="image-ownership({ hashid: image.image_id })", target="_blank") {{ image.title }}
-.clearfix
-  dir-pagination-controls(on-page-change="changePage(newPageNumber)")
+.clearfix.images-pagination
+  a.btn.btn-default.pull-left(ng-click="changePage(page-1)", ng-hide="isFirstPage")
+    span.glyphicon.glyphicon-chevron-left
+    | &nbsp;Prev
+  span.label.label-default.current-page {{ page }}
+  a.btn.btn-default.pull-right(ng-click="changePage(page+1)", ng-hide="isLastPage")
+    | Next&nbsp;
+    span.glyphicon.glyphicon-chevron-right

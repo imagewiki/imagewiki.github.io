@@ -38,9 +38,10 @@ angular.module "imagewikiFrontend"
         if missing.length then false else true
 
       # @TODO: Change this when the route to get user images is created
-      imageModel.getUserImages = ->
+      imageModel.getUserImages = (page) ->
         params = ""
-        params = "user_id=#{UserAuth.getUser().id}" if UserAuth.isAuthenticated()
+        params += "user_id=#{UserAuth.getUser().id}" if UserAuth.isAuthenticated()
+        params += "&page=#{page}" if page?
 
         $http.get("#{API_URL}/images?#{params}").then (res) ->
           res.data
