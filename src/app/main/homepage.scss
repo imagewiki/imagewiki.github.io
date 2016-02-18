@@ -32,52 +32,83 @@ h2 {
   width: 100%;
 }
 section#homepage {
+  margin-top: 1.67em;
+
   .button {
-    background: #FFF;
-    border-radius: 0;
-    border: 2px solid #187fcd;
-    padding: .65rem;
-    cursor: pointer;
+    background    : #FFF;
+    border-radius : 0;
+    border        : 2px solid #187fcd;
+    cursor        : pointer;
+    padding       : .65rem;
   }
-  .main-title + h2 {
-    font-size: 1.75em;
-    text-align: center;
+  .main-title {
+    color      : #000;
+    font-size  : 3.3em;
+    margin-top : 0;
+
+    & + p {
+      font-size   : 1.3em;
+      line-height : 1.25em;
+      margin-top  : 20px;
+      text-align  : left;
+    }
+  }
+  .middle-line {
+    .vertical-line {
+      background : #666;
+      display    : block;
+      height     : 400px;
+      margin     : 0 auto;
+    }
   }
 
   .search-block {
     .field {
-      padding: 0;
-      background: none;
-      box-shadow: none;
-      -webkit-box-shadow: none;
-      border: 0;
-      border-radius: 0;
+      -webkit-box-shadow : none;
+      background         : none;
+      border-radius      : 0;
+      border             : 0;
+      box-shadow         : none;
+      padding            : 0;
 
       .image-preview {
-        margin-left: auto;
-        margin-right: auto;
-        display: block;
-        clear: both;
-        margin-top: 250px;
-        left: -65px;
-        position: relative;
+        clear        : both;
+        display      : block;
+        left         : -65px;
+        margin-left  : auto;
+        margin-right : auto;
+        margin-top   : 250px;
+        position     : relative;
       }
     }
   }
 
-  .search-upload {
-    padding-top: 100px;
+  .upload-photo {
+    text-align: center;
+
     h3 {
-      font-size: 1.2em;
-      font-weight: 600;
+      color          : #666;
+      font-size      : 1.4em;
+      font-weight    : 400;
+      letter-spacing : 0px;
+      margin-bottom  : 10px;
+      margin-top     : 2em;
+      text-align     : left;
     }
-    .upload-photo {
-      text-align: center;
-      .button {
-        font-size: 1.1em;
-        font-weight: bold;
-        padding: 10px;
-        display: inline-block;
+
+    .upload-box {
+      background : #E2EBFF;
+      border     : 3px dashed #999;
+      color      : #999;
+      display    : block;
+      font-size  : 1.1em;
+      height     : 120px;
+      width      : 100%;
+
+      .fa {
+        display    : block;
+        font-size  : 2em;
+        margin-top : 20px;
       }
     }
   }
@@ -93,19 +124,19 @@ section#homepage {
     }
 
     #thumbnails-carousel {
-      margin-top: 20px;
-      margin-bottom: 60px;
-      min-height: 200px;
+      margin-bottom : 60px;
+      margin-top    : 20px;
+      min-height    : 200px;
       .navigation {
         a.carousel-control {
-          background: none;
-          font-size: 4rem;
-          color: #333;
-          width: auto;
-          height: auto;
-          top: 50%;
-          transform: translateY(-50%);
-          -webkit-transform: translateY(-50%);
+          -webkit-transform : translateY(-50%);
+          background        : none;
+          color             : #333;
+          font-size         : 4rem;
+          height            : auto;
+          top               : 50%;
+          transform         : translateY(-50%);
+          width             : auto;
 
           &.left {
             left: -65px;
@@ -117,31 +148,31 @@ section#homepage {
       }
 
       .images {
-        margin-left: -10px;
-        margin-right: -10px;
+        margin-left  : -10px;
+        margin-right : -10px;
         .image {
-          font-size: .9rem;
-          padding-left: 10px;
-          padding-right: 10px;
+          font-size     : .9rem;
+          padding-left  : 10px;
+          padding-right : 10px;
 
           img {
-            display: block;
-            margin: 0 auto;
-            width: 150px;
-            height: 150px;
+            display : block;
+            height  : 150px;
+            margin  : 0 auto;
+            width   : 150px;
           }
 
           .credit {
-            display: block;
-            margin-top: 3px;
-            line-height: 1rem;
+            display     : block;
+            line-height : 1rem;
+            margin-top  : 3px;
 
             .name {
               min-height: 32px;
             }
             a {
-              font-weight: 400;
-              text-decoration: underline;
+              font-weight     : 400;
+              text-decoration : underline;
             }
           }
         }
@@ -153,10 +184,10 @@ section#homepage {
     margin-top: 40px;
 
     h2 {
-      font-weight: bold;
-      text-align: center;
-      font-size: 1.4em;
-      line-height: 1.4em;
+      font-size   : 1.4em;
+      font-weight : bold;
+      line-height : 1.4em;
+      text-align  : center;
       a {
         text-decoration: underline;
       }

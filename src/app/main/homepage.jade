@@ -1,33 +1,26 @@
 .container
   section#homepage
-    .col-lg-12.col-md-12.col-sm-12
-      h1.main-title
-        | The world's photo identification database
-      h2
-        | Register your images. Protect your intellectual property. Get paid.
-
-    .col-lg-12.col-md-12.col-sm-12
-      .search-upload.search-block
-        .row.field
-          .col-lg-4.col-md-4.col-sm-4.col-lg-offset-1.col-md-offset-1.col-sm-offset-1
-            .upload-photo
-              h3
-                | Contribute to Imagewiki
-              a.button(ngf-select, ng-model="file")
-                | Upload Photo
-          .col-lg-1.col-md-1.col-sm-1
-            .vertical-line
-          .col-lg-6.col-md-6.col-sm-6
-            .home-searchbar
-              h3 Reverse search Imagewiki
-            search-block
-          img#preview-image.image-preview.animated.fadeInDown(ng-hide="previewUrl==''", ng-src="{{previewUrl}}")
-    .col-lg-12.col-md-12.col-sm-12
-      .horizontal-line
-
-    .col-lg-12.col-md-12.col-sm-12
-      .learn-more
-        h2
-          | Imagewiki is working to compensate photographers and businesses for unlicensed uses on the web.
-          br
-          a(ui-sref="image-identification") Learn More
+    .row
+      .col-lg-6.col-md-6.col-sm-6
+        h1.main-title
+          | Link images inseparably with their credit.
+        p
+          | Imagewiki is a Wiki supported by Visual Artists to link images with their owners.&nbsp;
+          | Claiming ownership of images on Imagewiki means the community will know it's yours, and how it may be shared.
+        .upload-photo
+          h3
+            | Try it.
+          .upload-box(ngf-select, ngf-drop, ng-model="file")
+            i.fa.fa-upload
+            | Upload a file
+      .col-lg-1.col-md-1.col-sm-1.middle-line
+        .vertical-line
+      .col-lg-5.col-md-5.col-sm-5
+        h2 RANDOM IMAGED
+    .row
+      .col-lg-12.col-md-12.col-sm-12
+        .learn-more
+          h2
+            | Imagewiki is working to compensate photographers and businesses for unlicensed uses on the web.
+            br
+            a(ui-sref="image-identification") Learn More

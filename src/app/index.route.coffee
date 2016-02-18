@@ -10,6 +10,8 @@ angular.module "imagewikiFrontend"
           templateUrl: "app/main/homepage.html"
           controller: "MainController"
           controllerAs: "main"
+          data:
+            topSearch: true
         # User
         .state "logout",
           url: "/logout"
