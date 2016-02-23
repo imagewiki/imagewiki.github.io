@@ -51,6 +51,11 @@ angular.module "imagewikiFrontend"
           url: "/api"
           templateUrl: "app/static-pages/api.html"
         # Images
+        .state "image-matches",
+          url: "/image/matches"
+          templateUrl: "app/images/matches.html"
+          controller: "MatchesController"
+          controllerAs: "matches"
         .state "image-ownership",
           resolve:
             ImagePromise: [

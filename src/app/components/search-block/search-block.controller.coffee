@@ -4,7 +4,8 @@ angular.module "imagewikiFrontend"
     '$state',
     '$timeout',
     'ImageModel'
-    ($scope, $state, $timeout, ImageModel) ->
+    'MatchModel'
+    ($scope, $state, $timeout, ImageModel, MatchModel) ->
       $scope.option = 'url'
 
       goToImage = (image_id) ->
@@ -20,7 +21,8 @@ angular.module "imagewikiFrontend"
                 goToImage data2.image_id
                 return
             else
-              goToImage data.image_id
+              MatchModel.setResults data.results
+              $state.go 'image-matches'
             return
           , ->
             return
@@ -37,7 +39,8 @@ angular.module "imagewikiFrontend"
                 goToImage data2.data.image_id
                 return
             else
-              goToImage data.image_id
+              MatchModel.setResults data.results
+              $state.go 'image-matches'
             return
           .error (data, status, headers, config) ->
             return
