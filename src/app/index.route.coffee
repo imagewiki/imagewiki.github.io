@@ -6,6 +6,23 @@ angular.module "imagewikiFrontend"
       $stateProvider
         # HOMEPAGE
         .state "home",
+          resolve:
+            ImagePromise: [
+              '$q'
+              '$state'
+              '$stateParams'
+              'ImageModel'
+              ($q, $state, $stateParams, ImageModel) ->
+                deferred = $q.defer()
+                ImageModel
+                  .getFeaturedImage()
+                  .then (image) ->
+                    deferred.resolve({image: image})
+                    return
+                  , (response) ->
+                    return
+                deferred.promise
+            ]
           url: "/"
           templateUrl: "app/main/homepage.html"
           controller: "MainController"

@@ -3,23 +3,41 @@ angular.module "imagewikiFrontend"
     '$scope',
     '$state',
     'ImageModel',
-    'FileHandler'
-    ($scope, $state, ImageModel, FileHandler) ->
+    'FileHandler',
+    'ImagePromise'
+    ($scope, $state, ImageModel, FileHandler, ImagePromise) ->
       # $scope.directImage = {}
-      $scope.previewUrl = ''
+      # $scope.previewUrl = ''
 
-      $scope.$watch 'previewUrl', ->
-        return if $scope.previewUrl == ''
+      # $scope.$watch 'previewUrl', ->
+      #   return if $scope.previewUrl == ''
+      #   return
+
+      # $scope.setPreviewUrl = (url) ->
+      #   $scope.previewUrl = url
+      #   return
+      # $scope.previewImg = ($files, $file, $event, $rejectedFiles) ->
+      #   return false unless $file?
+      #   FileHandler.filePreviewUrl $file, (url) ->
+      #     $scope.previewUrl = url
+      #     return
+      #   return
+
+      $scope.featuredImage = ImagePromise.image
+
+      $scope.reloadFeatured = ->
+        ImageModel
+          .getFeaturedImage()
+          .then (image) ->
+            $scope.featuredImage = image
+            return
+          , (response) ->
+            return
         return
 
-      $scope.setPreviewUrl = (url) ->
-        $scope.previewUrl = url
-        return
-      $scope.previewImg = ($files, $file, $event, $rejectedFiles) ->
-        return false unless $file?
-        FileHandler.filePreviewUrl $file, (url) ->
-          $scope.previewUrl = url
-          return
+      $scope.openSignUpForm = ->
+        $(window).scrollTop(0)
+        $scope.$parent.$broadcast 'showSignUpForm'
         return
 
       $scope.$watch 'file', ->
