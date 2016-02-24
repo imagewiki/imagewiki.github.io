@@ -21,4 +21,8 @@ angular.module "imagewikiFrontend"
       scope.hideForms = ->
         element.find('.user-guard-form:visible').fadeOut()
         return
+
+      scope.$on 'showSignUpForm', ->
+        element.find('.user-guard-form.create-account-form').fadeIn()
+        return
       return

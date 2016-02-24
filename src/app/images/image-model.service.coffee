@@ -14,6 +14,10 @@ angular.module "imagewikiFrontend"
         $http.get("#{API_URL}/images/#{hashid}?includeFields=all").then (res) ->
           res.data
 
+      imageModel.getFeaturedImage = ->
+        $http.get("#{API_URL}/images?collection_id=featuredimg").then (res) ->
+          res.data
+
       imageModel.reportViolation = (image_id, violation) ->
         hashid = image_id
         $http.post("#{API_URL}/images/#{hashid}/violation", violation).then (res) ->

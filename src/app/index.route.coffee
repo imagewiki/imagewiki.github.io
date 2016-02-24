@@ -6,10 +6,29 @@ angular.module "imagewikiFrontend"
       $stateProvider
         # HOMEPAGE
         .state "home",
+          resolve:
+            CollectionPromise: [
+              '$q'
+              '$state'
+              '$stateParams'
+              'ImageModel'
+              ($q, $state, $stateParams, ImageModel) ->
+                deferred = $q.defer()
+                ImageModel
+                  .getFeaturedImage()
+                  .then (collection) ->
+                    deferred.resolve({collection: collection})
+                    return
+                  , (response) ->
+                    return
+                deferred.promise
+            ]
           url: "/"
           templateUrl: "app/main/homepage.html"
           controller: "MainController"
           controllerAs: "main"
+          data:
+            topSearch: true
         # User
         .state "logout",
           url: "/logout"
