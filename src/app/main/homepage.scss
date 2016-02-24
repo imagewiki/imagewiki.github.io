@@ -160,6 +160,15 @@ section#homepage {
           font-weight : 600;
           line-height : 1em;
         }
+
+        &.business-rule {
+          i:after {
+            content: ' / ';
+          }
+          i:last-child:after {
+            content: '';
+          }
+        }
       }
     }
     .more {

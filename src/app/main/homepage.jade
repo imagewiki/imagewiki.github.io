@@ -20,15 +20,16 @@
         .random-image-box
           i.fa.fa-refresh(ng-click="reloadFeatured()")
           h2 {{ featuredImage.title }}
-          img(ng-src='{{ featuredImage.reference_file_path }}', alt="{{ featuredImage.title }} - {{ featuredImage.creator }}")
+          img(ng-src='{{ featuredImage.reference_file_path }}', alt="{{ featuredImage.title }} - {{ featuredImage.creator.creator_name }}")
           p.owner
-            | {{ featuredImage.creator }} / {{ featuredImage.licensing_rep }}
-          .field
+            | {{ featuredImage.creator.creator_name }}
+          .field(ng-if="featuredImage.license_type_id != null && featuredImage.license_type_id != ''")
             span.field-name License Type
-            |  {{ featuredImage.license_type }}
-          .field
+            |  {{ featuredImage.license_type_id }}
+          .field.business-rule(ng-if="featuredImage.platform_business_rules.length > 0")
             span.field-name Social Media Usage Rules
-            | {{ featuredImage.is_rights_managed }}
+            i(ng-repeat="rules in featuredImage.platform_business_rules")
+              | {{ rules.business_rule_name }}
 
           a(ui-sref="image-ownership({ hashid: featuredImage.image_id })").more More about this image
     .row
