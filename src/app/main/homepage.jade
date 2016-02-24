@@ -25,7 +25,7 @@
             | {{ featuredImage.creator }} / {{ featuredImage.licensing_rep }}
           .field
             span.field-name License Type
-            |  {{ featuredImage.licensing_type_id }}
+            |  {{ featuredImage.license_type }}
           .field
             span.field-name Social Media Usage Rules
             | {{ featuredImage.is_rights_managed }}
@@ -37,7 +37,7 @@
           | Anyone can find owners and sharing preferences by simply uploading the image to the search bar.
           br
           | Imagewiki is also working with social media platforms to identify image uploads on their sites.&nbsp;
-          a Learn More
+          a(ui-sref="image-identification") Learn More
 
     .row.social-media-steps
       .col-lg-4.col-md-4.col-sm-4
@@ -61,7 +61,7 @@
           img(alt="Success - Claimed", src="assets/images/social-media-step-3.png")
           p Your images will now have automatic credit on participated social media platforms. You are now elegible to participate in revenue opportunites.
           br
-          a Learn More
+          a(ui-sref="image-identification") Learn More
 
     .row
       .col-lg-12.col-md-12.col-sm-12

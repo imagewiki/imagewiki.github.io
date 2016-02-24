@@ -7,7 +7,7 @@ angular.module "imagewikiFrontend"
         # HOMEPAGE
         .state "home",
           resolve:
-            ImagePromise: [
+            CollectionPromise: [
               '$q'
               '$state'
               '$stateParams'
@@ -16,8 +16,8 @@ angular.module "imagewikiFrontend"
                 deferred = $q.defer()
                 ImageModel
                   .getFeaturedImage()
-                  .then (image) ->
-                    deferred.resolve({image: image})
+                  .then (collection) ->
+                    deferred.resolve({collection: collection})
                     return
                   , (response) ->
                     return

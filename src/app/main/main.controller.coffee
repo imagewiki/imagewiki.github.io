@@ -4,8 +4,8 @@ angular.module "imagewikiFrontend"
     '$state',
     'ImageModel',
     'FileHandler',
-    'ImagePromise'
-    ($scope, $state, ImageModel, FileHandler, ImagePromise) ->
+    'CollectionPromise'
+    ($scope, $state, ImageModel, FileHandler, CollectionPromise) ->
       # $scope.directImage = {}
       # $scope.previewUrl = ''
 
@@ -23,16 +23,16 @@ angular.module "imagewikiFrontend"
       #     return
       #   return
 
-      $scope.featuredImage = ImagePromise.image
+      setRandomImage = ->
+        images = $scope.featuredCollection.collection_images
+        $scope.featuredImage = images[Math.floor(Math.random() * images.length)]
+        return
+
+      $scope.featuredCollection = CollectionPromise.collection
+      setRandomImage()
 
       $scope.reloadFeatured = ->
-        ImageModel
-          .getFeaturedImage()
-          .then (image) ->
-            $scope.featuredImage = image
-            return
-          , (response) ->
-            return
+        setRandomImage()
         return
 
       $scope.openSignUpForm = ->
