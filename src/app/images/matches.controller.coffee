@@ -7,7 +7,5 @@ angular.module "imagewikiFrontend"
     ($scope, $state, toastr, MatchModel) ->
       $scope.results  = MatchModel.getResults()
 
-      console.log $scope.results
-
       return
   ]

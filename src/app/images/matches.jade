@@ -1,1 +1,22 @@
 h1 Matches
+
+table.table(id="list_matches")
+  thead
+    tr
+      th Image
+      th Infos
+  tbody(ng-repeat="image in results")
+    tr
+      td.img_thumb
+        img("ng-src={{image.reference_file_path}}")
+      td
+        dl
+          dt id
+          dd {{image.image_id}}
+
+          dt title
+          dd {{image.title}}
+
+          dt user_id
+          dd {{image.user_id}}
+  tfoot
