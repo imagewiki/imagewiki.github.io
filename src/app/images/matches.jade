@@ -5,8 +5,8 @@ table.table(id="list_matches")
     tr
       th Image
       th Infos
-  tbody(ng-repeat="image in results")
-    tr
+  tbody
+    tr(ng-repeat="image in results")
       td.img_thumb
         img("ng-src={{image.reference_file_path}}")
       td
