@@ -21,7 +21,8 @@
     "justifiedGallery": "Justified-Gallery#~3.6.0",
     "angular-validation-match": "~1.6.0",
     "angular-recaptcha": "~2.2.5",
-    "ng-tags-input": "~3.0.0"
+    "ng-tags-input": "~3.0.0",
+    "jasmine-jquery": "~2.1.1"
   },
   "devDependencies": {
     "angular-mocks": "~1.4.0"

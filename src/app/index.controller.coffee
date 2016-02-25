@@ -6,7 +6,7 @@ angular.module "imagewikiFrontend"
     'AUTH_EVENTS'
     'MessageFormatter'
     ($scope, toastr, UserAuth, AUTH_EVENTS, MessageFormatter) ->
-      $scope.currentUser = UserAuth.getUser()
+      # $scope.currentUser = UserAuth.getUser()
 
       $scope.$watch 'currentUser', ->
         return

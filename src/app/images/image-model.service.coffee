@@ -11,8 +11,13 @@ angular.module "imagewikiFrontend"
         "Hello #{name}"
 
       imageModel.getImage = (hashid) ->
+        console.log '############################', hashid
         $http.get("#{API_URL}/images/#{hashid}?includeFields=all").then (res) ->
+          console.log '############################', res.data
           res.data
+        , (res) ->
+          console.log 'FAIL ############################', res
+          return
 
       imageModel.getFeaturedImage = ->
         $http.get("#{API_URL}/images?collection_id=featuredimg").then (res) ->
