@@ -16,7 +16,7 @@
               | Upload a file
       .col-lg-1.col-md-1.col-sm-1.middle-line
         .vertical-line
-      .col-lg-5.col-md-5.col-sm-5.random-image
+      .col-lg-5.col-md-5.col-sm-5.random-image(ng-show="featuredCollection.collection_images.length > 0")
         .random-image-box
           i.fa.fa-refresh(ng-click="reloadFeatured()")
           h2 {{ featuredImage.title }}

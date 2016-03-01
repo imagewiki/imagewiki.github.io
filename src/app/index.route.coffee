@@ -20,6 +20,7 @@ angular.module "imagewikiFrontend"
                     deferred.resolve({collection: collection})
                     return
                   , (response) ->
+                    deferred.resolve({collection: { collection_id: 'fake', collection_images: []}})
                     return
                 deferred.promise
             ]
