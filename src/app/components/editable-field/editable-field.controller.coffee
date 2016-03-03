@@ -7,9 +7,8 @@ angular.module "imagewikiFrontend"
     ($scope, $element, $attrs, EditableFieldFactory) ->
 
       $scope.block     = $scope.block || 'div'
-      $scope.label     = EditableFieldFactory.formatLabel($scope.type, $scope.name, $scope.ngModel)
       $scope.textInput = $scope.type in ['text', 'password', 'email']
-      $scope.datepicker_name = "#{$scope.name}-datepicker"
+      $scope.datepicker_name = "#{$scope.name}-datepicker" if $scope.type == 'date'
 
       # Set initials values
       $scope.label = EditableFieldFactory.formatLabel($scope.type, $scope.name, $scope.ngModel)

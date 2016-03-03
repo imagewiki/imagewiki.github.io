@@ -11,13 +11,13 @@
       | Please add ownership information if you know who owns this photo.
     form#info_image.edit_image(name="imageForm", ng-submit="updateImage(image)")
       .image-info.clearfix
-        .image.float-left
+        .image
           img(alt='', ng-src='{{image.reference_file_path}}')
-        .info.float-right.ownership-info
+        .title
           editable-field(type="'text'", name="'title'", ng-model="image.title", block="'h3'")
+        .creator(ng-show="image.creator.creator_name != ''")
+           {{ image.creator.creator_name }}
       .page-header
-        .fb-share-button.pull-right(data-href='http://localhost:3100/image-ownership/1e2gyj1ypnvk', data-type='button')
-
         //- Include ImageViolation button partial
         image-violation(image-id="image.image_id")
 
