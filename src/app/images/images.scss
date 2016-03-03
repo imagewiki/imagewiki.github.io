@@ -1,4 +1,30 @@
+.image-info {
+  .image img {
+    width: 300px;
+    display: block;
+    margin: 0 auto;
+  }
+  .title, .creator {
+    position: relative;
+    font-size: 1em;
+    text-align: center;
+
+    h3 {
+      margin: .6em 0;
+      font-weight: bold;
+    }
+
+    .add-edit-field {
+      width: 350px;
+      margin: 0 auto;
+    }
+  }
+  .creator:before {
+    content: 'by ';
+  }
+}
 .ownership-info {
+
   .page-header h2 {
     font-size: 1em;
     margin: 0;
