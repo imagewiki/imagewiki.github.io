@@ -2,21 +2,38 @@ h1 Matches
 
 table.table(id="list_matches")
   thead
-    tr
-      th Image
-      th Infos
   tbody
     tr(ng-repeat="image in results")
       td.img_thumb
-        img("ng-src={{image.reference_file_path}}")
+        a(ui-sref="image-ownership({ hashid: image.image_id })").more
+          img("ng-src={{image.reference_file_path}}")
       td
         dl
-          dt id
-          dd {{image.image_id}}
-
           dt title
           dd {{image.title}}
 
-          dt user_id
-          dd {{image.user_id}}
+          dt creator
+          dd {{ image.creator == null ? 'Unknown' : image.creator }}
+
+          dt licensing representative
+
+          dd(ng-show="image.licensing_rep == null") Unknown
+          dd(ng-show="image.licensing_rep != null")
+            a.btn.btn-default.btn-xs(ng-click="display_content = !display_content" ng-init="display_content=false") More
+            dl(ng-show="display_content")
+              dt Is exclusive?
+              dd(ng-if="image.licensing_rep.is_exclusive")
+                i.fa.fa-check
+                | yes
+              dd(ng-if="!image.licensing_rep.is_exclusive")
+                i.fa.fa-times
+                | no
+
+              dt Name
+              dd {{ image.licensing_rep.licensing_rep_name == null ? 'Unknown' : image.licensing_rep.licensing_rep_name }}
+
+              dt Site
+              dd {{ image.licensing_rep.site_url == null ? 'Unknown' : image.licensing_rep.site_url }}
+
+        a(ui-sref="image-ownership({ hashid: image.image_id })").more [+] more about this image
   tfoot
