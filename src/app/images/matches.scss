@@ -1,9 +1,32 @@
-#list_matches{
+table#list_matches{
+  max-width : 600px;
+  margin: auto;
+  
   td.img_thumb{
-    max-width : 200px;
+    width   : 200px;
+    padding : 10px;
 
     img{
-      max-width : 200px;
+      max-width : 150px;
+    }
+  }
+
+  dl{
+    dt{
+      padding-top: 5px;
+    }
+    dd{
+      padding-left: 5px;
+
+      dl{
+        margin-left: 10px;
+
+        dd{
+          i.fa{
+            margin-right  : 5px;
+          }
+        }
+      }
     }
   }
 }
