@@ -4,9 +4,9 @@
       span.glyphicon.glyphicon-chevron-down
     ul.dropdown-menu(role='menu', aria-labelledby='dLabel')
       li
-        a.add-image-direct
-          span.glyphicon.glyphicon-plus
-          | New Image
+        a(ui-sref="bulk-upload")
+          span.fa.fa-folder
+          | &nbsp;My Images
       li
         a(ui-sref='profile-edit')
           span.glyphicon.glyphicon-user
@@ -16,4 +16,3 @@
         a(ng-click="logout()")
           span.glyphicon.glyphicon-log-out
           | Sign out
-a.bulk-upload-link(ui-sref="bulk-upload") Bulk Image Upload/Edit
