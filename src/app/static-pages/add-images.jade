@@ -1,0 +1,65 @@
+.container-fluid.liquid-container
+  .row
+    .col-lg-10.col-md-10.col-sm-10.col-xs-10.col-lg-offset-1.col-md-offset-1.col-sm-offset-1.col-xs-offset-1.content-main
+      #add-images-page
+        .intro
+          .row
+            .col-lg-12.col-md-12.col-sm-12.col-xs-12
+              h1
+                | Every day hundreds of millions of photos are shared across the web without photo credit
+              img(alt='Imagewiki claim solution', ng-src='assets/images/imagewiki-claim-solution.png')
+              p
+                | Imagewiki provides the public with an easy to use reverse image search to find photographer and copyright information.
+              .line
+                .line-box How to register your images
+                .horizontal-line
+        .images-rights
+          .row
+            .col-lg-12.col-md-12.col-sm-12.col-xs-12
+              h2 Do you own image rights?
+              p.paragraph_centralized Contributing your images to our database is simple and easy.
+              p
+                | Verifying your content in our database ensures that your ownership will be clearly documented and published online for everyone to see. There will be no more ambiguity about your licensing representation and contact information.
+        .add-your-photos
+          .row
+            .col-lg-7.col-md-7.col-sm-7.col-xs-7
+              h2 1. Add your photos
+              p To add photos, simply choose a file or enter the URL where the image is hosted.
+              //- p.upload-photo
+              //-   a.browse-your-files.file-placeholder.button Upload Photo
+            .col-lg-5.col-md-5.col-sm-5.col-xs-5
+              img(alt='Imagewiki claim map computer', ng-src='assets/images/imagewiki-claim-map-computer.png')
+        .ownership-info
+          .row
+            .col-lg-12.col-md-12.col-sm-12.col-xs-12
+              h2 2. Fill out image ownership information
+              p
+                | Imagewiki makes it easy for you to add photography credit, as well as licensing and copyright information to each image. Simply click &quot;Add / Edit&quot; button next to the field you wish to fill and enter text.
+              p
+                a(ng-click="openSignUpForm()") Sign Up
+                |  for an account to add images in bulk and apply your ownership information to many images at one time.
+        .image-protected
+          .row
+            .col-lg-12.col-md-12.col-sm-12.col-xs-12
+              h2 3. Done
+              p That's it! Your image is now protected.
+              p
+              ul.list
+                li
+                  i.fa.fa-check
+                  | &nbsp;Photo added
+                li
+                  i.fa.fa-check
+                  | &nbsp;Info added
+                li
+                  i.fa.fa-thumbs-o-up
+                  | &nbsp;Next someone searches your images, they'll see your info.
+              p
+              .horizontal-line
+        .submit-your-image
+          .row
+            .col-lg-12.col-md-12.col-sm-12.col-xs-12
+              h2
+                | Imagewiki is working to compensate photographers and businesses for unlicensed uses on the web.
+                br
+                a(ui-sref='image-identification') Learn More
