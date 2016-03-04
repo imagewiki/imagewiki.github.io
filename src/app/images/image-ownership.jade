@@ -16,7 +16,7 @@
         .title
           editable-field(type="'text'", name="'title'", ng-model="image.title", block="'h3'")
         .creator(ng-show="image.creator.creator_name != ''")
-           {{ image.creator.creator_name }}
+          | {{ image.creator.creator_name }}
       .page-header
         //- Include ImageViolation button partial
         image-violation(image-id="image.image_id")

@@ -51,25 +51,54 @@ angular.module "imagewikiFrontend"
           controllerAs: "passwordReset"
         # Static Pages
         .state "about",
-          url: "/about"
+          url: "/mission"
           templateUrl: "app/static-pages/about.html"
+          controller: "StaticPagesController"
+          controllerAs: "staticPages"
+          data:
+            topSearch: true
         .state "contact",
           url: "/contact"
           templateUrl: "app/static-pages/contact.html"
+          controller: "StaticPagesController"
+          controllerAs: "staticPages"
+          data:
+            topSearch: true
         .state "terms-of-use",
           url: "/terms-of-use"
           templateUrl: "app/static-pages/terms-of-use.html"
+          controller: "StaticPagesController"
+          controllerAs: "staticPages"
+          data:
+            topSearch: true
         .state "privacy-policy",
           url: "/privacy-policy"
           templateUrl: "app/static-pages/privacy-policy.html"
+          controller: "StaticPagesController"
+          controllerAs: "staticPages"
+          data:
+            topSearch: true
         .state "image-identification",
           url: "/image-identification"
           templateUrl: "app/static-pages/image-identification.html"
+          controller: "StaticPagesController"
+          controllerAs: "staticPages"
           data:
             topSearch: true
         .state "api",
           url: "/api"
           templateUrl: "app/static-pages/api.html"
+          controller: "StaticPagesController"
+          controllerAs: "staticPages"
+          data:
+            topSearch: true
+        .state "add-images",
+          url: "/add-images"
+          templateUrl: "app/static-pages/add-images.html"
+          controller: "StaticPagesController"
+          controllerAs: "staticPages"
+          data:
+            topSearch: true
         # Images
         .state "image-matches",
           url: "/image/matches"
