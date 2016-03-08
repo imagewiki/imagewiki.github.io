@@ -86,7 +86,7 @@ angular.module "imagewikiFrontend"
           data:
             topSearch: true
         .state "api",
-          url: "/api"
+          url: "/developers"
           templateUrl: "app/static-pages/api.html"
           controller: "StaticPagesController"
           controllerAs: "staticPages"
