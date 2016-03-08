@@ -21,7 +21,7 @@
           i.fa.fa-refresh(ng-click="reloadFeatured()")
           h2 {{ featuredImage.title }}
           img(ng-src='{{ featuredImage.reference_file_path }}', alt="{{ featuredImage.title }} - {{ featuredImage.creator.creator_name }}")
-          p.owner
+          p.owner(ng-show="featuredImage.creator.creator_name != ''")
             | {{ featuredImage.creator.creator_name }}
           .field(ng-if="featuredImage.license_type_id != null && featuredImage.license_type_id != ''")
             span.field-name License Type
@@ -38,7 +38,7 @@
           | Anyone can find owners and sharing preferences by simply uploading the image to the search bar.
           br
           | Imagewiki is also working with social media platforms to identify image uploads on their sites.&nbsp;
-          a(ui-sref="image-identification") Learn More
+          a(ui-sref="about") Learn More
 
     .row.social-media-steps
       .col-lg-4.col-md-4.col-sm-4
