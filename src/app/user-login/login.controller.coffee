@@ -1,11 +1,12 @@
 angular.module "imagewikiFrontend"
-  .controller "UserPanelController", [
-    '$scope',
-    '$rootScope',
-    'AUTH_EVENTS',
-    'UserAuth',
-    'UserStore'
-    ($scope, $rootScope, AUTH_EVENTS, UserAuth, UserStore) ->
+  .controller "LoginController", [
+    '$scope'
+    '$rootScope'
+    '$state'
+    'toastr'
+    'AUTH_EVENTS'
+    'UserAuth'
+    ($scope, $rootScope, $state, toastr, AUTH_EVENTS, UserAuth) ->
 
       userLoginSuccess = (user) ->
         if user.error
@@ -13,6 +14,9 @@ angular.module "imagewikiFrontend"
         else
           $rootScope.$broadcast AUTH_EVENTS.loginSuccess
           $scope.setCurrentUser user
+          if $state.current.name == 'login'
+            toastr.success 'You will be redirect to previous page now.'
+            $state.go $rootScope.returnToState, $rootScope.returnToStateParams
         return
 
       userLoginFail = (reason) ->

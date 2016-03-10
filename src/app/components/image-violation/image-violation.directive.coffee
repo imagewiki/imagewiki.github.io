@@ -2,11 +2,10 @@ angular.module "imagewikiFrontend"
   .directive 'imageViolation', [
     '$compile'
     '$timeout'
-    '$http'
     'toastr'
     'ImageModel'
     'vcRecaptchaService'
-    ($compile, $timeout, $http, toastr, ImageModel, vcRecaptchaService)->
+    ($compile, $timeout, toastr, ImageModel, vcRecaptchaService)->
       restrict: 'E'
       templateUrl: 'app/components/image-violation/image-violation.html'
       scope:

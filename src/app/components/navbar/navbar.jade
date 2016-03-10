@@ -7,6 +7,6 @@
             img(ng-src='assets/images/iw_logo_new.jpg')
         .col-lg-5.col-md-5.col-sm-5.col-xs-5.user-panel
           search-block(ng-if="$state.current.data.topSearch")
-        .col-lg-3.col-md-3.col-sm-3.col-xs-3.bulk-login
+        .col-lg-3.col-md-3.col-sm-3.col-xs-3.bulk-login(ng-if="!$state.current.data.hideUserPanel")
           .pull-right
             user-panel

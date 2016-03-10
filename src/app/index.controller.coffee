@@ -1,11 +1,12 @@
 angular.module "imagewikiFrontend"
   .controller 'ApplicationController', [
-    '$scope',
+    '$scope'
+    '$state'
     'toastr'
     'UserAuth'
     'AUTH_EVENTS'
     'MessageFormatter'
-    ($scope, toastr, UserAuth, AUTH_EVENTS, MessageFormatter) ->
+    ($scope, $state, toastr, UserAuth, AUTH_EVENTS, MessageFormatter) ->
       $scope.currentUser = UserAuth.getUser()
 
       $scope.$watch 'currentUser', ->
@@ -20,6 +21,15 @@ angular.module "imagewikiFrontend"
         return
 
       # Event Listeners
+      $scope.$on 'showToastrMessage', (event, data) ->
+        toastr[data.type](data.message)
+        return
+      $scope.$on 'reAuthenticate', (event, data) ->
+        toastr.error data.message, 'Error'
+        UserAuth.logout()
+        $scope.setCurrentUser null
+        $state.go 'login'
+        return
       $scope.$on 'resetContainer', (event) ->
         $scope.container_class = 'container'
         return
