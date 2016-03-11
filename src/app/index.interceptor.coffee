@@ -5,6 +5,13 @@ angular.module "imagewikiFrontend"
         config.headers['Mock'] = 'true'
         config
     }
+  .factory 'responseInterceptor', ['$q', '$rootScope', ($q, $rootScope) ->
+    {
+      responseError: (response) ->
+        if response.status == 401
+          $rootScope.$broadcast 'reAuthenticate', { message: response.data.error }
+        return $q.reject response
+    }]
   .config [
     'jwtInterceptorProvider'
     '$httpProvider'
@@ -17,5 +24,5 @@ angular.module "imagewikiFrontend"
         user = UserAuth.getUser()
         if user? then user.token else null
       ]
-      $httpProvider.interceptors.push('jwtInterceptor')
+      $httpProvider.interceptors.push('jwtInterceptor', 'responseInterceptor')
   ]

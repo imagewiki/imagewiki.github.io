@@ -34,6 +34,12 @@ angular.module "imagewikiFrontend"
         .state "logout",
           url: "/logout"
           controller: "LogoutController"
+        .state "login",
+          url: "/login"
+          templateUrl: "app/user-login/login.html"
+          controller: "LoginController"
+          data:
+            hideUserPanel: true
         .state "profile-edit",
           url: "/profile-edit"
           templateUrl: "app/users/profile-edit.html"

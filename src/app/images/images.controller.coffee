@@ -19,7 +19,8 @@ angular.module "imagewikiFrontend"
         $scope.saved = false
         return
 
-      $scope.$on '$stateChangeStart', (event) ->
+      $scope.$on '$stateChangeStart', (event, toState, toParams, fromState, fromParams) ->
+        return false if toState.name == 'login'
         unless $scope.saved #&& angular.equals($scope.image, $scope.originalImage)
           event.preventDefault() unless confirm('There are unsaved changes on the image. Are you sure you want to leave this page?')
         return

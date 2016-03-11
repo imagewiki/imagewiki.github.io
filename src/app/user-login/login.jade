@@ -1,0 +1,23 @@
+.row
+  .col-lg-4.col-md-4.col-sm-10.col-xs-10.col-lg-offset-4.col-md-offset-4.col-sm-offset-1.col-xs-offset-1
+    .page-header
+      h1 Login
+    form#login.form-horizontal(name="loginForm", ng-submit="login(credentials)", novalidate)
+      .form-group
+        label.col-lg-3.control-label(for='login-email') Email:
+        .col-lg-9
+          input#login-email.form-control(name='user[email]', type='text', value='', ng-model="credentials.email")
+      .form-group
+        label.col-lg-3.control-label(for='login-password') Password:
+        .col-lg-9
+          input#login-password.form-control(name='user[password]', type='password', ng-model="credentials.password")
+      .form-group.remember-submit
+        .col-lg-9.remember
+          .checkbox
+            label
+              input(name='user[remember_me]', type='hidden', value='0')
+              input#user_remember_me(name='user[remember_me]', type='checkbox', value='1')
+              label(for='user_remember_me') Remember me
+        .col-lg-3.submit
+          input.btn.btn-primary(name='commit', type='submit', value='Sign in')
+      a.forgot-password(ui-sref='password-recovery', ng-click="hideForms()") Forgot your password?
