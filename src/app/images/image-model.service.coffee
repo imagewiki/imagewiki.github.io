@@ -15,7 +15,8 @@ angular.module "imagewikiFrontend"
           res.data
 
       imageModel.getFeaturedImage = ->
-        $http.get("#{API_URL}/images?collection_id=featuredimg").then (res) ->
+        featured = 'Featured Images'
+        $http.get("#{API_URL}/images?collection_name=#{featured}").then (res) ->
           res.data
 
       imageModel.reportViolation = (image_id, violation) ->
