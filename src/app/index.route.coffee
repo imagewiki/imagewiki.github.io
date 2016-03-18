@@ -45,6 +45,29 @@ angular.module "imagewikiFrontend"
           templateUrl: "app/users/profile-edit.html"
           controller: "ProfileEditController"
           controllerAs: "profileEdit"
+        .state "user-default",
+          resolve:
+            UserDefaultsPromise: [
+              '$q'
+              '$state'
+              '$stateParams'
+              'UserAuth'
+              ($q, $state, $stateParams, UserAuth) ->
+                deferred = $q.defer()
+                UserAuth
+                  .userDefaults(UserAuth.getUser().id)
+                  .then (data) ->
+                    defaults = if data.data != null then data.data else {}
+                    deferred.resolve({ default_values: defaults })
+                    return
+                  , ->
+                    deferred.resolve({ default_values: {}})
+                    return
+                deferred.promise
+            ]
+          url: "/user-defaults"
+          templateUrl: "app/users/user-default.html"
+          controller: "UserDefaultController"
         .state "password-recovery",
           url: "/password-recovery"
           templateUrl: "app/users/password-recovery.html"

@@ -1,31 +1,30 @@
-.container
-  .row
-    .col-md-12
-      ul.breadcrumb
-        li
-          a(ui-sref='home') Home
-        li Edit User
-      form#edit_user.form-horizontal(name='profileEditForm', ng-submit='update(user)', novalidate, autocomplete="off")
-        .form-group(ng-class="{ 'has-error' : profileEditForm.first_name.$invalid && !profileEditForm.first_name.$pristine }")
-          label.col-lg-3.control-label(for='first_name') First Name:
-          .col-lg-9
-            input#first_name.form-control(name='first_name', type='text', ng-model='user.first_name', required)
-        .form-group(ng-class="{ 'has-error' : profileEditForm.last_name.$invalid && !profileEditForm.last_name.$pristine }")
-          label.col-lg-3.control-label(for='last_name') Last Name:
-          .col-lg-9
-            input#last_name.form-control(name='last_name', type='text', ng-model='user.last_name', required)
-        .form-group(ng-class="{ 'has-error' : profileEditForm.email.$invalid && !profileEditForm.email.$pristine }")
-          label.col-lg-3.control-label(for='email') Email:
-          .col-lg-9
-            input#email.form-control(name='email', type='email', value='', ng-model='user.email', required)
-        .form-group(ng-class="{ 'has-error' : profileEditForm.password_confirmation.$error.match }")
-          label.col-lg-3.control-label(for='password') Password:
-          .col-lg-7
-            input#password.form-control(name='password', type='password', ng-model='user.password', autocomplete='off', value="")
-            i (leave blank if you don&apos;t want to change it)
-        .form-group(ng-class="{ 'has-error' : profileEditForm.password_confirmation.$error.match }")
-          label.col-lg-3.control-label(for='password_confirmation') Password confirmation
-          .col-lg-7
-            input#password_confirmation.form-control(name='password_confirmation', type='password', ng-model="user.password_confirmation", data-match="user.password")
-        .float-right
-          input.btn.btn-primary(name='commit', type='submit', value='Update')
+.row
+  .col-md-12
+    ul.breadcrumb
+      li
+        a(ui-sref='home') Home
+      li Edit User
+    form#edit_user.form-horizontal(name='profileEditForm', ng-submit='update(user)', novalidate, autocomplete="off")
+      .form-group(ng-class="{ 'has-error' : profileEditForm.first_name.$invalid && !profileEditForm.first_name.$pristine }")
+        label.col-lg-3.control-label(for='first_name') First Name:
+        .col-lg-9
+          input#first_name.form-control(name='first_name', type='text', ng-model='user.first_name', required)
+      .form-group(ng-class="{ 'has-error' : profileEditForm.last_name.$invalid && !profileEditForm.last_name.$pristine }")
+        label.col-lg-3.control-label(for='last_name') Last Name:
+        .col-lg-9
+          input#last_name.form-control(name='last_name', type='text', ng-model='user.last_name', required)
+      .form-group(ng-class="{ 'has-error' : profileEditForm.email.$invalid && !profileEditForm.email.$pristine }")
+        label.col-lg-3.control-label(for='email') Email:
+        .col-lg-9
+          input#email.form-control(name='email', type='email', value='', ng-model='user.email', required)
+      .form-group(ng-class="{ 'has-error' : profileEditForm.password_confirmation.$error.match }")
+        label.col-lg-3.control-label(for='password') Password:
+        .col-lg-7
+          input#password.form-control(name='password', type='password', ng-model='user.password', autocomplete='off', value="")
+          i (leave blank if you don&apos;t want to change it)
+      .form-group(ng-class="{ 'has-error' : profileEditForm.password_confirmation.$error.match }")
+        label.col-lg-3.control-label(for='password_confirmation') Password confirmation
+        .col-lg-7
+          input#password_confirmation.form-control(name='password_confirmation', type='password', ng-model="user.password_confirmation", data-match="user.password")
+      .float-right
+        input.btn.btn-primary(name='commit', type='submit', value='Update')
