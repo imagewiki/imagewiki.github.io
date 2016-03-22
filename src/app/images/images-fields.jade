@@ -77,7 +77,7 @@
           td
             label Rated R?
           td
-            editable-field(type="'boolean'", name="'is_rated_r'", ng-model="image.is_rated_r")
+            editable-field(type="'boolean'", name="'is_r_rated'", ng-model="image.is_r_rated")
   .ownership-list
     h3 Licensing Information
     table.table-striped
@@ -126,5 +126,5 @@
 .save-bar(ng-class="{'unsaved-changes': !saved}")
   a.btn.btn-default.pull-left(ui-sref='home', ng-show="saved") Back
   a.btn.btn-danger.pull-left(ng-hide="saved", ng-click="resetImage()") Cancel
-  button.btn.btn-primary.pull-right(type="submit") Save Image
+  button.btn.btn-primary.pull-right(type="submit", ng-hide="saved") Save Image
   .unsaved-message(ng-hide="saved") Your image has unsaved changes.

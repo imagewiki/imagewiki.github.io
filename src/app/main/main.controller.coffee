@@ -1,11 +1,12 @@
 angular.module "imagewikiFrontend"
   .controller "MainController", [
-    '$scope',
-    '$state',
-    'ImageModel',
-    'FileHandler',
+    '$scope'
+    '$state'
+    'ImageModel'
+    'TempImageModel'
+    'FileHandler'
     'CollectionPromise'
-    ($scope, $state, ImageModel, FileHandler, CollectionPromise) ->
+    ($scope, $state, ImageModel, TempImageModel, FileHandler, CollectionPromise) ->
       # $scope.directImage = {}
       # $scope.previewUrl = ''
 
@@ -46,15 +47,25 @@ angular.module "imagewikiFrontend"
         return
 
       $scope.homeUpload = (file) ->
-        ImageModel
-          .upload(file)
-          .progress (evt) ->
-            return
-          .success (data, status, headers, config) ->
-            $state.go('image-ownership', { hashid: data.image_id })
-            return
-          .error (data, status, headers, config) ->
-            return
+        if $scope.currentUser == null
+          $scope.$emit 'showToastrMessage',
+            type: 'error',
+            message: 'You must <strong>create and account</strong> or <strong>log in</strong> in order to save this image'
+
+          image = TempImageModel.addImage file
+
+          $state.go 'temporary-image', { hashid: image.image_id }
+
+        else
+          ImageModel
+            .upload(file)
+            .progress (evt) ->
+              return
+            .success (data, status, headers, config) ->
+              $state.go('image-ownership', { hashid: data.image_id })
+              return
+            .error (data, status, headers, config) ->
+              return
         return
       return
   ]

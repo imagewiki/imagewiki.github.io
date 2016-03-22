@@ -1,6 +1,7 @@
 angular.module "imagewikiFrontend"
-  .factory 'ImageSelects',
-    ->
+  .factory 'ImageSelects', [
+    '$filter'
+    ($filter) ->
       imageSelects = {}
 
       selects = {}
@@ -13,10 +14,27 @@ angular.module "imagewikiFrontend"
         { id: 'CC-BY-NC',    text: 'CreativeCommons - Attribution-NonCommercial CC BY-NC' }
         { id: 'CC-BY-NC-ND', text: 'CreativeCommons - Attribution-NonCommercial-NoDerivs CC BY-NC-ND' }
         { id: 'CC-BY-ND-SA', text: 'CreativeCommons - Attribution-NonCommercial-ShareAlike CC BY-ND-SA' }
-
       ]
 
       imageSelects.getSelectOptions = (select) ->
         selects[select]
 
+      imageSelects.getOptionId = (select, option) ->
+        values = imageSelects.getSelectOptions(select)
+        found = $filter('filter')(values, {text: option})[0]
+        if found?
+          return found.id
+        else
+          return false
+
+      imageSelects.getOptionText = (select, option) ->
+        values = imageSelects.getSelectOptions(select)
+        found = $filter('filter')(values, {id: option})[0]
+        if found?
+          return found.text
+        else
+          return false
+
+
       imageSelects
+  ]
