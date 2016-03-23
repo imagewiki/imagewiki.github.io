@@ -5,10 +5,6 @@
       li
         a(ui-sref='home') Home
       li Image Ownership
-    .alert.alert-dismissable.alert-danger(ng-if="isImageMissingInfo(image)")
-      button.close(type='button', data-dismiss='alert', aria-hidden='true') &times;
-      strong This image is missing information.
-      | Please add ownership information if you know who owns this photo.
     form#info_image.edit_image(name="imageForm", ng-submit="updateImage(image)")
       .image-info.clearfix
         .image
