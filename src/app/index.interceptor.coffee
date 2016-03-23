@@ -10,6 +10,9 @@ angular.module "imagewikiFrontend"
       responseError: (response) ->
         if response.status == 401
           $rootScope.$broadcast 'reAuthenticate', { message: response.data.error }
+        else if response.status not in [200, 201]
+          $rootScope.$broadcast 'showToastrMessage', { type: 'error', message: "Something went wrong please reach out to tech@imagewiki.org" }
+
         return $q.reject response
     }]
   .config [
