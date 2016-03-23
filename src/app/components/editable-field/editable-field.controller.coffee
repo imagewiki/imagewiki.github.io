@@ -45,7 +45,7 @@ angular.module "imagewikiFrontend"
         return
 
       # --- Save/Cancel actions
-      $scope.showField = false
+      $scope.showField = $scope.$parent.showFields || false
       $scope.showEdit = ->
         $scope.showField = true
         return

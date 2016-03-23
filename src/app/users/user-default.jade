@@ -1,0 +1,51 @@
+.row#user-defaults
+  .col-lg-10.col-md-10.col-sm-12.col-xs-12.col-lg-offset-1.col-md-offset-1
+    ul.breadcrumb
+      li
+        a(ui-sref='home') Home
+      li User Defaults
+
+    .alert.alert-warning This information will automatically placed on each new image you upload. You can always edit images individually or in bulk as well.
+    form#edit_user.form-horizontal(name='userDefaultForm', ng-submit='updateUserDefaults(userDefaults)', novalidate, autocomplete="off")
+      .form-group
+        label.col-lg-3.control-label(for='creator.creator_name') Creator Name:
+        .col-lg-9
+          editable-field(type="'text'", name="'creator.creator_name'", ng-model="userDefaults.default_values.creator.creator_name")
+      .form-group
+        label.col-lg-3.control-label(for='creator.email') Creator Email:
+        .col-lg-9
+          editable-field(type="'text'", name="'creator.email'", ng-model="userDefaults.default_values.creator.email")
+      .form-group
+        label.col-lg-3.control-label(for='creator.site_url') Creator website:
+        .col-lg-9
+          editable-field(type="'text'", name="'creator.site_url'", ng-model="userDefaults.default_values.creator.site_url")
+      .form-group
+        label.col-lg-3.control-label(for='credit_byline') Credit Byline:
+        .col-lg-9
+          editable-field(type="'text'", name="'credit_byline'", ng-model="userDefaults.default_values.credit_byline")
+      .form-group
+        label.col-lg-3.control-label(for='license_type_id') License Type Options:
+        .col-lg-9
+          editable-field(type="'select'", name="'license_type_id'", ng-model="userDefaults.default_values.license_type_id")
+      .form-group
+        label.col-lg-3.control-label(for='licensing_rep.licensing_rep_name') Licensing Representative:
+        .col-lg-9
+          editable-field(type="'text'", name="'licensing_rep.licensing_rep_name'", ng-model="userDefaults.default_values.licensing_rep.licensing_rep_name")
+      .form-group
+        label.col-lg-3.control-label(for='licensing_rep.site_url') Licensing Website:
+        .col-lg-9
+          editable-field(type="'text'", name="'licensing_rep.site_url'", ng-model="userDefaults.default_values.licensing_rep.site_url")
+      .form-group
+        label.col-lg-3.control-label(for="licensing_rep.is_exclusive") Exclusive Representation?
+        .col-lg-9
+          editable-field(type="'boolean'", name="'licensing_rep.is_exclusive'", ng-model="userDefaults.default_values.licensing_rep.is_exclusive")
+      .form-group
+        label.col-lg-3.control-label(for="is_royalty_free") Royalty Free?
+        .col-lg-9
+          editable-field(type="'boolean'", name="'is_royalty_free'", ng-model="userDefaults.default_values.is_royalty_free")
+      .form-group
+        label.col-lg-3.control-label(for="is_rights_managed") Rights Managed?
+        .col-lg-9
+          editable-field(type="'boolean'", name="'is_rights_managed'", ng-model="userDefaults.default_values.is_rights_managed")
+      .float-right
+        input.btn.btn-primary(name='commit', type='submit', value='Update')

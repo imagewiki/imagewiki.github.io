@@ -37,6 +37,10 @@ angular.module "imagewikiFrontend"
         $http.get("#{API_URL}/users/#{id}").then (res) ->
           res
 
+      userAuth.userDefaults = (id) ->
+        $http.get("#{API_URL}/users/#{id}/default_values").then (res) ->
+          res
+
       userAuth.updateUserInfo = (user) ->
         storageUser = UserStore.get('user')
         angular.forEach user, (value, key) ->
