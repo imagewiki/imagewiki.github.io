@@ -12,4 +12,5 @@ angular.module 'imagewikiFrontend', [
   'validation.match'
   'vcRecaptcha'
   'ngTagsInput'
+  'ng-crazyegg'
 ]

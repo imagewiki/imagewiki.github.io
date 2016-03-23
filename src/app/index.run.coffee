@@ -6,8 +6,11 @@ angular.module "imagewikiFrontend"
     '$log'
     '$window'
     '$location'
-    ($rootScope, $state, $stateParams, $log, $window, $location) ->
+    'crazyegg'
+    ($rootScope, $state, $stateParams, $log, $window, $location, crazyegg) ->
       $rootScope.$log = $log
+
+      crazyegg.initCrazyEgg('00209233')
 
       $window.ga('create', 'UA-45654397-1', 'auto')
 
