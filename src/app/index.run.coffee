@@ -1,14 +1,24 @@
 angular.module "imagewikiFrontend"
   .run [
-    '$rootScope',
-    '$state',
-    '$stateParams',
+    '$rootScope'
+    '$state'
+    '$stateParams'
     '$log'
-    ($rootScope, $state, $stateParams, $log) ->
+    '$window'
+    '$location'
+    'crazyegg'
+    ($rootScope, $state, $stateParams, $log, $window, $location, crazyegg) ->
       $rootScope.$log = $log
+
+      crazyegg.initCrazyEgg('00209233')
+
+      $window.ga('create', 'UA-45654397-1', 'auto')
+
       $rootScope.$on '$stateChangeStart', (e, toState, toParams, fromState, fromParams)->
         $rootScope.$state = $state
         $rootScope.$broadcast('resetContainer')
+
+        $window.ga('send', 'pageview', $location.path())
 
         if toState.name == 'login'
           if $rootScope.$$childHead.isAuthenticated()
