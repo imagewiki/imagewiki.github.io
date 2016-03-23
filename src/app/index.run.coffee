@@ -1,14 +1,21 @@
 angular.module "imagewikiFrontend"
   .run [
-    '$rootScope',
-    '$state',
-    '$stateParams',
+    '$rootScope'
+    '$state'
+    '$stateParams'
     '$log'
-    ($rootScope, $state, $stateParams, $log) ->
+    '$window'
+    '$location'
+    ($rootScope, $state, $stateParams, $log, $window, $location) ->
       $rootScope.$log = $log
+
+      $window.ga('create', 'UA-45654397-1', 'auto')
+
       $rootScope.$on '$stateChangeStart', (e, toState, toParams, fromState, fromParams)->
         $rootScope.$state = $state
         $rootScope.$broadcast('resetContainer')
+
+        $window.ga('send', 'pageview', $location.path())
 
         if toState.name == 'login'
           if $rootScope.$$childHead.isAuthenticated()
