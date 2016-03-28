@@ -29,7 +29,6 @@ angular.module "imagewikiFrontend"
           return
 
         $scope.changePage = (newPageNumber) ->
-          # console.log 'NEW PAGE LOADED', newPageNumber, $scope.images.length
           $scope.page = newPageNumber
           if newPageNumber == 1
             $scope.isFirstPage = true
@@ -62,45 +61,21 @@ angular.module "imagewikiFrontend"
         galleryCreated = false
 
         runGallery = ->
-          if galleryCreated
-            # console.log 'UPDATE GALLERY'
-            $("##{scope.selector}").justifiedGallery 'norewind'
-          else
-            # console.log 'START GALLERY'
-            $("##{scope.selector}").justifiedGallery
-              rowHeight : 200
-              margins : 3
-              maxRowHeight: 300
 
-          $("##{scope.selector}").justifiedGallery().on 'jg.complete', (e) ->
-            galleryCreated = true
-            $('.image', element).addClass 'loaded'
-            return
           return
 
         scope.$on 'RestartGallery', (event) ->
-          $("##{scope.selector}").justifiedGallery 'destroy'
-          galleryCreated = false
-          $("##{scope.selector} .image").hide()
 
           toastr.info 'The gallery is reloading after the changes.', 'Loading Gallery',
             closeButton: true
             closeHtml: '<i class="fa fa-refresh"></i>'
 
-          $timeout(->
-            runGallery()
-            $("##{scope.selector} .image").hide()
-            return
-          , 1000)
           return
 
         scope.$on 'ReloadGallery', (event) ->
-          # console.log 'RELOAD GALLERY'
-          $("##{scope.selector}").justifiedGallery 'norewind'
           return
 
         scope.$on 'ImageLoaded', (event) ->
-          runGallery()
           return
 
         return # END LINK

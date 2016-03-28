@@ -5,6 +5,8 @@ angular.module "imagewikiFrontend"
     'AUTH_EVENTS'
     ($scope, BulkUploadService, AUTH_EVENTS) ->
 
+      $scope.$emit('fluidContainer')
+
       $scope.files        = []
       $scope.images       = []
       $scope.selected     = []
@@ -29,8 +31,6 @@ angular.module "imagewikiFrontend"
         $scope.images = []
         $scope.getImages(args.page)
         return
-
-      $scope.$emit('fluidContainer')
 
       $scope.$watch 'files', ->
         $scope.upload()
