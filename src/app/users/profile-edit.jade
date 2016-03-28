@@ -1,9 +1,8 @@
 .row
   .col-md-12
-    ul.breadcrumb
-      li
-        a(ui-sref='home') Home
-      li Edit User
+
+    ng-include(src="'app/users/user-nav-tabs.html'")
+
     form#edit_user.form-horizontal(name='profileEditForm', ng-submit='update(user)', novalidate, autocomplete="off")
       .form-group(ng-class="{ 'has-error' : profileEditForm.first_name.$invalid && !profileEditForm.first_name.$pristine }")
         label.col-lg-3.control-label(for='first_name') First Name:

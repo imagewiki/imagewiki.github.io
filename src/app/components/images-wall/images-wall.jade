@@ -1,13 +1,11 @@
 .images.clearfix(id="{{selector}}")
-  .image(ng-repeat="image in images", brick, ng-class="{selected: selected[image.image_id]}")
-    .image-controls.clearfix.animated(ng-hide="selectable == false")
-      a.fa.fa-pencil(ui-sref="image-ownership({ hashid: image.image_id })", target="_blank")
-      a.fa.fa-times(ng-click="delete(image)")
+  .image.col-lg-2.col-md-4.col-sm-6.col-xs-12(ng-repeat="image in images", ng-click="selectImage(image)")
+    .image-controls.clearfix
+      a.fa(ng-class="{'fa-square':!selected[image.image_id], 'fa-check-square':selected[image.image_id]}")
 
-    img(ng-src="{{ image.reference_file_path }}", ng-click="selectImage(image)")
+    .img
+      img(ng-src="{{ image.reference_file_path }}")
 
-    .name-scroll.animated
-      a.image-name(ui-sref="image-ownership({ hashid: image.image_id })", target="_blank") {{ image.title }}
 .clearfix.images-pagination
   a.btn.btn-default.pull-left(ng-click="changePage(page-1)", ng-hide="isFirstPage")
     span.glyphicon.glyphicon-chevron-left

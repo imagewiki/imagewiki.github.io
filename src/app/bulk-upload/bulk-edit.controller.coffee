@@ -6,6 +6,8 @@ angular.module "imagewikiFrontend"
     'AUTH_EVENTS'
     ($scope, $stateParams, BulkUploadService, AUTH_EVENTS) ->
 
+      $scope.$emit('fluidContainer')
+
       $scope.editing = false
       $scope.image   = {}
       $scope.images  = BulkUploadService.getSelected()

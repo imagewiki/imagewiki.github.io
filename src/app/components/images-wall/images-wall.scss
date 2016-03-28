@@ -1,98 +1,88 @@
 .images {
   .image {
-    box-shadow: 0 0 0 1px #000;
-    display: none;
+    height     : 250px;
+    margin-top : 40px;
+    text-align : center;
 
-    &.loaded { display: block; }
-
-    .animated {
-      -webkit-animation-duration: 0.5s;
-      animation-duration: 0.5s;
+    @media only screen and (max-width : 320px) {
+      height : 230px;
+    }
+    @media only screen and (min-width : 321px) and (max-width : 767px) {
+      height : 269px;
+    }
+    // SM Screens
+    @media only screen and (min-width : 768px) {
+      height : 262px;
+    }
+    // MD Screens
+    @media only screen and (min-width : 992px) {
+      height : 236px;
+    }
+    // LG Screens
+    @media only screen and (min-width : 1200px) {
+      height : 160px;
+    }
+    // XLG Screens
+    @media only screen and (min-width : 1441px) {
+      height : 225px;
+    }
+    // 4K Screens
+    @media only screen and (min-width : 2560px) {
+      height : 316px;
     }
 
-    .abort {
-      color       : #C00;
-      cursor      : pointer;
-      font-size   : 1em;
-      position    : absolute;
-      right       : 5px;
-      text-shadow : 1px 1px 2px #000;
-      top         : 3px;
-      z-index     : 10
-    }
-    .name-scroll {
-      background : rgba(0,0,0,0.5);
-      bottom     : 0;
-      display    : block;
-      overflow   : hidden;
-      padding    : 5px;
-      position   : absolute;
-      text-align : center;
-      transform  : translateY(100%);
-      width      : 100%;
+    .img {
+      -webkit-transition : all .5s;
+      background         : #f6f6f6;
+      border-radius      : 5px;
+      height             : 100%;
+      overflow           : hidden;
+      transition         : all .5s;
+      width              : 100%;
 
-      .progress {
-        border-radius : 0;
-        height        : 5px;
-        margin        : 0;
+      img {
+        display           : block;
+        left              : 50%;
+        position          : relative;
+        top               : 50%;
+        transform         : translate(-50%, -50%);
+        -webkit-transform : translate(-50%, -50%);
       }
-    }
-    .image-name {
-      color       : #FFF;
-      font-size   : .8em;
-      white-space : nowrap;
 
       &:hover {
-        color: #00C2FF;
+        overflow: visible;
+
+        img {
+          -webkit-box-shadow : 1px 1px 7px 1px rgba(0, 0, 0, 1);
+          box-shadow         : 1px 1px 7px 1px rgba(0, 0, 0, 1);
+          z-index            : 98;
+        }
       }
     }
-    .image-controls {
-      background : rgba(0,0,0,0.5);
-      color      : #FFF;
-      font-size  : .7em;
-      left       : 0;
-      padding    : 5px;
-      position   : absolute;
-      top        : 0;
-      transform  : translateY(-100%);
-      width      : 100%;
-      z-index    : 1;
 
-      input {
-        margin : 0;
-        display: none;
-      }
-      .fa {
-        color       : #FFF;
+    .image-controls {
+      left          : 0;
+      padding-left  : 15px;
+      padding-right : 15px;
+      position      : absolute;
+      text-align    : right;
+      top           : -25px;
+      width         : 100%;
+      z-index       : 1;
+
+      a.fa {
+        color       : #999;
         cursor      : pointer;
         font-size   : 1.3em;
         line-height : 1em;
-        padding     : 0 3px;
 
-        &.fa-pencil {
-          float : right;
-
-          &:hover { color : #00C2FF; }
+        &:hover {
+          text-decoration: none;
         }
-        &.fa-times {
-          float : left;
-
-          &:hover { color : #FD3F3F; }
-        }
-
       }
-      .label {
-        font-size   : 1em;
-        font-weight : 300;
-      }
-    }
-    .image-name:hover, .image-controls .fa:hover {
-      text-decoration : none;
     }
 
     &.selected {
-      box-shadow: 0 0 0 2px #00C2FF;
-
       .name-scroll, .image-controls {
         transform: translateY(0);
       }
@@ -106,8 +96,8 @@
   }
 }
 .images-pagination {
-  margin-top: 20px;
-  text-align: center;
+  margin-top : 20px;
+  text-align : center;
 
   .label {
     font-size: 1em;
