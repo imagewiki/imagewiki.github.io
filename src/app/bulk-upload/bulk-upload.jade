@@ -2,10 +2,10 @@
   .row
     .col-lg-10.col-md-10.col-sm-10.col-xs-10.col-lg-offset-1.col-md-offset-1.col-sm-offset-1.col-xs-offset-1.content-main
       .bulk-upload
-        h2 My Contributions
+        ng-include(src="'app/users/user-nav-tabs.html'")
         .btn-group.pull-right.bulk-actions
           button.btn.btn-default.dropdown-toggle(type='button', data-toggle='dropdown')
-            | Actions&nbsp;
+            | Bulk Actions&nbsp;
             span.caret
           ul.dropdown-menu(role='menu')
             li
@@ -15,7 +15,7 @@
         //- The fileinput-button span is used to style the file input field as button
         .action-buttons
           span.btn.btn-primary.fileinput-button(ngf-select, ng-model="files", ngf-multiple="true", ngf-change="$broadcast('FilesChanged')")
-            i.glyphicon.glyphicon-plus
+            span.fa.fa-cloud-upload
             span &nbsp;Upload More Images
 
         //- The container for the uploaded files
@@ -24,9 +24,6 @@
           uploading-files(files="files", selector="uploading-files")
 
         h2(ng-show="files.length > 0") Your Images
-        .alert.alert-warning(style="text-align: center;")
-            span.fa.fa-warning(aria-hidden='true')
-            strong &nbsp;Click each image you would like to select for bulk actions
         images-wall(images="images", selector="user-images", selectable="true")
         //- bulk-image-item(dir-paginate="image in images | itemsPerPage: 50")
 

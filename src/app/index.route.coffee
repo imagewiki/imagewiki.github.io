@@ -161,14 +161,14 @@ angular.module "imagewikiFrontend"
           controller: "ImagesController"
           controllerAs: "images"
         .state "bulk-upload",
-          url: "/bulk-upload"
+          url: "/my-images"
           templateUrl: "app/bulk-upload/bulk-upload.html"
           controller: "BulkUploadController"
           controllerAs: "bulkUpload"
           data:
             topSearch: true
         .state "bulk-edit",
-          url: "/bulk-edit"
+          url: "/my-images/bulk-edit"
           templateUrl: "app/bulk-upload/bulk-edit.html"
           controller: "BulkEditController"
           controllerAs: "bulkEdit"

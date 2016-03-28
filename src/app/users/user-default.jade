@@ -1,9 +1,7 @@
 .row#user-defaults
   .col-lg-10.col-md-10.col-sm-12.col-xs-12.col-lg-offset-1.col-md-offset-1
-    ul.breadcrumb
-      li
-        a(ui-sref='home') Home
-      li User Defaults
+
+    ng-include(src="'app/users/user-nav-tabs.html'")
 
     .alert.alert-warning This information will automatically placed on each new image you upload. You can always edit images individually or in bulk as well.
     form#edit_user.form-horizontal(name='userDefaultForm', ng-submit='updateUserDefaults(userDefaults)', novalidate, autocomplete="off")
