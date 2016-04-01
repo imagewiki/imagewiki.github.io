@@ -134,6 +134,10 @@ angular.module "imagewikiFrontend"
           templateUrl: "app/images/matches.html"
           controller: "MatchesController"
           controllerAs: "matches"
+        .state "temporary-image",
+          url: "/temp-image/:hashid"
+          templateUrl: "app/images/image-ownership.html"
+          controller: "TempImageController"
         .state "image-ownership",
           resolve:
             ImagePromise: [

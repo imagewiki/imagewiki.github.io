@@ -6,11 +6,14 @@ angular.module "imagewikiFrontend"
     'UserAuth'
     'AUTH_EVENTS'
     'MessageFormatter'
-    ($scope, $state, toastr, UserAuth, AUTH_EVENTS, MessageFormatter) ->
+    'TempImageModel'
+    ($scope, $state, toastr, UserAuth, AUTH_EVENTS, MessageFormatter, TempImageModel) ->
       $scope.currentUser = UserAuth.getUser()
 
       $scope.$watch 'currentUser', ->
         return
+
+      # TempImageModel.removeImages()
 
       $scope.container_class = 'container'
 
@@ -38,6 +41,12 @@ angular.module "imagewikiFrontend"
         return
       $scope.$on AUTH_EVENTS.loginSuccess, (event) ->
         toastr.success 'Successfully logged in.', 'Success'
+
+        if TempImageModel.hasImages()
+          toastr.info "You have images unsaved. Now that you're logged in we will save them on our servers.", 'Uploading unsaved images',
+            timeOut: 20000
+          TempImageModel.uploadTempImages()
+
         return
       $scope.$on AUTH_EVENTS.logoutSuccess, (event) ->
         toastr.success 'Successfully logged out.', 'Success'
