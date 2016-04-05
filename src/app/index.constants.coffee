@@ -1,6 +1,6 @@
 angular.module('imagewikiFrontend')
-  # .constant 'API_URL', 'https://api.image.wiki/v1'
-  .constant 'API_URL', 'http://localhost:3100/v1'
+  .constant 'API_URL', 'https://api.image.wiki/v1'
+  # .constant 'API_URL', 'http://localhost:3100/v1'
   .constant 'AUTH_EVENTS',
     loginSuccess: 'auth-login-success'
     loginFailed: 'auth-login-failed'
