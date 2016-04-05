@@ -24,6 +24,8 @@ angular.module "imagewikiFrontend"
       #     return
       #   return
 
+      # TempImageModel.removeImages()
+
       setRandomImage = ->
         images = $scope.featuredCollection.collection_images
         $scope.featuredImage = images[Math.floor(Math.random() * images.length)]

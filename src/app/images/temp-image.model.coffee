@@ -3,9 +3,10 @@ angular.module "imagewikiFrontend"
     '$q'
     'toastr'
     'ImageSelects'
+    'PbrSelectModel'
     'ImageStore'
     'ImageModel'
-    ($q, toastr, ImageSelects, ImageStore, ImageModel) ->
+    ($q, toastr, ImageSelects, PbrSelectModel, ImageStore, ImageModel) ->
       tempImageModel = {}
 
       imageData = {
@@ -23,6 +24,7 @@ angular.module "imagewikiFrontend"
         property_release_info: null
         plus_id: null
         license_type_id: null
+        platform_business_rules: null
         reference_file_path: null
         keywords: []
         creator: {
@@ -58,8 +60,8 @@ angular.module "imagewikiFrontend"
       formatImageFields = (image) ->
         for key, value of image
           if key == 'license_type_id'
-            license = ImageSelects.getOptionText(key, value)
-            image.license_type_id = license if license != false
+            option = ImageSelects.getOptionText(key, value)
+            image[key] = option if option != false
 
         image
 

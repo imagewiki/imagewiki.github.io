@@ -9,15 +9,15 @@
           td
             editable-field(type="'select'", name="'license_type_id'", ng-model="image.license_type_id")
 
-  //- .ownership-list
-  //-   h3 Social media usage rules?
-  //-   table.table-striped
-  //-     tbody
-  //-       tr
-  //-         td
-  //-           label Platform Business Rules
-  //-         td
-  //-           editable-field(type="'select'", name="'platform_business_rules'", ng-model="image.platform_business_rules")
+  .ownership-list
+    h3 Social media usage rules?
+    table.table-striped
+      tbody
+        tr
+          td
+            label Platform Business Rules
+          td
+            editable-field(type="'pbr-select'", name="'platform_business_rules.all'", ng-model="image.platform_business_rules")
 
   .ownership-list
     h3 Creator Information

@@ -19,7 +19,7 @@ angular.module "imagewikiFrontend"
       $scope.$watch 'value.initial', ->
         return false if EditableFieldFactory.notChanged($scope.name, $scope.value.initial, $scope.ngModel)
 
-        $scope.ngModel = EditableFieldFactory.formatValue($scope.name, angular.copy($scope.value.initial))
+        $scope.ngModel = EditableFieldFactory.formatValue($scope.name, angular.copy($scope.value.initial), $scope.ngModel)
         $scope.label = EditableFieldFactory.formatLabel($scope.type, $scope.name, $scope.value.initial)
         $scope.$emit 'imageChanged'
         return
