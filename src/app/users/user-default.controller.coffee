@@ -3,13 +3,15 @@ angular.module "imagewikiFrontend"
     '$scope'
     '$rootScope'
     '$state'
-    'toastr'
     'UserAuth'
     'UserDefaultsPromise'
-    ($scope, $rootScope, $state, toastr, UserAuth, UserDefaultsPromise) ->
+    ($scope, $rootScope, $state, UserAuth, UserDefaultsPromise) ->
 
       unless UserAuth.isAuthenticated
-        toastr.error 'You are not logged in', 'Unauthorized'
+        $rootScope.$broadcast 'showToastrMessage',
+          type: 'error'
+          message: 'You are not logged in'
+          title: 'Unauthorized'
         $state.go 'home'
 
       $scope.userDefaults = UserDefaultsPromise
@@ -17,18 +19,26 @@ angular.module "imagewikiFrontend"
 
       $scope.updateUserDefaults = (userDefaults) ->
         if $scope.userDefaultForm.$pristine
-          toastr.info 'No changes made.', ''
+          $rootScope.$broadcast 'showToastrMessage',
+            type: 'info'
+            message: 'No changes made.'
           return false
 
         id = $scope.$parent.currentUser.id
         UserAuth
           .update(id, userDefaults)
           .then (response) ->
-            toastr.success 'Your default values were successfully updated.', 'User defaults changed.'
+            $rootScope.$broadcast 'showToastrMessage',
+              type: 'success'
+              message: 'Your default values were successfully updated.'
+              title: 'User defaults changed.'
             return
           , (response) ->
             $rootScope.$broadcast 'UserUpdateFail', response
-            toastr.error "#{response.data.error}", 'User update error.'
+            $rootScope.$broadcast 'showToastrMessage',
+              type: 'success'
+              message: "#{response.data.error}"
+              title: 'User update error.'
             return
         return
 

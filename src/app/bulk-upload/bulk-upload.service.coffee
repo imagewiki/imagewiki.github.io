@@ -4,15 +4,17 @@ angular.module "imagewikiFrontend"
     '$timeout'
     '$state'
     '$q'
-    'toastr'
     'ImageModel'
-    ($rootScope, $timeout, $state, $q, toastr, ImageModel) ->
+    ($rootScope, $timeout, $state, $q, ImageModel) ->
       selected = {}
       bulkUpload = {}
 
       hasImagesSelected = (images) ->
         if images.length == 0
-          toastr.error 'No images were selected', 'Error'
+          $rootScope.$broadcast 'showToastrMessage',
+            type: 'error'
+            message: 'No images were selected'
+            title: 'Error'
           return false
         else
           return true
@@ -46,7 +48,10 @@ angular.module "imagewikiFrontend"
           file.upload.then (res) ->
             data = res.data
             $scope.images.push data
-            toastr.success "Image successfully uploaded:<br><strong>#{data.title}</strong>", 'Success'
+            $rootScope.$broadcast 'showToastrMessage',
+              type: 'success'
+              message: "Image successfully uploaded:<br><strong>#{data.title}</strong>"
+              title: 'Success'
 
             $scope.files.remove file
 
@@ -55,10 +60,16 @@ angular.module "imagewikiFrontend"
           , (res) ->
             # If file is aborted will show a message saying so
             if file.aborted
-              toastr.error "#{file.name} upload was aborted!", 'Abort!'
+              $rootScope.$broadcast 'showToastrMessage',
+                type: 'error'
+                message: "#{file.name} upload was aborted!"
+                title: 'Abort!'
             else
               # Show a message if something went wrong with the upload process
-              toastr.error "Something went wrong while uploading the file: <strong>#{file.name}</strong>.", 'Error'
+              $rootScope.$broadcast 'showToastrMessage',
+                type: 'error'
+                message: "Something went wrong while uploading the file: <strong>#{file.name}</strong>."
+                title: 'Error'
             $scope.files.remove file
             return
           , (evt) ->
@@ -74,13 +85,18 @@ angular.module "imagewikiFrontend"
           ImageModel
             .delete(image.image_id)
             .then (data)->
-              toastr.warning data.message
+              $rootScope.$broadcast 'showToastrMessage',
+                type: 'warning'
+                message: data.message
 
               $scope.images.remove image
               $rootScope.$broadcast 'RestartGallery'
               return
             , ->
-              toastr.error 'Something went wrong... Please contact our support.'
+              $rootScope.$broadcast 'showToastrMessage',
+                type: 'error'
+                message: 'Something went wrong... Please contact our support.'
+
               return
         return
 
@@ -97,7 +113,10 @@ angular.module "imagewikiFrontend"
 
           $q.all(promises)
             .then (data)->
-              toastr.warning 'All images were deleted', 'Warning'
+              $rootScope.$broadcast 'showToastrMessage',
+                type: 'warning'
+                message: 'All images were deleted'
+                title: 'Warning'
 
               angular.forEach $scope.selected, (image, index) ->
                 $scope.images.remove image
@@ -108,9 +127,12 @@ angular.module "imagewikiFrontend"
               $rootScope.$broadcast 'ClearSelectedImages'
               return
             , ->
-              toastr.error 'Something went wrong... Please contact our support.',
-                closeButton: true
-                timeOut: 0
+              $rootScope.$broadcast 'showToastrMessage',
+                type: 'error'
+                message: 'Something went wrong... Please contact our support.'
+                options:
+                  closeButton: true
+                  timeOut: 0
               return
         return
 
@@ -139,13 +161,19 @@ angular.module "imagewikiFrontend"
 
         $q.all(promises)
           .then (data)->
-            toastr.success 'All images were updated', 'Warning'
+            $rootScope.$broadcast 'showToastrMessage',
+              type: 'success'
+              message: 'All images were updated'
+              title: 'Warning'
             $scope.saved = true
             return
           , ->
-            toastr.error 'Something went wrong... Please contact our support.',
-              closeButton: true
-              timeOut: 0
+            $rootScope.$broadcast 'showToastrMessage',
+              type: 'error'
+              message: 'Something went wrong... Please contact our support.'
+              options:
+                closeButton: true
+                timeOut: 0
             return
         return
 

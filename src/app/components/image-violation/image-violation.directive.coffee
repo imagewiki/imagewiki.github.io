@@ -2,10 +2,9 @@ angular.module "imagewikiFrontend"
   .directive 'imageViolation', [
     '$compile'
     '$timeout'
-    'toastr'
     'ImageModel'
     'vcRecaptchaService'
-    ($compile, $timeout, toastr, ImageModel, vcRecaptchaService)->
+    ($compile, $timeout, ImageModel, vcRecaptchaService)->
       restrict: 'E'
       templateUrl: 'app/components/image-violation/image-violation.html'
       scope:
@@ -39,21 +38,33 @@ angular.module "imagewikiFrontend"
 
         $scope.reportViolation = (violation) ->
           if violation.violation_reason_id == null || violation.violation_reason_id == ''
-            toastr.error 'You need to select a reason.', 'Error'
+            $scope.$emit 'showToastrMessage',
+              type: 'error'
+              message: 'You need to select a reason.'
+              title: 'Error'
             return false
 
           if $scope.response == null
-            toastr.error 'Please check the recaptcha.', 'Are you a robot?'
+            $scope.$emit 'showToastrMessage',
+              type: 'error'
+              message: 'Please check the recaptcha.'
+              title: 'Are your a robot?'
             return false
 
           ImageModel
             .reportViolation($scope.imageId, violation)
             .then (data) ->
-              toastr.success data.message, 'Success'
+              $scope.$emit 'showToastrMessage',
+                type: 'success'
+                message: data.message
+                title: 'Success'
               resetViolation()
               return
             , ->
-              toastr.success data.message, 'Error'
+              $scope.$emit 'showToastrMessage',
+                type: 'error'
+                message: data.message
+                title: 'Error'
               resetViolation()
               return
           return

@@ -25,7 +25,9 @@ angular.module "imagewikiFrontend"
 
       # Event Listeners
       $scope.$on 'showToastrMessage', (event, data) ->
-        toastr[data.type](data.message)
+        options = data.options || null
+        title   = data.title   || null
+        toastr[data.type](data.message, title, options)
         return
       $scope.$on 'reAuthenticate', (event, data) ->
         toastr.error data.message, 'Error'

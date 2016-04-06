@@ -4,23 +4,32 @@ angular.module "imagewikiFrontend"
     '$rootScope'
     '$state'
     'UserAuth'
-    'toastr'
-    ($scope, $rootScope, $state, UserAuth, toastr) ->
+    ($scope, $rootScope, $state, UserAuth) ->
       $scope.user =
         email: null
 
       $scope.recover = (user) ->
         if user.email == null || user.email == ''
-          toastr.error 'You need to inform your email.', 'Error'
+          $rootScope.$broadcast 'showToastrMessage',
+            type: 'error'
+            message: 'You need to inform your email.'
+            title: 'Error'
           return false
 
         UserAuth
           .recoverPassword(user)
           .then (data) ->
-            toastr.success data.message, 'Check your email'
+            $rootScope.$broadcast 'showToastrMessage',
+              type: 'success'
+              message: data.message
+              title: 'Check your email'
             return
           , ->
             toastr.error data.message, 'Something went wrong.'
+            $rootScope.$broadcast 'showToastrMessage',
+              type: 'error'
+              message: data.message
+              title: 'Something went wrong'
             return
         return
 

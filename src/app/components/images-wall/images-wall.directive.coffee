@@ -2,8 +2,7 @@ angular.module "imagewikiFrontend"
   .directive 'imagesWall', [
     '$compile'
     '$timeout'
-    'toastr'
-    ($compile, $timeout, toastr)->
+    ($compile, $timeout)->
       restrict: 'E'
       templateUrl: 'app/components/images-wall/images-wall.html'
       scope:
@@ -66,9 +65,13 @@ angular.module "imagewikiFrontend"
 
         scope.$on 'RestartGallery', (event) ->
 
-          toastr.info 'The gallery is reloading after the changes.', 'Loading Gallery',
-            closeButton: true
-            closeHtml: '<i class="fa fa-refresh"></i>'
+          scope.$emit 'showToastrMessage',
+            type: 'info'
+            message: 'The gallery is reloading after the changes.'
+            title: 'Loading Gallery'
+            options:
+              closeButton: true
+              closeHtml: '<i class="fa fa-refresh"></i>'
 
           return
 

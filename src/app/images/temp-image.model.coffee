@@ -1,12 +1,12 @@
 angular.module "imagewikiFrontend"
   .factory 'TempImageModel', [
     '$q'
-    'toastr'
+    '$rootScope'
     'ImageSelects'
     'PbrSelectModel'
     'ImageStore'
     'ImageModel'
-    ($q, toastr, ImageSelects, PbrSelectModel, ImageStore, ImageModel) ->
+    ($q, $rootScope, ImageSelects, PbrSelectModel, ImageStore, ImageModel) ->
       tempImageModel = {}
 
       imageData = {
@@ -153,7 +153,10 @@ angular.module "imagewikiFrontend"
               ImageModel
                 .updateImage(cleanImage)
                 .then (data2) ->
-                  toastr.success 'All your unsaved images were sent to our database', 'Saved all images'
+                  $rootScope.$broadcast 'showToastrMessage',
+                    type: 'success'
+                    message: 'All your unsaved images were sent to our database'
+                    title: 'Saved all images'
                   tempImageModel.removeImages()
                   return
 

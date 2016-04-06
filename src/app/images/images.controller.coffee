@@ -1,12 +1,11 @@
 angular.module "imagewikiFrontend"
   .controller "ImagesController", [
-    '$scope',
-    '$state',
-    '$stateParams',
-    'toastr'
+    '$scope'
+    '$state'
+    '$stateParams'
     'ImageModel'
     'ImagePromise'
-    ($scope, $state, $stateParams, toastr, ImageModel, ImagePromise) ->
+    ($scope, $state, $stateParams, ImageModel, ImagePromise) ->
       $scope.image = {}
       $scope.saved = true
       $scope.editing = false
@@ -32,7 +31,10 @@ angular.module "imagewikiFrontend"
 
       $scope.updateImage = (image) ->
         if angular.equals(image, $scope.originalImage)
-          toastr.warning 'No need of saving', 'The image is untouched.'
+          $scope.$emit 'showToastrMessage',
+            type: 'warning'
+            message: 'No need of saving'
+            title: 'The image is untouched.'
           return false
 
         fields = {}
@@ -45,12 +47,18 @@ angular.module "imagewikiFrontend"
           .updateImage(fields)
           .then (data) ->
             $scope.saved = true
-            toastr.success 'Image updated.', 'Success'
+            $scope.$emit 'showToastrMessage',
+              type: 'success'
+              message: 'Image updated.'
+              title: 'Success'
             $scope.toggleEdition()
             $scope.originalImage = angular.copy(image)
             return
           , ->
-            toastr.error 'Something went wrong! Please contact our support team.', 'Error'
+            $scope.$emit 'showToastrMessage',
+              type: 'error'
+              message: 'Something went wrong! Please contact our support team.'
+              title: 'Error'
             return
         return
 

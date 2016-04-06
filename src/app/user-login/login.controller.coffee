@@ -3,10 +3,9 @@ angular.module "imagewikiFrontend"
     '$scope'
     '$rootScope'
     '$state'
-    'toastr'
     'AUTH_EVENTS'
     'UserAuth'
-    ($scope, $rootScope, $state, toastr, AUTH_EVENTS, UserAuth) ->
+    ($scope, $rootScope, $state, AUTH_EVENTS, UserAuth) ->
 
       userLoginSuccess = (user) ->
         if user.error
@@ -15,7 +14,9 @@ angular.module "imagewikiFrontend"
           $rootScope.$broadcast AUTH_EVENTS.loginSuccess
           $scope.setCurrentUser user
           if $state.current.name == 'login'
-            toastr.success 'You will be redirect to previous page now.'
+            $rootScope.$broadcast 'showToastrMessage',
+              type: 'success'
+              message: 'You will be redirect to previous page now.'
             $state.go $rootScope.returnToState, $rootScope.returnToStateParams
         return
 

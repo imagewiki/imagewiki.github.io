@@ -4,18 +4,22 @@ angular.module "imagewikiFrontend"
     '$rootScope'
     '$state'
     'UserAuth'
-    'toastr'
-    ($scope, $rootScope, $state, UserAuth, toastr) ->
+    ($scope, $rootScope, $state, UserAuth) ->
 
       unless UserAuth.isAuthenticated
-        toastr.error 'You are not logged in', 'Unauthorized'
+        $rootScope.$broadcast 'showToastrMessage',
+          type: 'error'
+          message: 'You are not logged in'
+          title: 'Unauthorized'
         $state.go 'home'
 
       $scope.user = angular.copy($scope.$parent.currentUser)
 
       $scope.update = (user) ->
         if $scope.profileEditForm.$pristine
-          toastr.info 'No changes made.', ''
+          $rootScope.$broadcast 'showToastrMessage',
+            type: 'info'
+            message: 'No changes made.'
           return false
 
         id = $scope.$parent.currentUser.id
@@ -24,11 +28,17 @@ angular.module "imagewikiFrontend"
           .then (response) ->
             $scope.$parent.setCurrentUser($.extend($scope.$parent.currentUser, user))
             $rootScope.$broadcast 'UserUpdateSuccess'
-            toastr.success 'Your info was successfully updated.', 'User info changed.'
+            $rootScope.$broadcast 'showToastrMessage',
+              type: 'success'
+              message: 'Your info was successfully updated.'
+              title: 'User info changed.'
             return
           , (response) ->
             $rootScope.$broadcast 'UserUpdateFail', response
-            toastr.error "#{response.data.error}", 'User update error.'
+            $rootScope.$broadcast 'showToastrMessage',
+              type: 'error'
+              message: "#{response.data.error}"
+              title: 'User update error.'
             return
         return
 
