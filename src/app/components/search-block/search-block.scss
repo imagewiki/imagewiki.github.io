@@ -1,6 +1,8 @@
 #new-search-block {
   .reverse-search {
     text-align: center;
+    width: 35rem;
+    margin: 0 auto;
 
     .form-group {
       position: relative;
@@ -108,15 +110,15 @@
     .reverse-search {
       .form-group {
         #search_description {
-          width: 24rem;
+          width: 30rem;
           @media (max-width: 1200px) {
-            width: 20rem;
+            width: 26rem;
           }
           @media (max-width: 1040px) {
-            width: 18rem;
+            width: 24rem;
           }
           @media (max-width: 991px) {
-            width: 16rem;
+            width: 17rem;
           }
         }
       }
