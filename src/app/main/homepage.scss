@@ -141,6 +141,15 @@ section#homepage {
       -webkit-transform : translateX(-50%);
     }
 
+    .loading-random-image {
+      text-align: center;
+      padding: 6rem 0;
+
+      .fa {
+        font-size: 11rem;
+      }
+    }
+
     .random-image-box {
       font-size  : 1.3em;
       padding    : 10px 0;

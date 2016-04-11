@@ -4,26 +4,7 @@ angular.module "imagewikiFrontend"
     '$state'
     'ImageModel'
     'TempImageModel'
-    'FileHandler'
-    'CollectionPromise'
-    ($scope, $state, ImageModel, TempImageModel, FileHandler, CollectionPromise) ->
-      # $scope.directImage = {}
-      # $scope.previewUrl = ''
-
-      # $scope.$watch 'previewUrl', ->
-      #   return if $scope.previewUrl == ''
-      #   return
-
-      # $scope.setPreviewUrl = (url) ->
-      #   $scope.previewUrl = url
-      #   return
-      # $scope.previewImg = ($files, $file, $event, $rejectedFiles) ->
-      #   return false unless $file?
-      #   FileHandler.filePreviewUrl $file, (url) ->
-      #     $scope.previewUrl = url
-      #     return
-      #   return
-
+    ($scope, $state, ImageModel, TempImageModel) ->
       # TempImageModel.removeImages()
 
       setRandomImage = ->
@@ -31,8 +12,18 @@ angular.module "imagewikiFrontend"
         $scope.featuredImage = images[Math.floor(Math.random() * images.length)]
         return
 
-      $scope.featuredCollection = CollectionPromise.collection
-      setRandomImage()
+      $scope.featuredCollection = { collection_id: '', collection_images: []}
+
+      ImageModel
+        .getFeaturedImage()
+        .then (collection) ->
+          $scope.featuredCollection = collection
+          return
+        , (response) ->
+          $scope.featuredCollection = { collection_id: 'fake', collection_images: []}
+          return
+        .finally setRandomImage
+
 
       $scope.reloadFeatured = ->
         setRandomImage()

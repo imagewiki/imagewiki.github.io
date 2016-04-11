@@ -6,24 +6,6 @@ angular.module "imagewikiFrontend"
       $stateProvider
         # HOMEPAGE
         .state "home",
-          resolve:
-            CollectionPromise: [
-              '$q'
-              '$state'
-              '$stateParams'
-              'ImageModel'
-              ($q, $state, $stateParams, ImageModel) ->
-                deferred = $q.defer()
-                ImageModel
-                  .getFeaturedImage()
-                  .then (collection) ->
-                    deferred.resolve({collection: collection})
-                    return
-                  , (response) ->
-                    deferred.resolve({collection: { collection_id: 'fake', collection_images: []}})
-                    return
-                deferred.promise
-            ]
           url: "/"
           templateUrl: "app/main/homepage.html"
           controller: "MainController"
