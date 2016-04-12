@@ -15,7 +15,7 @@ angular.module "imagewikiFrontend"
           res.data
 
       imageModel.getFeaturedImage = ->
-        featured = 'Featured Images'
+        featured = 'Frontend Images'
         $http.get("#{API_URL}/images?collection_name=#{featured}").then (res) ->
           res.data
 
