@@ -33,8 +33,7 @@ angular.module "imagewikiFrontend"
         if angular.equals(image, $scope.originalImage)
           $scope.$emit 'showToastrMessage',
             type: 'warning'
-            message: 'No need of saving'
-            title: 'The image is untouched.'
+            message: 'No changes have been made, there is nothing to save.'
           return false
 
         fields = {}

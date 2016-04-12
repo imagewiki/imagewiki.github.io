@@ -30,7 +30,7 @@ angular.module "imagewikiFrontend"
         if user.password == null || user.password == '' || user.password_confirmation == null || user.password_confirmation == ''
           $rootScope.$broadcast 'showToastrMessage',
             type: 'error'
-            message: 'You need to inform the new password.'
+            message: 'You need to include the new password.'
             title: 'Error'
           return false
 

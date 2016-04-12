@@ -12,7 +12,7 @@ angular.module "imagewikiFrontend"
         if user.email == null || user.email == ''
           $rootScope.$broadcast 'showToastrMessage',
             type: 'error'
-            message: 'You need to inform your email.'
+            message: 'You need to include your email.'
             title: 'Error'
           return false
 
@@ -25,7 +25,6 @@ angular.module "imagewikiFrontend"
               title: 'Check your email'
             return
           , ->
-            toastr.error data.message, 'Something went wrong.'
             $rootScope.$broadcast 'showToastrMessage',
               type: 'error'
               message: data.message
