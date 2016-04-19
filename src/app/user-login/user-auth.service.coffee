@@ -1,18 +1,20 @@
 angular.module "imagewikiFrontend"
   .factory 'UserAuth', [
-    '$http',
-    'API_URL',
-    'UserStore',
-    'jwtHelper'
-    ($http, API_URL, UserStore, jwtHelper) ->
+    '$http'
+    'API_URL'
+    'UserStore'
+    ($http, API_URL, UserStore) ->
       userAuth = {}
 
       userLoggedIn = (res) ->
         return res.data if res.data.error
+        UserStore.set 'token', res.data
+        { success: true }
 
-        user = jwtHelper.decodeToken(res.data)
-        UserStore.set 'user', user
-        user
+      userAuth.info = ->
+        $http.get("#{API_URL}/user").then (res) ->
+          UserStore.set 'user', res.data
+          res.data
 
       userAuth.register = (user) ->
         $http.post("#{API_URL}/users", user).then userLoggedIn
@@ -26,12 +28,17 @@ angular.module "imagewikiFrontend"
 
       userAuth.logout = ->
         UserStore.remove 'user'
+        UserStore.remove 'token'
+        return
 
       userAuth.isAuthenticated = ->
         UserStore.get('user')?
 
       userAuth.getUser = ->
         UserStore.get('user') || null
+
+      userAuth.getToken = ->
+        UserStore.get('token') || null
 
       userAuth.fetchUser = (id) ->
         $http.get("#{API_URL}/users/#{id}").then (res) ->

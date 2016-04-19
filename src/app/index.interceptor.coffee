@@ -24,8 +24,8 @@ angular.module "imagewikiFrontend"
       jwtInterceptorProvider.authHeader  = 'XAuthToken'
       jwtInterceptorProvider.authPrefix  = ''
       jwtInterceptorProvider.tokenGetter = ['UserAuth', (UserAuth) ->
-        user = UserAuth.getUser()
-        if user? then user.token else null
+        token = UserAuth.getToken()
+        if token? then token else null
       ]
       $httpProvider.interceptors.push('jwtInterceptor', 'responseInterceptor')
   ]

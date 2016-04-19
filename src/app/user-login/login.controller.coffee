@@ -7,12 +7,23 @@ angular.module "imagewikiFrontend"
     'UserAuth'
     ($scope, $rootScope, $state, AUTH_EVENTS, UserAuth) ->
 
-      userLoginSuccess = (user) ->
-        if user.error
-          $rootScope.$broadcast AUTH_EVENTS.loginFailed, user
+      userLoginSuccess = (data) ->
+        if data.error
+          $rootScope.$broadcast AUTH_EVENTS.loginFailed, data
         else
           $rootScope.$broadcast AUTH_EVENTS.loginSuccess
-          $scope.setCurrentUser user
+
+          UserAuth
+            .info()
+            .then (user)->
+              $scope.setCurrentUser user
+              return
+            , (res) ->
+              $rootScope.$broadcast 'showToastrMessage',
+                type: 'error'
+                message: res.data
+              return
+
           if $state.current.name == 'login'
             $rootScope.$broadcast 'showToastrMessage',
               type: 'success'
