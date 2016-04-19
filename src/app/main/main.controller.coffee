@@ -43,7 +43,7 @@ angular.module "imagewikiFrontend"
         if $scope.currentUser == null
           $scope.$emit 'showToastrMessage',
             type: 'error',
-            message: 'You must <strong>create and account</strong> or <strong>log in</strong> in order to save this image'
+            message: 'You must <strong>create an account</strong> or <strong>log in</strong> to save this image.'
 
           image = TempImageModel.addImage file
 
