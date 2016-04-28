@@ -32,7 +32,7 @@ angular.module "imagewikiFrontend"
         return
 
       userAuth.isAuthenticated = ->
-        UserStore.get('user')?
+        UserStore.get('token')?
 
       userAuth.getUser = ->
         UserStore.get('user') || null

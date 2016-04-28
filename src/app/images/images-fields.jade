@@ -124,7 +124,6 @@
             editable-field(type="'text'", name="'plus_id'", ng-model="image.plus_id")
 
 .save-bar(ng-class="{'unsaved-changes': !saved}")
-  a.btn.btn-default.pull-left(ui-sref='home', ng-show="saved") Back
   a.btn.btn-danger.pull-left(ng-hide="saved", ng-click="resetImage()") Cancel
   button.btn.btn-primary.pull-right(type="submit", ng-hide="saved") Save Image
   .unsaved-message(ng-hide="saved") Your image has unsaved changes.
