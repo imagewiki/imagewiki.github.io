@@ -17,9 +17,12 @@ angular.module "imagewikiFrontend"
           .matchUrl(url)
           .then (data) ->
             if data.match_result == 'no match found'
-              ImageModel.uploadUrl(url).then (data2) ->
-                goToImage data2.image_id
-                return
+              $scope.$emit 'showToastrMessage',
+                type: 'warning'
+                message: 'No match found.'
+              # ImageModel.uploadUrl(url).then (data2) ->
+              #   goToImage data2.image_id
+              #   return
             else
               MatchModel.setResults data.results
               $state.go 'image-matches'
@@ -35,9 +38,12 @@ angular.module "imagewikiFrontend"
             return
           .success (data, status, headers, config) ->
             if data.match_result == 'no match found'
-              ImageModel.upload(file).then (data2) ->
-                goToImage data2.data.image_id
-                return
+              $scope.$emit 'showToastrMessage',
+                type: 'warning'
+                message: 'No match found.'
+              # ImageModel.upload(file).then (data2) ->
+              #   goToImage data2.data.image_id
+              #   return
             else
               MatchModel.setResults data.results
               $state.go 'image-matches'
