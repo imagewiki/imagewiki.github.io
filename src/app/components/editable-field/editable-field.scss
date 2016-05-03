@@ -6,10 +6,15 @@
     display: none;
   }
 }
+.add-edit-field {
+  select {
+    width: 100%;
+  }
+}
 
 .bootstrap-tags-input {
   display: inline-block;
-  width: 400px;
+  width: 100%;
 
   .tags {
     display: inline-block;
