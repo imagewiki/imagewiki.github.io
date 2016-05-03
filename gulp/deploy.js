@@ -24,7 +24,7 @@ gulp.task('constants', function(){
       .pipe(gulp.dest(path.join(conf.paths.dist, '/')));
   }
 
-  gulp.src(path.join(conf.paths.const, file))
+  return gulp.src(path.join(conf.paths.const, file))
     .pipe(rename('index.constants.coffee'))
     .pipe(gulp.dest(path.join(conf.paths.src, '/app')));
 });
