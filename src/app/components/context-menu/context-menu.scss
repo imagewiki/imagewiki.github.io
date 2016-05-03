@@ -5,12 +5,20 @@ ADDED FROM THE imagewiki-business CSS
   margin: 0;
   .menu-icon {
     z-index: 10;
-    position: absolute;
-    top: 30px;
-    left: 30px;
     cursor: pointer;
     text-align: center;
     color: #000;
+    position: fixed;
+    top: 0;
+    right: 0;
+
+    @media (min-width: 768px) {
+    }
+    @media (min-width: 1024px) {
+      position: absolute;
+      top: 30px;
+      left: 30px;
+    }
 
     * {
       transition: all .5s;
