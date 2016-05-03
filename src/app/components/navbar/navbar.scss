@@ -71,7 +71,7 @@ navbar.navbar-default {
         }
       }
       @media (min-width: 1600px) {
-        width: 81.5%;
+        width: 78.5%;
 
         .search-container {
           width: 63%;
@@ -79,6 +79,9 @@ navbar.navbar-default {
         .user-panel-container {
           width: 36.5%;
         }
+      }
+      @media (min-width: 1800px) {
+        width: 81%;
       }
     }
   }
