@@ -37,7 +37,7 @@ gulp.task('clean:dist', function () {
 });
 
 // Deploys
-gulp.task('deploy', ['clean:dist', 'build'], function() {
+gulp.task('deploy', function() {
   var ghPagesOpts;
 
   // Tries to deploy to Local ENV

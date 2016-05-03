@@ -55,6 +55,7 @@ The `--env development` is implied here so it's not really necessary adding it.
 
 #### Deploying to production website ([image.wiki](http://image.wiki))
 
+    gulp build --env production
     gulp deploy --env production
 
 Addin the `--env production` will not only change the `API_URL` constant on the Angular App but will also add the `CNAME` file to the build and point the `gh-pages` to a different github repository.
