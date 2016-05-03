@@ -11,9 +11,11 @@ navbar.navbar-default {
 
         @media (min-width: 1024px) {
           width: 230px;
+          margin-left: 30px;
         }
         @media (min-width: 1440px) {
           width: 320px;
+          margin-left: 30px;
         }
       }
     }
@@ -27,13 +29,28 @@ navbar.navbar-default {
 
     .navbar-nav {
 
-      @media (min-width: 1440px) {
-        width: 77%;
+      > li:hover {
+        background-color: transparent;
+      }
+
+      @media (min-width: 1024px) {
+        width: 75%;
 
         .reverse-search, .user-panel {
           float: right;
           margin: 0;
         }
+        .search-container {
+          width: 66%;
+        }
+        .user-panel-container {
+          width: 29%;
+          float: right;
+        }
+      }
+      @media (min-width: 1440px) {
+        width: 75.5%;
+
         .search-container {
           width: 73%;
         }
@@ -42,7 +59,7 @@ navbar.navbar-default {
         }
       }
       @media (min-width: 1600px) {
-        width: 83%;
+        width: 81.5%;
 
         .search-container {
           width: 63%;
