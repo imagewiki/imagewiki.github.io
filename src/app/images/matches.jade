@@ -5,6 +5,7 @@ table.table(id="list_matches")
   tbody
     tr(ng-repeat="image in results")
       td.img_thumb
+        span.glyphicon.glyphicon-ok-circle.is-verified(ng-if="image.is_verified")
         a(ui-sref="image-ownership({ hashid: image.image_id })").more
           img("ng-src={{image.reference_file_path}}")
       td
