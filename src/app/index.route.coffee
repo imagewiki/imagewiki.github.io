@@ -10,8 +10,6 @@ angular.module "imagewikiFrontend"
           templateUrl: "app/main/homepage.html"
           controller: "MainController"
           controllerAs: "main"
-          data:
-            topSearch: true
         # User
         .state "logout",
           url: "/logout"
@@ -72,50 +70,36 @@ angular.module "imagewikiFrontend"
           templateUrl: "app/static-pages/about.html"
           controller: "StaticPagesController"
           controllerAs: "staticPages"
-          data:
-            topSearch: true
         .state "contact",
           url: "/contact"
           templateUrl: "app/static-pages/contact.html"
           controller: "StaticPagesController"
           controllerAs: "staticPages"
-          data:
-            topSearch: true
         .state "terms-of-use",
           url: "/terms-of-use"
           templateUrl: "app/static-pages/terms-of-use.html"
           controller: "StaticPagesController"
           controllerAs: "staticPages"
-          data:
-            topSearch: true
         .state "privacy-policy",
           url: "/privacy-policy"
           templateUrl: "app/static-pages/privacy-policy.html"
           controller: "StaticPagesController"
           controllerAs: "staticPages"
-          data:
-            topSearch: true
         .state "image-identification",
           url: "/image-identification"
           templateUrl: "app/static-pages/image-identification.html"
           controller: "StaticPagesController"
           controllerAs: "staticPages"
-          data:
-            topSearch: true
         .state "api",
           url: "/developers"
           templateUrl: "app/static-pages/api.html"
           controller: "StaticPagesController"
           controllerAs: "staticPages"
-          data:
-            topSearch: true
         .state "add-images",
           url: "/add-images"
           templateUrl: "app/static-pages/add-images.html"
           controller: "StaticPagesController"
           controllerAs: "staticPages"
-          data:
-            topSearch: true
         # Images
         .state "image-matches",
           url: "/image/matches"
@@ -157,15 +141,11 @@ angular.module "imagewikiFrontend"
           templateUrl: "app/bulk-upload/bulk-upload.html"
           controller: "BulkUploadController"
           controllerAs: "bulkUpload"
-          data:
-            topSearch: true
         .state "bulk-edit",
           url: "/my-images/bulk-edit"
           templateUrl: "app/bulk-upload/bulk-edit.html"
           controller: "BulkEditController"
           controllerAs: "bulkEdit"
-          data:
-            topSearch: true
 
       $urlRouterProvider.otherwise '/'
   ]
