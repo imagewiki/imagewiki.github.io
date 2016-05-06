@@ -2,10 +2,11 @@ angular.module "imagewikiFrontend"
   .controller "ImagesController", [
     '$scope'
     '$state'
-    '$stateParams'
+    '$timeout'
     'ImageModel'
     'ImagePromise'
-    ($scope, $state, $stateParams, ImageModel, ImagePromise) ->
+    'AUTH_EVENTS'
+    ($scope, $state, $timeout, ImageModel, ImagePromise, AUTH_EVENTS) ->
       $scope.image = {}
       $scope.saved = true
       $scope.editing = false
@@ -13,6 +14,18 @@ angular.module "imagewikiFrontend"
       # Get image by its HashID
       $scope.image         = ImagePromise.image
       $scope.originalImage = angular.copy(ImagePromise.image)
+
+      $scope.$on AUTH_EVENTS.logoutSuccess, (event) ->
+        $scope.$broadcast 'beginImageEdition', false
+        return
+
+      $scope.checkEditing = ->
+        if $scope.isAuthenticated() and $scope.currentUser.id == $scope.image.user_id
+          $timeout( ->
+            $scope.$broadcast 'beginImageEdition', true
+            return
+          , 100)
+        return
 
       $scope.$on 'imageChanged', ->
         $scope.saved = false
@@ -50,7 +63,6 @@ angular.module "imagewikiFrontend"
               type: 'success'
               message: 'Image updated.'
               title: 'Success'
-            $scope.toggleEdition()
             $scope.originalImage = angular.copy(image)
             return
           , ->
