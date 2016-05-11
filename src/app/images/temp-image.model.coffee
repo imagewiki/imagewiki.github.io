@@ -43,6 +43,8 @@ angular.module "imagewikiFrontend"
         }
       }
 
+      tempImageModel.imageTemplate = imageData
+
       createImage = (file) ->
         data = angular.copy(imageData)
         data.title = file.name

@@ -1,7 +1,6 @@
 .liquid-container
   .row.quick-menu
     .col-lg-10.col-md-10.col-sm-10.col-xs-10.col-lg-offset-1.col-md-offset-1.col-sm-offset-1.col-xs-offset-1.content-main
-      a.btn.btn-primary.pull-right(ng-click="toggleEdition()") Edit Image
       ng-include(src="'app/users/user-nav-tabs.html'")
       form#info_image.edit_image(name="imageForm", ng-submit="updateImage(image)")
         .image-info
@@ -10,4 +9,4 @@
           .col-lg-8.col-md-8.col-sm-8.col-xs-8.col-lg-offset-2.col-md-offset-2.col-sm-offset-2.col-xs-offset-2
             .page-header
               h2(ng-click="debugImage()") Copyright and ownership Information
-            .image-fields(ng-include="'app/images/images-fields.html'")
+            .image-fields(ng-include="'app/images/images-fields.html'", onload="checkEditing()")

@@ -1,24 +1,37 @@
 angular.module "imagewikiFrontend"
   .controller "BulkEditController", [
     '$scope'
-    '$stateParams'
+    '$state'
+    '$timeout'
     'BulkUploadService'
+    'TempImageModel'
     'AUTH_EVENTS'
-    ($scope, $stateParams, BulkUploadService, AUTH_EVENTS) ->
+    ($scope, $state, $timeout, BulkUploadService, TempImageModel, AUTH_EVENTS) ->
 
       $scope.$emit('fluidContainer')
 
-      $scope.editing = false
-      $scope.image   = {}
+      $scope.editing = true
+      $scope.image   = TempImageModel.imageTemplate
       $scope.images  = BulkUploadService.getSelected()
       $scope.saved   = true
+
+      $scope.$on AUTH_EVENTS.logoutSuccess, (event) ->
+        $state.go 'home'
+        return
+
+      $scope.checkEditing = ->
+        $timeout( ->
+          $scope.$broadcast 'beginImageEdition', true
+          return
+        , 100)
+        return
 
       $scope.$on 'imageChanged', ->
         $scope.saved = false
         return
 
       $scope.resetImage = ->
-        $scope.image = {}
+        $scope.image = TempImageModel.imageTemplate
         $scope.saved = true
         return
 

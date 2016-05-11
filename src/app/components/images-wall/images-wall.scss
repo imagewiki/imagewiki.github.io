@@ -78,6 +78,10 @@
 
         &:hover {
           text-decoration: none;
+
+          &.fa-eye {
+            color: #007cff;
+          }
         }
       }
     }

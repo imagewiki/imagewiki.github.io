@@ -8,12 +8,13 @@ angular.module "imagewikiFrontend"
       scope:
         images: '='
         selector: '@'
-        selectable: '='
+        selectable: '=?'
       controller: ($scope, $element, $attrs, $transclude) ->
         $scope.selected    = {}
         $scope.page        = 1
         $scope.isFirstPage = true
         $scope.isLastPage  = false
+        # $scope.selectable  = $scope.selectable || true
 
         $scope.$on 'UpdateTotalImages', (event, args) ->
           if args.totalImages < $scope.$parent.itemsPerPage
