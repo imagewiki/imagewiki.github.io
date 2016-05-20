@@ -138,10 +138,10 @@ section#homepage {
     &:before {
       content           : 'Recently Added';
       font-family       : Arial, 'Helvetica Neue', Helvetica, sans-serif;
-      font-size         : 1em;
+      font-size         : 1.2em;
       left              : 50%;
       position          : absolute;
-      top               : -20px;
+      top               : -22px;
       transform         : translateX(-50%);
       -webkit-transform : translateX(-50%);
     }
