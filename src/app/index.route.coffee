@@ -117,7 +117,7 @@ angular.module "imagewikiFrontend"
           controller: "MatchesController"
           controllerAs: "matches"
         .state "temporary-image",
-          url: "/temp-image/:hashid"
+          url: "/temp-image"
           templateUrl: "app/images/image-ownership.html"
           controller: "TempImageController"
         .state "image-ownership",

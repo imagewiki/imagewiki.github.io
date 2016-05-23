@@ -1,26 +1,18 @@
 angular.module "imagewikiFrontend"
   .controller "TempImageController", [
-    '$scope',
-    '$filter',
-    '$state',
-    '$stateParams',
+    '$scope'
+    '$filter'
     'ImageModel'
     'TempImageModel'
-    ($scope, $filter, $state, $stateParams, ImageModel, TempImageModel) ->
+    ($scope, $filter, ImageModel, TempImageModel) ->
       $scope.editing     = false
       $scope.image       = {}
       $scope.isTempImage = true
       $scope.saved       = true
 
       # Get image by its HashID
-      images = TempImageModel.getImages()
-      for img, index in images
-        if img.image_id == $stateParams.hashid
-          $scope.index         = index
-          $scope.image         = img
-          $scope.originalImage = angular.copy(img)
-          break
-
+      $scope.image = TempImageModel.getImage()
+      $scope.originalImage = angular.copy($scope.image)
 
       $scope.$on 'imageChanged', ->
         $scope.saved = false
@@ -43,7 +35,7 @@ angular.module "imagewikiFrontend"
           return false
 
         $scope.image = image
-        TempImageModel.updateImage($scope.index, $scope.image)
+        TempImageModel.updateImage($scope.image)
         $scope.$emit 'showToastrMessage',
           type: 'warning'
           message: 'The data you entered was saved only locally. After you <strong>log in</strong> you can save your image on our database'

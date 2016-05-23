@@ -101,78 +101,55 @@ angular.module "imagewikiFrontend"
         fields
 
       tempImageModel.addImage = (file) ->
-        images = tempImageModel.getImages()
-        # if images?
-        #   tempId = "unsaved-image-#{images.length}"
-        # else
-        images  = []
-        tempId = "unsaved-image-0"
-
         image = createImage(file)
-        image.image_id = tempId
+        image.image_id = "unsaved-image"
 
         fileToImage(file)
           .then (result) ->
             image.reference_file_path = result.file
-            images.push image
-            ImageStore.set 'images', images
+            ImageStore.set 'image', image
             return
 
         image
 
-      tempImageModel.updateImage = (index, image) ->
-        images = tempImageModel.getImages()
+      tempImageModel.updateImage = (image) ->
         image = formatImageFields(image)
-        images[index] = image
-        ImageStore.set 'images', images
+        ImageStore.set 'image', image
         return
 
-      tempImageModel.getImages = ->
-        ImageStore.get 'images'
+      tempImageModel.getImage = ->
+        ImageStore.get 'image'
 
-      tempImageModel.removeImages = ->
-        ImageStore.remove 'images'
+      tempImageModel.removeImage = ->
+        ImageStore.remove 'image'
         return
 
-      tempImageModel.hasImages = ->
-        tempImageModel.getImages()?
+      tempImageModel.hasImage = ->
+        tempImageModel.getImage()?
 
-      tempImageModel.uploadTempImages = ->
-        images   = tempImageModel.getImages()
+      tempImageModel.uploadTempImage = ->
+        image   = tempImageModel.getImage()
         promises = []
-        for image in images
-          cleanImage = cleanImageForUpdate image
+        cleanImage = cleanImageForUpdate image
 
+        return false if cleanImage is false
 
-          continue if cleanImage is false
-
-          ImageModel
-            .uploadUrl(image.reference_file_path)
-            .then (data) ->
-              cleanImage.image_id = data.image_id
-              ImageModel
-                .updateImage(cleanImage)
-                .then (data2) ->
-                  $rootScope.$broadcast 'showToastrMessage',
-                    type: 'success'
-                    message: 'All your unsaved images were sent to our database'
-                    title: 'Saved all images'
-                  tempImageModel.removeImages()
-                  return
-
-              # promises.push ImageModel.updateImage(cleanImage)
-              return
-            , (response) ->
-              return
-
-        # $q
-        #   .all(promises)
-        #   .then (data) ->
-        #     toastr.success 'All your unsaved images were sent to our database', 'Saved all images'
-        #     tempImageModel.removeImages()
-        #     return
-        #   , (response) ->
-        #     return
+        ImageModel
+          .uploadUrl(image.reference_file_path)
+          .then (data) ->
+            cleanImage.image_id = data.image_id
+            ImageModel
+              .updateImage(cleanImage)
+              .then (data2) ->
+                $rootScope.$broadcast 'showToastrMessage',
+                  type: 'success'
+                  message: 'All your unsaved images were sent to our database'
+                  title: 'Saved all images'
+                tempImageModel.removeImage()
+                return
+            return
+          , (response) ->
+            return
         return
 
       tempImageModel

@@ -44,10 +44,10 @@ angular.module "imagewikiFrontend"
       $scope.$on AUTH_EVENTS.loginSuccess, (event) ->
         toastr.success 'Successfully logged in.', 'Success'
 
-        if TempImageModel.hasImages()
+        if TempImageModel.hasImage()
           toastr.info "You have images unsaved. Now that you're logged in we will save them on our servers.", 'Uploading unsaved images',
             timeOut: 20000
-          TempImageModel.uploadTempImages()
+          TempImageModel.uploadTempImage()
 
         return
       $scope.$on AUTH_EVENTS.logoutSuccess, (event) ->

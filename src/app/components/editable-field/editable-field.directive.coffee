@@ -6,7 +6,7 @@ angular.module "imagewikiFrontend"
       ngModel: '='
       type: '=type'
       name: '=name'
-      block: '=block'
+      block: '=?block'
     controller: 'EditableFieldController'
     controllerAs: 'editableField'
     link: (scope, element, attr) ->

@@ -11,12 +11,11 @@ angular.module "imagewikiFrontend"
         if data.error
           $rootScope.$broadcast AUTH_EVENTS.loginFailed, data
         else
-          $rootScope.$broadcast AUTH_EVENTS.loginSuccess
-
           UserAuth
             .info()
             .then (user)->
               $scope.setCurrentUser user
+              $rootScope.$broadcast AUTH_EVENTS.loginSuccess
               return
             , (res) ->
               $rootScope.$broadcast 'showToastrMessage',
