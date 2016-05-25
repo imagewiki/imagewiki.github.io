@@ -14,8 +14,11 @@ navbar.navbar-default {
           margin-left: 30px;
         }
         @media (min-width: 1440px) {
-          width: 320px;
-          margin-left: 30px;
+          width: 285px;
+          margin-left: 65px;
+        }
+        @media (min-width: 1600px) {
+          margin-left: 85px;
         }
       }
     }
@@ -61,10 +64,10 @@ navbar.navbar-default {
         }
       }
       @media (min-width: 1440px) {
-        width: 75.5%;
+        width: 75%;
 
         .search-container {
-          width: 73%;
+          width: 66%;
         }
         .user-panel-container {
           width: 26.5%;
@@ -81,7 +84,7 @@ navbar.navbar-default {
         }
       }
       @media (min-width: 1800px) {
-        width: 81%;
+        width: 77%;
       }
     }
   }

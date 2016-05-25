@@ -2,7 +2,11 @@
   .reverse-search {
     text-align: center;
     margin: 0 auto;
+    padding: 0 20px;
 
+    @media (min-width: 768px) {
+      padding: 0;
+    }
     @media (min-width: 1024px) {
       margin-left: 80px;
     }
@@ -39,7 +43,7 @@
           width: 20rem;
         }
         @media (min-width: 1440px) {
-          width: 35rem;
+          width: 32rem;
         }
       }
       .form-control-feedback {
