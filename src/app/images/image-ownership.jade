@@ -5,6 +5,7 @@
         a(ui-sref='home') Home
       li Image Ownership
 
+    .alert.alert-info(ng-if="origin == 'tryit'") This is how you add an image to the wiki.
     .alert.alert-danger(ng-if="isTempImage") You must <strong>create and account</strong> or <strong>log in</strong> in order to save this image
 
     form#info_image.edit_image(name="imageForm", ng-submit="updateImage(image)")

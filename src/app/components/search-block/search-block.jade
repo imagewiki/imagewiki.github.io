@@ -3,7 +3,7 @@
     #new-search-block
       .reverse-search
         .clearfix
-          .form-group.has-feedback
+          .form-group.has-feedback.pull-left.has-tooltip(data-toggle="tooltip", title="Reverse search images here")
             label.sr-only Type keywords to find an image, or paste URL
             input#search_description.form-control(name='search[description]', placeholder='Reverse search by pasting a url', type='text', ng-model="url", ng-change="previewImage(url)")
             span.glyphicon.glyphicon-camera.form-control-feedback(ngf-select, ng-model="image", ngf-accept="'image/*'", ng-click="setOption('upload')", ngf-change="previewImg($files, $file, $event, $rejectedFiles)")

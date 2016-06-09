@@ -9,6 +9,8 @@ angular.module "imagewikiFrontend"
     ($q, $rootScope, ImageSelects, PbrSelectModel, ImageStore, ImageModel) ->
       tempImageModel = {}
 
+      tempImageModel.isTempImage = false
+
       imageData = {
         image_id: null
         title: null

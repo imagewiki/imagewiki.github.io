@@ -14,6 +14,8 @@ angular.module "imagewikiFrontend"
 
       $scope.featuredCollection = { collection_id: '', collection_images: []}
 
+      $scope.$parent.$broadcast 'hideSearchTooltip'
+
       ImageModel
         .getFeaturedImage()
         .then (collection) ->
@@ -36,6 +38,7 @@ angular.module "imagewikiFrontend"
 
       $scope.$watch 'file', ->
         if $scope.file?
+          TempImageModel.isTempImage = true
           $scope.homeUpload($scope.file)
         return
 

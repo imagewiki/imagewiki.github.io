@@ -1,12 +1,37 @@
 angular.module "imagewikiFrontend"
   .directive 'searchBlock', [
+    '$timeout'
     'FileHandler'
-    (FileHandler) ->
+    'TempImageModel'
+    ($timeout, FileHandler, TempImageModel) ->
         restrict: 'E'
         templateUrl: 'app/components/search-block/search-block.html'
         controller: 'SearchBlockController'
         controllerAs: 'searchBlock'
         link: (scope, element, attr) ->
+
+          element.find('.has-tooltip').tooltip
+            trigger: 'manual'
+            placement: 'bottom'
+
+          scope.$on 'showSearchTooltip', ->
+            showTooltip()
+            $timeout( ->
+              hideTooltip()
+              return
+            , 20000)
+
+          scope.$on 'hideSearchTooltip', ->
+            hideTooltip()
+            return
+
+          showTooltip = ->
+            element.find('.has-tooltip').tooltip 'show'
+            return
+
+          hideTooltip = ->
+            element.find('.has-tooltip').tooltip 'hide'
+            return
 
           scope.$watch 'url', ->
             if scope.url? and scope.url != '' and FileHandler.isValidUrl(scope.url)

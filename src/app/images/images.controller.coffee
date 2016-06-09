@@ -6,10 +6,18 @@ angular.module "imagewikiFrontend"
     'ImageModel'
     'ImagePromise'
     'AUTH_EVENTS'
-    ($scope, $state, $timeout, ImageModel, ImagePromise, AUTH_EVENTS) ->
+    'TempImageModel'
+    ($scope, $state, $timeout, ImageModel, ImagePromise, AUTH_EVENTS, TempImageModel) ->
       $scope.image = {}
       $scope.saved = true
       $scope.editing = false
+
+      if TempImageModel.isTempImage
+        $scope.origin = 'tryit'
+        $timeout( ->
+          $scope.$parent.$broadcast 'showSearchTooltip'
+          return
+        , 1000)
 
       # Get image by its HashID
       $scope.image         = ImagePromise.image
@@ -35,6 +43,7 @@ angular.module "imagewikiFrontend"
         return false if toState.name == 'login'
         unless $scope.saved #&& angular.equals($scope.image, $scope.originalImage)
           event.preventDefault() unless confirm('There are unsaved changes on the image. Are you sure you want to leave this page?')
+        TempImageModel.isTempImage = false
         return
 
       $scope.toggleEdition = ->
