@@ -23,7 +23,7 @@ angular.module "imagewikiFrontend"
         ImageModel
           .getUserImages(page)
           .then (data) ->
-            $scope.images = data.user_images
+            $scope.images = data.images
 
             # Broadcast a event saying how many images should be loaded on the current page
             if $scope.images.length > 0

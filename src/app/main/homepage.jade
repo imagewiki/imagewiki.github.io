@@ -17,9 +17,9 @@
         .vertical-line
         .horizontal-line
       .col-lg-5.col-md-5.col-sm-5.col-xs-12.random-image
-        .loading-random-image(ng-hide="featuredCollection.collection_images.length > 0")
+        .loading-random-image(ng-hide="featuredImages.length > 0")
           span.fa.fa-circle-o-notch.fa-spin
-        .random-image-box(ng-show="featuredCollection.collection_images.length > 0")
+        .random-image-box(ng-show="featuredImages.length > 0")
           i.fa.fa-refresh(ng-click="reloadFeatured()")
           h2 {{ featuredImage.title }}
           img(ng-src='{{ featuredImage.reference_file_path }}', alt="{{ featuredImage.title }} - {{ featuredImage.creator.creator_name }}")
