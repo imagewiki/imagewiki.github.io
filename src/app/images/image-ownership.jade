@@ -1,11 +1,11 @@
 .row.quick-menu
-  .col-lg-8.col-md-8.col-sm-8.col-xs-8.col-lg-offset-2.col-md-offset-2.col-sm-offset-2.col-xs-offset-2.content-main
-    a.btn.btn-primary.pull-right(ng-click="toggleEdition()") Edit Image
+  .col-lg-8.col-md-8.col-sm-8.col-xs-12.col-lg-offset-2.col-md-offset-2.col-sm-offset-2.content-main
     ul.breadcrumb
       li
         a(ui-sref='home') Home
       li Image Ownership
 
+    .alert.alert-info(ng-if="origin == 'tryit'") This is how you add an image to the wiki.
     .alert.alert-danger(ng-if="isTempImage") You must <strong>create and account</strong> or <strong>log in</strong> in order to save this image
 
     form#info_image.edit_image(name="imageForm", ng-submit="updateImage(image)")
@@ -21,4 +21,4 @@
         image-violation(image-id="image.image_id")
 
         h2(ng-click="debugImage()") Copyright and ownership Information
-      .image-fields(ng-include="'app/images/images-fields.html'")
+      .image-fields(ng-include="'app/images/images-fields.html'", onload="checkEditing()")

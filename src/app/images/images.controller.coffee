@@ -2,17 +2,38 @@ angular.module "imagewikiFrontend"
   .controller "ImagesController", [
     '$scope'
     '$state'
-    '$stateParams'
+    '$timeout'
     'ImageModel'
     'ImagePromise'
-    ($scope, $state, $stateParams, ImageModel, ImagePromise) ->
+    'AUTH_EVENTS'
+    'TempImageModel'
+    ($scope, $state, $timeout, ImageModel, ImagePromise, AUTH_EVENTS, TempImageModel) ->
       $scope.image = {}
       $scope.saved = true
       $scope.editing = false
 
+      if TempImageModel.isTempImage
+        $scope.origin = 'tryit'
+        $timeout( ->
+          $scope.$parent.$broadcast 'showSearchTooltip'
+          return
+        , 1000)
+
       # Get image by its HashID
       $scope.image         = ImagePromise.image
       $scope.originalImage = angular.copy(ImagePromise.image)
+
+      $scope.$on AUTH_EVENTS.logoutSuccess, (event) ->
+        $scope.$broadcast 'beginImageEdition', false
+        return
+
+      $scope.checkEditing = ->
+        if $scope.isAuthenticated() and $scope.currentUser.id == $scope.image.user_id
+          $timeout( ->
+            $scope.$broadcast 'beginImageEdition', true
+            return
+          , 100)
+        return
 
       $scope.$on 'imageChanged', ->
         $scope.saved = false
@@ -22,6 +43,7 @@ angular.module "imagewikiFrontend"
         return false if toState.name == 'login'
         unless $scope.saved #&& angular.equals($scope.image, $scope.originalImage)
           event.preventDefault() unless confirm('There are unsaved changes on the image. Are you sure you want to leave this page?')
+        TempImageModel.isTempImage = false
         return
 
       $scope.toggleEdition = ->
@@ -50,7 +72,6 @@ angular.module "imagewikiFrontend"
               type: 'success'
               message: 'Image updated.'
               title: 'Success'
-            $scope.toggleEdition()
             $scope.originalImage = angular.copy(image)
             return
           , ->

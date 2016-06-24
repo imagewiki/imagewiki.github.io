@@ -1,13 +1,26 @@
 #new-search-block {
   .reverse-search {
     text-align: center;
-    width: 35rem;
     margin: 0 auto;
+    padding: 0 20px;
+
+    @media (min-width: 768px) {
+      padding: 0;
+    }
+    @media (min-width: 1024px) {
+      margin-left: 80px;
+    }
+
+    > .clearfix {
+      text-align: center;
+    }
 
     .form-group {
       position: relative;
       margin-right: 0;
       margin-left: 0;
+      margin-bottom: 5px;
+      display: inline-block;
 
       label.sr-only {
         position: absolute;
@@ -16,8 +29,22 @@
         border-top-right-radius: 0;
         border-bottom-right-radius: 0;
         border-right: 0;
-        width: 28rem;
+        width: 16rem;
         padding-right: 35px;
+        display: inline-block;
+
+        @media (min-width: 425px) {
+          width: 19rem;
+        }
+        @media (min-width: 768px) {
+          width: 16rem;
+        }
+        @media (min-width: 1024px) {
+          width: 20rem;
+        }
+        @media (min-width: 1440px) {
+          width: 32rem;
+        }
       }
       .form-control-feedback {
         top: 0;
@@ -27,7 +54,7 @@
         &.glyphicon-camera {
           pointer-events: auto;
           cursor: pointer;
-          z-index: 999;
+          z-index: 8;
         }
 
         &.bg-overlay {
@@ -50,12 +77,14 @@
       border: 2px solid #187fcd;
       padding: 6px 12px;
       cursor: pointer;
+      // margin-left: -4px;
     }
   }
   .options {
     list-style: none;
     padding: 0;
     margin-top: 0;
+    margin-left: 20px;
     border: 0;
 
     li {
@@ -93,33 +122,6 @@
         outline: none;
         a {
           border: 0;
-        }
-      }
-    }
-  }
-}
-
-.user-panel {
-  #new-search-block {
-    h3 {
-      text-align: left;
-      margin: 0 0 5px;
-      text-indent: 2em;
-      font-weight: 700;
-    }
-    .reverse-search {
-      .form-group {
-        #search_description {
-          width: 30rem;
-          @media (max-width: 1200px) {
-            width: 26rem;
-          }
-          @media (max-width: 1040px) {
-            width: 24rem;
-          }
-          @media (max-width: 991px) {
-            width: 17rem;
-          }
         }
       }
     }

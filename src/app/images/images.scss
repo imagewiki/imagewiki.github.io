@@ -89,7 +89,11 @@
   .owner-info-row {
     &.add-edit-container > div {
       float: left;
-      margin-right: 10px;
+      width: 100%;
+
+      @media (min-width: 768px) {
+        margin-right: 10px;
+      }
     }
     .add-edit-toggle a {
       cursor: pointer;
@@ -114,7 +118,7 @@
     &:not(.date) {
       .form-control {
         height: 30px;
-        width: 200px;
+        width: 100%;
         padding: 5px 10px;
         font-size: 12px;
         line-height: 1.5;

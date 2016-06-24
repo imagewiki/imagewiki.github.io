@@ -1,10 +1,18 @@
 table#list_matches{
   max-width : 600px;
   margin: auto;
-  
+
   td.img_thumb{
-    width   : 200px;
-    padding : 10px;
+    padding  : 10px;
+    position : relative;
+    width    : 200px;
+
+    .is-verified {
+      position: absolute;
+      color: #3cb73c;
+      top: 11px;
+      left: -9px;
+    }
 
     img{
       max-width : 150px;

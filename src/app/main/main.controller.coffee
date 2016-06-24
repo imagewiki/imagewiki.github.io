@@ -8,19 +8,21 @@ angular.module "imagewikiFrontend"
       # TempImageModel.removeImages()
 
       setRandomImage = ->
-        images = $scope.featuredCollection.collection_images
+        images = $scope.featuredImages
         $scope.featuredImage = images[Math.floor(Math.random() * images.length)]
         return
 
-      $scope.featuredCollection = { collection_id: '', collection_images: []}
+      $scope.featuredImages = []
+
+      $scope.$parent.$broadcast 'hideSearchTooltip'
 
       ImageModel
         .getFeaturedImage()
-        .then (collection) ->
-          $scope.featuredCollection = collection
+        .then (data) ->
+          $scope.featuredImages = data.images
           return
         , (response) ->
-          $scope.featuredCollection = { collection_id: 'fake', collection_images: []}
+          $scope.featuredImages = []
           return
         .finally setRandomImage
 
@@ -36,6 +38,7 @@ angular.module "imagewikiFrontend"
 
       $scope.$watch 'file', ->
         if $scope.file?
+          TempImageModel.isTempImage = true
           $scope.homeUpload($scope.file)
         return
 

@@ -9,6 +9,8 @@ angular.module "imagewikiFrontend"
     ($q, $rootScope, ImageSelects, PbrSelectModel, ImageStore, ImageModel) ->
       tempImageModel = {}
 
+      tempImageModel.isTempImage = false
+
       imageData = {
         image_id: null
         title: null
@@ -40,6 +42,8 @@ angular.module "imagewikiFrontend"
           site_url: null
         }
       }
+
+      tempImageModel.imageTemplate = imageData
 
       createImage = (file) ->
         data = angular.copy(imageData)

@@ -1,0 +1,26 @@
+.row
+  .col-lg-6.col-md-6.col-sm-10.col-xs-10.col-lg-offset-3.col-md-offset-3.col-sm-offset-1.col-xs-offset-1
+    .page-header
+      h1 Sign up
+    form#new_user.form-horizontal(name="registerForm", ng-submit="register(user)", novalidate)
+      .form-group
+        label.col-lg-3.control-label(for='user_first_name') First Name:
+        .col-lg-9
+          input#user_first_name.form-control(name='user[first_name]', type='text', ng-model="user.first_name")
+      .form-group
+        label.col-lg-3.control-label(for='user_last_name') Last Name:
+        .col-lg-9
+          input#user_last_name.form-control(name='user[last_name]', type='text', ng-model="user.last_name")
+      .form-group
+        label.col-lg-3.control-label(for='user_email') Email:
+        .col-lg-9
+          input#user_email.form-control(name='user[email]', type='email', value='', ng-model="user.email")
+      .form-group
+        label.col-lg-3.control-label(for='user_password') Password:
+        .col-lg-9
+          input#user_password.form-control(name='user[password]', type='password', ng-model="user.password")
+      .form-group
+        label.col-lg-3.control-label(for='user_password_confirmation') Confirm:
+        .col-lg-9
+          input#user_password_confirmation.form-control(name='user[password_confirmation]', type='password', ng-model="user.password_confirmation")
+      input.btn.btn-primary(name='commit', style='float: right', type='submit', value='Sign up')
