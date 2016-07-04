@@ -59,7 +59,7 @@ gulp.task('deploy', function() {
   else {
     ghPagesOpts = {
       remoteUrl: 'git@github.com:imagewiki/website.git',
-      branch: 'test'
+      branch: 'gh-pages'
     };
   }
 
