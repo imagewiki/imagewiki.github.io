@@ -1,0 +1,13 @@
+.row.quick-menu
+  .col-lg-8.col-md-8.col-sm-8.col-xs-12.col-lg-offset-2.col-md-offset-2.col-sm-offset-2.content-main
+    ul.breadcrumb
+      li
+        a(ui-sref='home') Home
+      li Image Not Found
+
+    .not-found
+      .alert.alert-danger
+        .fa.fa-exclamation-triangle
+        strong &nbsp;We don't have any info on the image you looked for.
+      img(ng-src="{{ image }}")
+      .btn.btn-primary.btn-lg(ng-click="uploadNotFound(image)") Upload it?

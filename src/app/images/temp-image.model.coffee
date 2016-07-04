@@ -11,6 +11,19 @@ angular.module "imagewikiFrontend"
 
       tempImageModel.isTempImage = false
 
+      tempImageModel.setNotFound = (image) ->
+        if typeof image == 'string'
+          ImageStore.set 'not-found', image
+        else
+          fileToImage(image)
+            .then (result) ->
+              ImageStore.set 'not-found', result.file
+              return
+        return
+
+      tempImageModel.getNotFound = ->
+        ImageStore.get 'not-found'
+
       imageData = {
         image_id: null
         title: null

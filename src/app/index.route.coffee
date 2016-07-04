@@ -10,6 +10,11 @@ angular.module "imagewikiFrontend"
           templateUrl: "app/main/homepage.html"
           controller: "MainController"
           controllerAs: "main"
+        .state "not-found",
+          url: "/not-found"
+          templateUrl: "app/main/not-found.html"
+          controller: "NotFoundController"
+          controllerAs: "notFound"
         # User
         .state "logout",
           url: "/logout"
