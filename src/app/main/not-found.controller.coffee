@@ -16,7 +16,7 @@ angular.module "imagewikiFrontend"
           .then (data) ->
             $scope.$emit 'showToastrMessage',
               type: 'info'
-              message: 'Bu sure to fill the data for the image.'
+              message: 'Be sure to fill out the data for the image.'
             $state.go 'image-ownership', { hashid: data.image_id }
             return
         return
