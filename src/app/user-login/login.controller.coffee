@@ -28,6 +28,8 @@ angular.module "imagewikiFrontend"
               type: 'success'
               message: 'You will be redirect to previous page now.'
             $state.go $rootScope.returnToState, $rootScope.returnToStateParams
+          if $state.current.name == 'signup'
+            $state.go 'home'
         return
 
       userLoginFail = (reason) ->
