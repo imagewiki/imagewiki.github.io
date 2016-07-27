@@ -4,8 +4,9 @@ angular.module "imagewikiFrontend"
     '$state',
     '$timeout',
     'ImageModel'
+    'TempImageModel'
     'MatchModel'
-    ($scope, $state, $timeout, ImageModel, MatchModel) ->
+    ($scope, $state, $timeout, ImageModel, TempImageModel, MatchModel) ->
       $scope.option = 'url'
 
       goToImage = (image_id) ->
@@ -20,9 +21,8 @@ angular.module "imagewikiFrontend"
               $scope.$emit 'showToastrMessage',
                 type: 'warning'
                 message: 'No match found.'
-              # ImageModel.uploadUrl(url).then (data2) ->
-              #   goToImage data2.image_id
-              #   return
+              TempImageModel.setNotFound url
+              $state.go 'not-found'
             else
               MatchModel.setResults data.results
               $state.go 'image-matches'
@@ -41,9 +41,8 @@ angular.module "imagewikiFrontend"
               $scope.$emit 'showToastrMessage',
                 type: 'warning'
                 message: 'No match found.'
-              # ImageModel.upload(file).then (data2) ->
-              #   goToImage data2.data.image_id
-              #   return
+              TempImageModel.setNotFound file
+              $state.go 'not-found'
             else
               MatchModel.setResults data.results
               $state.go 'image-matches'
